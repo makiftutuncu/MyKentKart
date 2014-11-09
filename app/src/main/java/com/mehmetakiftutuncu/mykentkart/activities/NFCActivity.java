@@ -11,9 +11,7 @@ import android.widget.Toast;
 
 import com.mehmetakiftutuncu.mykentkart.fragments.KentKartNumberInputDialogFragment;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
-
-import java.security.MessageDigest;
-import java.util.Arrays;
+import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
 
 public class NFCActivity extends Activity {
@@ -81,7 +79,7 @@ public class NFCActivity extends Activity {
             if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
                 byte[] tagId = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
 
-                String id = generateKentKartId(tagId);
+                String id = StringUtils.generateNfcId(tagId);
 
                 String message = String.format("Kent Kart Id: %s", id);
                 Log.info(this, message);
@@ -98,21 +96,6 @@ public class NFCActivity extends Activity {
                 });
                 kentKartNumberInputDialogFragment.show(getFragmentManager(), "kentKartNumberInputDialogFragment");
             }
-        }
-    }
-
-    private String generateKentKartId(byte[] input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] resultBytes = md.digest(input);
-            StringBuilder sb = new StringBuilder();
-            for (byte b : resultBytes) {
-                sb.append(Integer.toString((b & 0xFF) + 0x100, 16).substring(1));
-            }
-            return sb.toString().toUpperCase();
-        } catch (Exception e) {
-            Log.error(this, "An error occurred while generating Kent Kart id from input " + Arrays.toString(input), e);
-            return null;
         }
     }
 }

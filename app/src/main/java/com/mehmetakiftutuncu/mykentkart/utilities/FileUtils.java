@@ -5,7 +5,7 @@ import android.os.Environment;
 import java.io.*;
 
 public class FileUtils {
-    private static final String DATA_PATH = Environment.getDataDirectory().getAbsolutePath() + File.separator + "com.mehmetakiftutuncu.mykentkart";
+    private static final String DATA_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.mehmetakiftutuncu.mykentkart";
 
     public static String loadFile(String fileName) {
         if (StringUtils.isEmpty(fileName)) {
@@ -18,7 +18,7 @@ public class FileUtils {
                 Log.error(FileUtils.class, "Failed to load file, data path is null! fileName: " + fileName);
                 return null;
             } else {
-                File file = new File(dataPath.getAbsolutePath() + File.separator + fileName);
+                File file = new File(dataPath.getAbsolutePath() + "/" + fileName);
 
                 if (!file.exists() || !file.canRead()) {
                     Log.error(FileUtils.class, "Failed to load file, file cannot be accessed! file: " + file);
@@ -58,7 +58,7 @@ public class FileUtils {
                 Log.error(FileUtils.class, "Failed to save file, data path is null! data: " + data + ", fileName: " + fileName);
                 return false;
             } else {
-                File file = new File(dataPath.getAbsolutePath() + File.separator + fileName);
+                File file = new File(dataPath.getAbsolutePath() + "/" + fileName);
                 try {
                     FileWriter fileWriter = new FileWriter(file);
                     BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
