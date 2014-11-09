@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="@dimen/spacing_medium">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_medium">
+
+        <ImageButton
+            android:id="@+id/kentKartNumberInput_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/spacing_medium"
+            android:layout_marginRight="@dimen/spacing_medium"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_action_backspace"/>
+
+        <TextView
+            android:id="@+id/kentKartNumberInput_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/kentKartNumberInput_delete"
+            android:gravity="right|center_vertical"
+            android:maxLength="13"
+            android:singleLine="true"
+            android:textSize="@dimen/textSize_large"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/kentKartNumberInput_button1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="1"
+            android:textSize="@dimen/textSize_large"/>
+
+        <Button
+            android:id="@+id/kentKartNumberInput_button2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="2"
+            android:textSize="@dimen/textSize_large"/>
+
+        <Button
+            android:id="@+id/kentKartNumberInput_button3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="3"
+            android:textSize="@dimen/textSize_large"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/kentKartNumberInput_button4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="4"
+            android:textSize="@dimen/textSize_large"/>
+
+        <Button
+            android:id="@+id/kentKartNumberInput_button5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="5"
+            android:textSize="@dimen/textSize_large"/>
+
+        <Button
+            android:id="@+id/kentKartNumberInput_button6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="6"
+            android:textSize="@dimen/textSize_large"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/kentKartNumberInput_button7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="7"
+            android:textSize="@dimen/textSize_large"/>
+
+        <Button
+            android:id="@+id/kentKartNumberInput_button8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="8"
+            android:textSize="@dimen/textSize_large"/>
+
+        <Button
+            android:id="@+id/kentKartNumberInput_button9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="9"
+            android:textSize="@dimen/textSize_large"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/kentKartNumberInput_button0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="0"
+            android:textSize="@dimen/textSize_large"/>
+
+    </LinearLayout>
+
+</LinearLayout>
