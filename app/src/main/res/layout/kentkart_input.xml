@@ -6,13 +6,31 @@
               android:orientation="vertical"
               android:padding="@dimen/spacing_medium">
 
+    <EditText
+        android:id="@+id/kentKartInput_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="@dimen/textSize_large"
+        android:hint="@string/kentKartInput_name_hint"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/kertKartInput_number_hint"
+        android:textSize="@dimen/textSize_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:gravity="center"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_medium">
 
         <ImageButton
-            android:id="@+id/kentKartNumberInput_delete"
+            android:id="@+id/kentKartInput_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -23,14 +41,13 @@
             android:src="@drawable/ic_action_backspace"/>
 
         <TextView
-            android:id="@+id/kentKartNumberInput_value"
+            android:id="@+id/kentKartInput_number"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/kentKartNumberInput_delete"
+            android:layout_toLeftOf="@id/kentKartInput_delete"
             android:gravity="right|center_vertical"
-            android:maxLength="13"
             android:singleLine="true"
             android:textSize="@dimen/textSize_large"/>
 
@@ -43,7 +60,7 @@
         android:weightSum="3">
 
         <Button
-            android:id="@+id/kentKartNumberInput_button1"
+            android:id="@+id/kentKartInput_button1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -52,7 +69,7 @@
             android:textSize="@dimen/textSize_large"/>
 
         <Button
-            android:id="@+id/kentKartNumberInput_button2"
+            android:id="@+id/kentKartInput_button2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -61,7 +78,7 @@
             android:textSize="@dimen/textSize_large"/>
 
         <Button
-            android:id="@+id/kentKartNumberInput_button3"
+            android:id="@+id/kentKartInput_button3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -77,7 +94,7 @@
         android:weightSum="3">
 
         <Button
-            android:id="@+id/kentKartNumberInput_button4"
+            android:id="@+id/kentKartInput_button4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -86,7 +103,7 @@
             android:textSize="@dimen/textSize_large"/>
 
         <Button
-            android:id="@+id/kentKartNumberInput_button5"
+            android:id="@+id/kentKartInput_button5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -95,7 +112,7 @@
             android:textSize="@dimen/textSize_large"/>
 
         <Button
-            android:id="@+id/kentKartNumberInput_button6"
+            android:id="@+id/kentKartInput_button6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -111,7 +128,7 @@
         android:weightSum="3">
 
         <Button
-            android:id="@+id/kentKartNumberInput_button7"
+            android:id="@+id/kentKartInput_button7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -120,7 +137,7 @@
             android:textSize="@dimen/textSize_large"/>
 
         <Button
-            android:id="@+id/kentKartNumberInput_button8"
+            android:id="@+id/kentKartInput_button8"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -129,7 +146,7 @@
             android:textSize="@dimen/textSize_large"/>
 
         <Button
-            android:id="@+id/kentKartNumberInput_button9"
+            android:id="@+id/kentKartInput_button9"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -146,7 +163,7 @@
         android:weightSum="3">
 
         <Button
-            android:id="@+id/kentKartNumberInput_button0"
+            android:id="@+id/kentKartInput_button0"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

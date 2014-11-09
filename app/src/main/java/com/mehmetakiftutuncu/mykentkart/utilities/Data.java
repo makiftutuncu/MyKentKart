@@ -9,13 +9,13 @@ import java.io.FilenameFilter;
 public final class Data {
     public static KentKart loadKentKart(final String key) {
         if (StringUtils.isEmpty(key)) {
-            Log.error(Data.class, "Failed to load Kent Kart, key is empty!");
+            Log.error(Data.class, "Failed to load KentKart, key is empty!");
             return null;
         } else {
             File dataPath = FileUtils.getDataPath();
 
             if (dataPath == null) {
-                Log.error(Data.class, "Failed to load Kent Kart, data path is null! key: " + key);
+                Log.error(Data.class, "Failed to load KentKart, data path is null! key: " + key);
                 return null;
             } else {
                 String[] matchingFileNames = dataPath.list(new FilenameFilter() {
@@ -26,23 +26,23 @@ public final class Data {
                 });
 
                 if (matchingFileNames.length == 0) {
-                    Log.error(Data.class, "Failed to load Kent Kart, file not found! key: " + key);
+                    Log.error(Data.class, "Failed to load KentKart, file not found! key: " + key);
                     return null;
                 } else if (matchingFileNames.length > 1) {
-                    Log.error(Data.class, "Failed to load Kent Kart, more than 1 files found! key: " + key);
+                    Log.error(Data.class, "Failed to load KentKart, more than 1 files found! key: " + key);
                     return null;
                 } else {
                     String fileName = matchingFileNames[0];
                     String data = FileUtils.loadFile(fileName);
 
                     if (StringUtils.isEmpty(data)) {
-                        Log.error(Data.class, "Failed to load Kent Kart, loaded data is empty! key: " + key);
+                        Log.error(Data.class, "Failed to load KentKart, loaded data is empty! key: " + key);
                         return null;
                     } else {
                         KentKart kentKart = KentKart.fromJson(data);
 
                         if (kentKart == null) {
-                            Log.error(Data.class, "Failed to load Kent Kart, Kent Kart object is empty! key: " + key);
+                            Log.error(Data.class, "Failed to load KentKart, KentKart object is empty! key: " + key);
                             return null;
                         } else {
                             return kentKart;
@@ -55,13 +55,13 @@ public final class Data {
 
     public static boolean saveKentKart(final KentKart kentKart) {
         if (kentKart == null) {
-            Log.error(Data.class, "Failed to save Kent Kart, Kent Kart is null!");
+            Log.error(Data.class, "Failed to save KentKart, KentKart is null!");
             return false;
         } else {
             File dataPath = FileUtils.getDataPath();
 
             if (dataPath == null) {
-                Log.error(Data.class, "Failed to save Kent Kart, data path is null! kentKart: " + kentKart);
+                Log.error(Data.class, "Failed to save KentKart, data path is null! kentKart: " + kentKart);
                 return false;
             } else {
                 File[] matchingFiles = dataPath.listFiles(new FileFilter() {

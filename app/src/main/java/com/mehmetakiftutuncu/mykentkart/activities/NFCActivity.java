@@ -9,7 +9,9 @@ import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.mehmetakiftutuncu.mykentkart.fragments.KentKartNumberInputDialogFragment;
+import com.mehmetakiftutuncu.mykentkart.fragments.KentKartInputDialogFragment;
+import com.mehmetakiftutuncu.mykentkart.models.KentKart;
+import com.mehmetakiftutuncu.mykentkart.utilities.Data;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
@@ -81,20 +83,35 @@ public class NFCActivity extends Activity {
 
                 String id = StringUtils.generateNfcId(tagId);
 
-                String message = String.format("Kent Kart Id: %s", id);
-                Log.info(this, message);
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                Log.info(this, "KentKart NFC id: " + id);
 
-                KentKartNumberInputDialogFragment kentKartNumberInputDialogFragment = new KentKartNumberInputDialogFragment();
-                kentKartNumberInputDialogFragment.setOnKentKartNumberInputListener(new KentKartNumberInputDialogFragment.OnKentKartNumberInputListener() {
-                    @Override
-                    public void onKentKartNumberInput(String value) {
-                        String message = String.format("Kent Kart Number: %s", value);
-                        Log.info(this, message);
-                        Toast.makeText(NFCActivity.this, message, Toast.LENGTH_LONG).show();
-                    }
-                });
-                kentKartNumberInputDialogFragment.show(getFragmentManager(), "kentKartNumberInputDialogFragment");
+                KentKart loadedKentKart = Data.loadKentKart(id);
+
+                if (loadedKentKart != null) {
+                    // Found a saved KentKart
+
+                    Log.info(this, "Going to get info about KentKart... kentKart: " + loadedKentKart);
+                } else {
+                    // This is a new KentKart
+
+                    KentKartInputDialogFragment kentKartInputDialogFragment = new KentKartInputDialogFragment();
+                    Bundle args = new Bundle();
+                    args.putString(KentKartInputDialogFragment.EXTRA_NFC_ID, id);
+                    kentKartInputDialogFragment.setArguments(args);
+                    kentKartInputDialogFragment.setOnKentKartInputListener(new KentKartInputDialogFragment.OnKentKartInputListener() {
+                        @Override
+                        public void onKentKartInput(KentKart kentKart) {
+                            Log.info(this, "KentKart: " + kentKart);
+
+                            boolean saveResult = Data.saveKentKart(kentKart);
+
+                            if (saveResult) {
+                                Log.info(this, "KentKart is saved! kentKart: " + kentKart);
+                            }
+                        }
+                    });
+                    kentKartInputDialogFragment.show(getFragmentManager(), "kentKartNumberInputDialogFragment");
+                }
             }
         }
     }
