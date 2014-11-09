@@ -4,7 +4,7 @@ import com.mehmetakiftutuncu.mykentkart.BuildConfig;
 
 public class Log {
     private static String getTag(Object loggingObject) {
-        return String.format("Cardroid.%s", loggingObject.getClass().getSimpleName());
+        return String.format("MyKentKart.%s", loggingObject.getClass().getSimpleName());
     }
 
     public static void info(Object loggingObject, String message) {

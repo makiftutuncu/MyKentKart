@@ -31,17 +31,22 @@ public class NFCActivity extends Activity {
     @Override
     public void onPause() {
         super.onPause();
-        nfcAdapter.disableForegroundDispatch(this);
+
+        if (nfcAdapter != null) {
+            nfcAdapter.disableForegroundDispatch(this);
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
-        IntentFilter intentFilter = new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED);
+        if (nfcAdapter != null) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+            IntentFilter intentFilter = new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED);
 
-        nfcAdapter.enableForegroundDispatch(this, pendingIntent, new IntentFilter[]{intentFilter}, new String[][]{new String[]{NfcA.class.getName()}});
+            nfcAdapter.enableForegroundDispatch(this, pendingIntent, new IntentFilter[]{intentFilter}, new String[][]{new String[]{NfcA.class.getName()}});
+        }
     }
 
     @Override
@@ -70,27 +75,29 @@ public class NFCActivity extends Activity {
     }
 
     private void handleIntent(Intent intent) {
-        String action = intent.getAction();
+        if (intent != null) {
+            String action = intent.getAction();
 
-        if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
-            byte[] tagId = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
+            if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
+                byte[] tagId = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
 
-            String id = generateKentKartId(tagId);
+                String id = generateKentKartId(tagId);
 
-            String message = String.format("Kent Kart Id: %s", id);
-            Log.info(this, message);
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                String message = String.format("Kent Kart Id: %s", id);
+                Log.info(this, message);
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
-            KentKartNumberInputDialogFragment kentKartNumberInputDialogFragment = new KentKartNumberInputDialogFragment();
-            kentKartNumberInputDialogFragment.setOnKentKartNumberInputListener(new KentKartNumberInputDialogFragment.OnKentKartNumberInputListener() {
-                @Override
-                public void onKentKartNumberInput(String value) {
-                    String message = String.format("Kent Kart Number: %s", value);
-                    Log.info(this, message);
-                    Toast.makeText(NFCActivity.this, message, Toast.LENGTH_LONG).show();
-                }
-            });
-            kentKartNumberInputDialogFragment.show(getFragmentManager(), "kentKartNumberInputDialogFragment");
+                KentKartNumberInputDialogFragment kentKartNumberInputDialogFragment = new KentKartNumberInputDialogFragment();
+                kentKartNumberInputDialogFragment.setOnKentKartNumberInputListener(new KentKartNumberInputDialogFragment.OnKentKartNumberInputListener() {
+                    @Override
+                    public void onKentKartNumberInput(String value) {
+                        String message = String.format("Kent Kart Number: %s", value);
+                        Log.info(this, message);
+                        Toast.makeText(NFCActivity.this, message, Toast.LENGTH_LONG).show();
+                    }
+                });
+                kentKartNumberInputDialogFragment.show(getFragmentManager(), "kentKartNumberInputDialogFragment");
+            }
         }
     }
 
