@@ -19,7 +19,7 @@ public class KentKart {
             Gson gson = new Gson();
             return gson.toJson(this, KentKart.class);
         } catch (Exception e) {
-            Log.error(this, String.format("Failed to convert Kent Kart to json with name: %s, number: %s and nfcId: %s!", name, number, nfcId), e);
+            Log.error(this, String.format("Failed to convert Kent Kart to json! name: %s, number: %s, nfcId: %s", name, number, nfcId), e);
             return null;
         }
     }
@@ -29,7 +29,7 @@ public class KentKart {
             Gson gson = new Gson();
             return gson.fromJson(json, KentKart.class);
         } catch (Exception e) {
-            Log.error(KentKart.class, String.format("Failed to generate Kent Kart from json: %s!", json), e);
+            Log.error(KentKart.class, String.format("Failed to generate Kent Kart from json! json: %s!", json), e);
             return null;
         }
     }
