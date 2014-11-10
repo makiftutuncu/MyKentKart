@@ -2,7 +2,6 @@ package com.mehmetakiftutuncu.mykentkart.activities;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.widget.FrameLayout;
 
 import com.mehmetakiftutuncu.mykentkart.R;
@@ -16,11 +15,5 @@ public class MainActivity extends MyKentKartActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
     }
 }
