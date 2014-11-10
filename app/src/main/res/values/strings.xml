@@ -1,6 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">My KentKart</string>
     <string name="kentKartInput_header">New KentKart</string>
     <string name="kentKartInput_name_hint">Name the KentKart</string>
     <string name="kertKartInput_number_hint">Enter the 11 digit number on the back of your KentKart below.</string>
+    <string name="welcome">Welcome to My KentKart!</string>
+
 </resources>

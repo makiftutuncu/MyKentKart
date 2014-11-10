@@ -1,0 +1,9 @@
+<resources>
+
+    <!-- Application theme. -->
+    <style name="MyKentKart" parent="MyKentKart.Base">
+        <!--   Navigation bar -->
+        <item name="android:navigationBarColor">@color/primary</item>
+    </style>
+
+</resources>

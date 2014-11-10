@@ -3,4 +3,5 @@
     <string name="kentKartInput_header">Yeni KentKart</string>
     <string name="kentKartInput_name_hint">KentKart\'a İsim Verin</string>
     <string name="kertKartInput_number_hint">KentKart\'ınızın arkasındaki 11 haneli numarayı aşağıya girin.</string>
+    <string name="welcome">KentKart\'ım'a Hoş Geldiniz!</string>
 </resources>
