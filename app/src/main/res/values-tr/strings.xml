@@ -1,7 +1,18 @@
 <resources>
     <string name="app_name">KentKart\'ım</string>
-    <string name="kentKartInput_header">Yeni KentKart</string>
-    <string name="kentKartInput_name_hint">KentKart\'a İsim Verin</string>
-    <string name="kertKartInput_number_hint">KentKart\'ınızın arkasındaki 11 haneli numarayı aşağıya girin.</string>
     <string name="welcome">KentKart\'ım\'a Hoş Geldiniz!</string>
+
+    <string name="notSet">(belirlenmemiş)</string>
+
+    <string name="menu_kentKartDetailsFragment_save">Kaydet</string>
+    <string name="menu_kentKartDetailsFragment_delete">Sil</string>
+
+    <string name="title_kentKartDetailsFragment_add">KentKart Ekle</string>
+    <string name="title_kentKartDetailsFragment_edit">KentKart Düzenle</string>
+
+    <string name="kentKartDetailsFragment_name_hint">KentKart\'ın Adı</string>
+    <string name="kentKartDetailsFragment_number_hint">KentKart\'ın Numarası</string>
+    <string name="kentKartDetailsFragment_number_info">KentKart numarası genellikle kartın arka yüzünde bulunan 11 haneli numaradır.</string>
+    <string name="kentKartDetailsFragment_nfc_info">NFC\'yi kullanarak tek bir dokunuşla KentKart bilgilerinizi görebilirsiniz.\n\nEşleştirmek için, KentKart\'ınızı cihazınızın arka yüzüne dokundurun.</string>
+    <string name="kentKartDetailsFragment_nfc_id">NFC Kimliği:</string>
 </resources>

@@ -9,6 +9,8 @@
     <dimen name="spacing_extraSmall">4dp</dimen>
     <dimen name="spacing_small">8dp</dimen>
     <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">32dp</dimen>
+    <dimen name="spacing_extraLarge">64dp</dimen>
 
     <!-- Text size values values -->
     <dimen name="textSize_extraSmall">10sp</dimen>
@@ -18,5 +20,7 @@
     <dimen name="textSize_extraLarge">36sp</dimen>
 
     <dimen name="navigationDrawer_width">240dp</dimen>
+
+    <dimen name="nfcLogo_size">128dp</dimen>
 
 </resources>

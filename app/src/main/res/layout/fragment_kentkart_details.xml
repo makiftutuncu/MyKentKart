@@ -1,0 +1,78 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/spacing_medium">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editText_kentKartDetailsFragment_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/kentKartDetailsFragment_name_hint"
+            android:inputType="textPersonName"
+            android:textSize="@dimen/textSize_large"/>
+
+        <EditText
+            android:id="@+id/editText_kentKartDetailsFragment_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:ems="10"
+            android:hint="@string/kentKartDetailsFragment_number_hint"
+            android:inputType="phone"
+            android:textSize="@dimen/textSize_large"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:gravity="center"
+            android:text="@string/kentKartDetailsFragment_number_info"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_kentKartDetailsFragment_nfc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/kentKartDetailsFragment_nfc_info"/>
+
+            <ImageView
+                android:layout_width="@dimen/nfcLogo_size"
+                android:layout_height="@dimen/nfcLogo_size"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/spacing_medium"
+                android:src="@drawable/nfc"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kentKartDetailsFragment_nfc_id"/>
+
+                <TextView
+                    android:id="@+id/textView_kentKartDetailsFragment_nfc_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:text="@string/notSet"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

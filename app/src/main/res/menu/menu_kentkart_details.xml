@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_kentKartDetailsFragment_delete"
+        android:icon="@drawable/action_delete"
+        android:title="@string/menu_kentKartDetailsFragment_delete"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu_kentKartDetailsFragment_save"
+        android:icon="@drawable/action_save"
+        android:title="@string/menu_kentKartDetailsFragment_save"
+        app:showAsAction="ifRoom"/>
+</menu>

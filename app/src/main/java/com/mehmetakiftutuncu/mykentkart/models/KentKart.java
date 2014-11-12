@@ -15,8 +15,12 @@ public class KentKart {
         this.nfcId = nfcId;
     }
 
-    public boolean isValid() {
-        return !StringUtils.isEmpty(name) && !StringUtils.isEmpty(number) && number.length() == 11;
+    public boolean isNameValid() {
+        return !StringUtils.isEmpty(name);
+    }
+
+    public boolean isNumberValid() {
+        return !StringUtils.isEmpty(number) && number.length() == 11;
     }
 
     public String toJson() {
