@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mehmetakiftutuncu.mykentkart" >
+<manifest
+    package="com.mehmetakiftutuncu.mykentkart"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.NFC" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.NFC"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/MyKentKart" >
+        android:theme="@style/MyKentKart">
 
-        <activity android:name="com.mehmetakiftutuncu.mykentkart.activities.MainActivity" >
+        <activity
+            android:name="com.mehmetakiftutuncu.mykentkart.activities.MainActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name="com.mehmetakiftutuncu.mykentkart.activities.KentKartDetailsActivity" >
+        <activity
+            android:name="com.mehmetakiftutuncu.mykentkart.activities.KentKartDetailsActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
-                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+                <action android:name="android.nfc.action.TECH_DISCOVERED"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
-                android:resource="@xml/nfc_filter" />
+                android:resource="@xml/nfc_filter"/>
         </activity>
     </application>
 

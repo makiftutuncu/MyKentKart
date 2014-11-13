@@ -22,6 +22,8 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
     private Toolbar toolbar;
     private NfcAdapter nfcAdapter;
 
+    private KentKartDetailsFragment kentKartDetailsFragment;
+
     private boolean hasNfc = false;
     private boolean isNfcOn = false;
 
@@ -103,23 +105,30 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
 
                 Log.info(this, "KentKart NFC id: " + id);
 
-                KentKart loadedKentKart = Data.loadKentKart(id);
+                if (kentKartDetailsFragment == null) {
+                    // This is completely new
+                    KentKart loadedKentKart = Data.loadKentKart(id);
 
-                if (loadedKentKart != null) {
-                    // Found a saved KentKart
-                    String message = "Going to get info about KentKart... kentKart: " + loadedKentKart;
-                    Log.info(this, message);
+                    if (loadedKentKart != null) {
+                        // Found a saved KentKart
+                        String message = "Going to get info about KentKart... kentKart: " + loadedKentKart;
+                        Log.info(this, message);
+                    } else {
+                        // This is a new KentKart
+                        Log.info(this, "New KentKart with id: " + id);
+
+                        kentKartDetailsFragment = KentKartDetailsFragment.newInstance(hasNfc, isNfcOn, id);
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.container, kentKartDetailsFragment);
+                        fragmentTransaction.commit();
+                    }
                 } else {
-                    // This is a new KentKart
-                    Log.info(this, "New KentKart with id: " + id);
-                    KentKartDetailsFragment kentKartDetailsFragment = KentKartDetailsFragment.newInstance(hasNfc, isNfcOn, id);
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container, kentKartDetailsFragment);
-                    fragmentTransaction.commit();
+                    // User was in add mode, probably made some changes, then tagged card
+                    kentKartDetailsFragment.setNfcId(id);
                 }
             } else {
-                KentKartDetailsFragment kentKartDetailsFragment = KentKartDetailsFragment.newInstance(hasNfc, isNfcOn);
+                kentKartDetailsFragment = KentKartDetailsFragment.newInstance(hasNfc, isNfcOn);
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.container, kentKartDetailsFragment);

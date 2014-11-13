@@ -1,5 +1,6 @@
 package com.mehmetakiftutuncu.mykentkart.activities;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -8,8 +9,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.mehmetakiftutuncu.mykentkart.R;
+import com.melnykov.fab.FloatingActionButton;
 
 public class MainActivity extends ActionBarActivity {
     private DrawerLayout mDrawer;
@@ -30,6 +33,15 @@ public class MainActivity extends ActionBarActivity {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, mToolbar, R.string.app_name, R.string.app_name);
         mDrawer.setDrawerListener(mDrawerToggle);
         mDrawer.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton_add);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, KentKartDetailsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

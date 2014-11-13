@@ -1,6 +1,7 @@
 package com.mehmetakiftutuncu.mykentkart.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -18,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mehmetakiftutuncu.mykentkart.R;
+import com.mehmetakiftutuncu.mykentkart.activities.MainActivity;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
@@ -39,7 +41,6 @@ public class KentKartDetailsFragment extends Fragment {
 
     private EditText nameEditText;
     private EditText numberEditText;
-    private LinearLayout nfcLayout;
     private TextView nfcIdTextView;
 
     private boolean isEditMode;
@@ -129,24 +130,23 @@ public class KentKartDetailsFragment extends Fragment {
 
         nameEditText = (EditText) layout.findViewById(R.id.editText_kentKartDetailsFragment_name);
         numberEditText = (EditText) layout.findViewById(R.id.editText_kentKartDetailsFragment_number);
-        nfcLayout = (LinearLayout) layout.findViewById(R.id.linearLayout_kentKartDetailsFragment_nfc);
-        nfcIdTextView = (TextView) layout.findViewById(R.id.textView_kentKartDetailsFragment_nfc_id);
 
+        nameEditText.setText(kentKart.name);
         numberEditText.addTextChangedListener(numberTextWatcher);
+        numberEditText.setText(kentKart.number);
+
+        LinearLayout nfcLayout = (LinearLayout) layout.findViewById(R.id.linearLayout_kentKartDetailsFragment_nfc);
+        nfcIdTextView = (TextView) layout.findViewById(R.id.textView_kentKartDetailsFragment_nfc_id);
 
         if (!hasNfc) {
             nfcLayout.setVisibility(View.GONE);
         } else {
-            if (StringUtils.isEmpty(kentKart.nfcId)) {
-                nfcIdTextView.setText(R.string.notSet);
-            } else {
-                nfcIdTextView.setText(kentKart.nfcId);
-            }
-
             if (!isNfcOn) {
                 String message = "NFC is off!";
                 Log.info(this, message);
             }
+
+            setNfcId(kentKart.nfcId);
         }
 
         return layout;
@@ -166,6 +166,12 @@ public class KentKartDetailsFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                if (getActivity() != null) {
+                    Activity activity = getActivity();
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    startActivity(intent);
+                    activity.finish();
+                }
                 break;
 
             case R.id.menu_kentKartDetailsFragment_save:
@@ -215,6 +221,16 @@ public class KentKartDetailsFragment extends Fragment {
         super.onDetach();
 
         kentKartDetailsListener = null;
+    }
+
+    public void setNfcId(String nfcId) {
+        kentKart.nfcId = nfcId;
+
+        if (StringUtils.isEmpty(kentKart.nfcId)) {
+            nfcIdTextView.setText(R.string.notSet);
+        } else {
+            nfcIdTextView.setText(kentKart.nfcId);
+        }
     }
 
     private void updateNumberText() {
