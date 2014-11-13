@@ -1,13 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:fitsSystemWindows="true">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/welcome"
-        android:textSize="@dimen/textSize_large"/>
+        android:background="@color/primary"/>
 
-</RelativeLayout>
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Main layout -->
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/welcome"
+                android:textSize="@dimen/textSize_large"/>
+
+            <com.melnykov.fab.FloatingActionButton
+                xmlns:fab="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/floatingActionButton_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/spacing_medium"
+                android:src="@drawable/floatingaction_add"
+                fab:fab_colorNormal="@color/accent"
+                fab:fab_colorPressed="@color/primary"
+                fab:fab_colorRipple="@color/primaryDark"/>
+
+        </RelativeLayout>
+
+        <!-- Nav drawer -->
+        <fragment
+            android:name="com.mehmetakiftutuncu.mykentkart.fragments.DrawerFragment"
+            android:layout_width="@dimen/navigationDrawer_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            tools:layout="@layout/fragment_drawer"/>
+    </android.support.v4.widget.DrawerLayout>
+
+</LinearLayout>

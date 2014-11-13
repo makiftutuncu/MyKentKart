@@ -144,7 +144,8 @@ public class KentKartDetailsFragment extends Fragment {
             }
 
             if (!isNfcOn) {
-                Log.info(this, "NFC is off!");
+                String message = "NFC is off!";
+                Log.info(this, message);
             }
         }
 
@@ -173,11 +174,13 @@ public class KentKartDetailsFragment extends Fragment {
                     boolean isValid = true;
 
                     if (!kentKart.isNameValid()) {
-                        Log.error(this, "Name is invalid!");
+                        String message = "Name is invalid, it cannot be empty!";
+                        Log.error(this, message);
                         isValid = false;
                     }
                     if (!kentKart.isNumberValid()) {
-                        Log.error(this, "Number is invalid!");
+                        String message = "Number is invalid, it should be 11 digits!";
+                        Log.error(this, message);
                         isValid = false;
                     }
 

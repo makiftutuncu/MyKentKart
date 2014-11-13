@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.fragments.KentKartDetailsFragment;
@@ -77,7 +76,6 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
 
                 String message = "Sorry, your device doesn't support NFC!";
                 Log.error(this, message);
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             } else {
                 nfcAdapter = adapter;
                 hasNfc = true;
@@ -87,7 +85,6 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
 
                     String message = "NFC is disabled! Enable it and try again.";
                     Log.error(this, message);
-                    Toast.makeText(this, message, Toast.LENGTH_LONG).show();
                 } else {
                     isNfcOn = true;
                 }
@@ -112,7 +109,6 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
                     // Found a saved KentKart
                     String message = "Going to get info about KentKart... kentKart: " + loadedKentKart;
                     Log.info(this, message);
-                    Toast.makeText(this, message, Toast.LENGTH_LONG).show();
                 } else {
                     // This is a new KentKart
                     Log.info(this, "New KentKart with id: " + id);
@@ -134,12 +130,14 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
 
     @Override
     public void onKentKartSave(KentKart kentKart) {
-        Log.info(this, "Saving KentKart: " + kentKart);
+        String message = "Saving KentKart: " + kentKart;
+        Log.info(this, message);
         Data.saveKentKart(kentKart);
     }
 
     @Override
     public void onKentKartDelete(KentKart kentKart) {
-        Log.info(this, "Deleting KentKart: " + kentKart);
+        String message = "Deleting KentKart: " + kentKart;
+        Log.info(this, message);
     }
 }
