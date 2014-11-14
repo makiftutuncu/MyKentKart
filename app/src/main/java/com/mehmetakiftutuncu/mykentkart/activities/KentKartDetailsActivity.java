@@ -19,7 +19,13 @@ import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
 public class KentKartDetailsActivity extends ActionBarActivity implements KentKartDetailsFragment.KentKartDetailsListener {
-    private Toolbar toolbar;
+    public static final String EDIT_MODE        = "editMode";
+    public static final String KENT_KART_NAME   = "kentKartName";
+    public static final String KENT_KART_NUMBER = "kentKartNumber";
+    public static final String KENT_KART_NFC_ID = "kentKartNfcId";
+    public static final String HAS_NFC          = "hasNfc";
+    public static final String IS_NFC_ON        = "isNfcOn";
+
     private NfcAdapter nfcAdapter;
 
     private KentKartDetailsFragment kentKartDetailsFragment;
@@ -33,7 +39,7 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
 
         setContentView(R.layout.activity_kentkart_details);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
@@ -99,6 +105,7 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
             String action = intent.getAction();
 
             if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
+                // An NFC tag has been read
                 byte[] tagId = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
 
                 String id = StringUtils.generateNfcId(tagId);
@@ -127,7 +134,26 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
                     // User was in add mode, probably made some changes, then tagged card
                     kentKartDetailsFragment.setNfcId(id);
                 }
+            } else if (EDIT_MODE.equals(action)) {
+                // User came to this activity to edit a KentKart
+                String name = null;
+                String number = null;
+                String nfcId = null;
+
+                Bundle extras = intent.getExtras();
+                if (extras != null) {
+                    name = extras.getString(KENT_KART_NAME);
+                    number = extras.getString(KENT_KART_NUMBER);
+                    nfcId = extras.getString(KENT_KART_NFC_ID);
+                }
+
+                kentKartDetailsFragment = KentKartDetailsFragment.newInstance(true, hasNfc, isNfcOn, name, number, nfcId);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, kentKartDetailsFragment);
+                fragmentTransaction.commit();
             } else {
+                // User came to this activity with nothing
                 kentKartDetailsFragment = KentKartDetailsFragment.newInstance(hasNfc, isNfcOn);
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -141,12 +167,13 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
     public void onKentKartSave(KentKart kentKart) {
         String message = "Saving KentKart: " + kentKart;
         Log.info(this, message);
-        Data.saveKentKart(kentKart);
+        finish();
     }
 
     @Override
     public void onKentKartDelete(KentKart kentKart) {
         String message = "Deleting KentKart: " + kentKart;
         Log.info(this, message);
+        finish();
     }
 }

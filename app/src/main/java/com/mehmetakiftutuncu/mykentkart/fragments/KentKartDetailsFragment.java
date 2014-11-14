@@ -19,19 +19,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mehmetakiftutuncu.mykentkart.R;
-import com.mehmetakiftutuncu.mykentkart.activities.MainActivity;
+import com.mehmetakiftutuncu.mykentkart.activities.KentKartDetailsActivity;
+import com.mehmetakiftutuncu.mykentkart.activities.KentKartListActivity;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
 public class KentKartDetailsFragment extends Fragment {
-    public static final String IS_EDIT_MODE     = "isEditMode";
-    public static final String HAS_NFC          = "hasNfc";
-    public static final String IS_NFC_ON        = "isNfcOn";
-    public static final String KENT_KART_NAME   = "kentKartName";
-    public static final String KENT_KART_NUMBER = "kentKartNumber";
-    public static final String KENT_KART_NFC_ID = "kentKartNfcId";
-
     public interface KentKartDetailsListener {
         public void onKentKartSave(KentKart kentKart);
         public void onKentKartDelete(KentKart kentKart);
@@ -74,17 +68,17 @@ public class KentKartDetailsFragment extends Fragment {
         KentKartDetailsFragment fragment = new KentKartDetailsFragment();
         Bundle args = new Bundle();
 
-        args.putBoolean(IS_EDIT_MODE, isEditMode);
-        args.putBoolean(HAS_NFC, hasNfc);
-        args.putBoolean(IS_NFC_ON, isNfcOn);
+        args.putBoolean(KentKartDetailsActivity.EDIT_MODE, isEditMode);
+        args.putBoolean(KentKartDetailsActivity.HAS_NFC, hasNfc);
+        args.putBoolean(KentKartDetailsActivity.IS_NFC_ON, isNfcOn);
         if (!StringUtils.isEmpty(name)) {
-            args.putString(KENT_KART_NAME, name);
+            args.putString(KentKartDetailsActivity.KENT_KART_NAME, name);
         }
         if (!StringUtils.isEmpty(number)) {
-            args.putString(KENT_KART_NUMBER, number);
+            args.putString(KentKartDetailsActivity.KENT_KART_NUMBER, number);
         }
         if (!StringUtils.isEmpty(nfcId)) {
-            args.putString(KENT_KART_NFC_ID, nfcId);
+            args.putString(KentKartDetailsActivity.KENT_KART_NFC_ID, nfcId);
         }
 
         fragment.setArguments(args);
@@ -100,12 +94,12 @@ public class KentKartDetailsFragment extends Fragment {
         kentKart = new KentKart(null, null, null);
         Bundle args = getArguments();
         if (args != null) {
-            isEditMode      = args.getBoolean(IS_EDIT_MODE, false);
-            hasNfc          = args.getBoolean(HAS_NFC, false);
-            isNfcOn         = args.getBoolean(IS_NFC_ON, false);
-            kentKart.name   = args.getString(KENT_KART_NAME);
-            kentKart.number = args.getString(KENT_KART_NUMBER);
-            kentKart.nfcId  = args.getString(KENT_KART_NFC_ID);
+            isEditMode      = args.getBoolean(KentKartDetailsActivity.EDIT_MODE, false);
+            hasNfc          = args.getBoolean(KentKartDetailsActivity.HAS_NFC, false);
+            isNfcOn         = args.getBoolean(KentKartDetailsActivity.IS_NFC_ON, false);
+            kentKart.name   = args.getString(KentKartDetailsActivity.KENT_KART_NAME);
+            kentKart.number = args.getString(KentKartDetailsActivity.KENT_KART_NUMBER);
+            kentKart.nfcId  = args.getString(KentKartDetailsActivity.KENT_KART_NFC_ID);
         }
 
         setHasOptionsMenu(true);
@@ -168,7 +162,7 @@ public class KentKartDetailsFragment extends Fragment {
             case android.R.id.home:
                 if (getActivity() != null) {
                     Activity activity = getActivity();
-                    Intent intent = new Intent(activity, MainActivity.class);
+                    Intent intent = new Intent(activity, KentKartListActivity.class);
                     startActivity(intent);
                     activity.finish();
                 }

@@ -14,7 +14,7 @@
         android:theme="@style/MyKentKart">
 
         <activity
-            android:name="com.mehmetakiftutuncu.mykentkart.activities.MainActivity"
+            android:name=".activities.KentKartListActivity"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

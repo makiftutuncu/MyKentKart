@@ -52,7 +52,7 @@
                 android:layout_height="@dimen/nfcLogo_size"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/spacing_medium"
-                android:src="@drawable/nfc"/>
+                android:src="@drawable/nfc_big"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
