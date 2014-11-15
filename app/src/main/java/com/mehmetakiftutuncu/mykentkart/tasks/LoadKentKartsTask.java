@@ -11,14 +11,14 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 
-public class KentKartLoaderTask extends AsyncTask<Void, Void, ArrayList<KentKart>> {
+public class LoadKentKartsTask extends AsyncTask<Void, Void, ArrayList<KentKart>> {
     public interface OnKentKartsLoadedListener {
         public void onKentKartsLoaded(ArrayList<KentKart> kentKarts);
     }
 
     private OnKentKartsLoadedListener listener;
 
-    public KentKartLoaderTask(OnKentKartsLoadedListener listener) {
+    public LoadKentKartsTask(OnKentKartsLoadedListener listener) {
         this.listener = listener;
     }
 

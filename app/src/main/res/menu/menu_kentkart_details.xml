@@ -5,12 +5,12 @@
     <item
         android:id="@+id/menu_kentKartDetailsFragment_delete"
         android:icon="@drawable/action_delete"
-        android:title="@string/menu_kentKartDetailsFragment_delete"
+        android:title="@string/kentKartDetailsFragment_menu_delete"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/menu_kentKartDetailsFragment_save"
         android:icon="@drawable/action_save"
-        android:title="@string/menu_kentKartDetailsFragment_save"
+        android:title="@string/kentKartDetailsFragment_menu_save"
         app:showAsAction="ifRoom"/>
 </menu>

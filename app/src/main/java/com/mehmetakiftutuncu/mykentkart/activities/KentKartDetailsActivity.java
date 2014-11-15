@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.fragments.KentKartDetailsFragment;
+import com.mehmetakiftutuncu.mykentkart.fragments.KentKartInformationFragment;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
 import com.mehmetakiftutuncu.mykentkart.utilities.Data;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
@@ -120,6 +121,12 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
                         // Found a saved KentKart
                         String message = "Going to get info about KentKart... kentKart: " + loadedKentKart;
                         Log.info(this, message);
+
+                        KentKartInformationFragment kentKartInformationFragment = KentKartInformationFragment.newInstance(loadedKentKart.name, loadedKentKart.number);
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.container, kentKartInformationFragment);
+                        fragmentTransaction.commit();
                     } else {
                         // This is a new KentKart
                         Log.info(this, "New KentKart with id: " + id);

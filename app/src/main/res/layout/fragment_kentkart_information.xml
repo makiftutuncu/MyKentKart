@@ -1,0 +1,168 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/spacing_medium">
+
+    <include layout="@layout/loading" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout_kentKartInformationFragment_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small"
+            android:src="@drawable/bug"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/kentKartInformationFragment_error"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView_kentKartInformationFragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView_kentKartInformationFragment_sectionTitle_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_extraSmall"
+                    android:src="@drawable/balance"/>
+
+                <TextView
+                    android:id="@+id/textView_kentKartInformationFragment_sectionTitle_balance"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_alignBottom="@id/imageView_kentKartInformationFragment_sectionTitle_balance"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@id/imageView_kentKartInformationFragment_sectionTitle_balance"
+                    android:layout_toRightOf="@id/imageView_kentKartInformationFragment_sectionTitle_balance"
+                    android:gravity="center_vertical"
+                    android:text="@string/kentKartInformationFragment_section_balance"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/textSize_large"/>
+
+                <TextView
+                    android:id="@+id/textView_kentKartInformationFragment_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView_kentKartInformationFragment_sectionTitle_balance"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/textSize_huge"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout_kentKartInformationFragment_section_lastUse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small">
+
+                <ImageView
+                    android:id="@+id/imageView_kentKartInformationFragment_sectionTitle_lastUse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_extraSmall"
+                    android:src="@drawable/last_use"/>
+
+                <TextView
+                    android:id="@+id/textView_kentKartInformationFragment_sectionTitle_lastUse"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_alignBottom="@id/imageView_kentKartInformationFragment_sectionTitle_lastUse"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@id/imageView_kentKartInformationFragment_sectionTitle_lastUse"
+                    android:layout_toRightOf="@id/imageView_kentKartInformationFragment_sectionTitle_lastUse"
+                    android:gravity="center_vertical"
+                    android:text="@string/kentKartInformationFragment_section_lastUse"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/textSize_large"/>
+
+                <TextView
+                    android:id="@+id/textView_kentKartInformationFragment_lastUseTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/imageView_kentKartInformationFragment_sectionTitle_lastUse"
+                    android:layout_marginTop="@dimen/spacing_extraSmall"
+                    android:layout_toRightOf="@id/imageView_kentKartInformationFragment_sectionTitle_lastUse"
+                    android:textSize="@dimen/textSize_biggerMedium"/>
+
+                <TextView
+                    android:id="@+id/textView_kentKartInformationFragment_lastUseAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/textView_kentKartInformationFragment_lastUseTime"
+                    android:layout_marginTop="@dimen/spacing_extraSmall"
+                    android:layout_toRightOf="@id/imageView_kentKartInformationFragment_sectionTitle_lastUse"
+                    android:textSize="@dimen/textSize_biggerMedium"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout_kentKartInformationFragment_section_lastLoad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small">
+
+                <ImageView
+                    android:id="@+id/imageView_kentKartInformationFragment_sectionTitle_lastLoad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_extraSmall"
+                    android:src="@drawable/last_load"/>
+
+                <TextView
+                    android:id="@+id/textView_kentKartInformationFragment_sectionTitle_lastLoad"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_alignBottom="@id/imageView_kentKartInformationFragment_sectionTitle_lastLoad"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@id/imageView_kentKartInformationFragment_sectionTitle_lastLoad"
+                    android:layout_toRightOf="@id/imageView_kentKartInformationFragment_sectionTitle_lastLoad"
+                    android:gravity="center_vertical"
+                    android:text="@string/kentKartInformationFragment_section_lastLoad"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/textSize_large"/>
+
+                <TextView
+                    android:id="@+id/textView_kentKartInformationFragment_lastLoadTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/imageView_kentKartInformationFragment_sectionTitle_lastLoad"
+                    android:layout_marginTop="@dimen/spacing_extraSmall"
+                    android:layout_toRightOf="@id/imageView_kentKartInformationFragment_sectionTitle_lastLoad"
+                    android:textSize="@dimen/textSize_biggerMedium"/>
+
+                <TextView
+                    android:id="@+id/textView_kentKartInformationFragment_lastLoadAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/textView_kentKartInformationFragment_lastLoadTime"
+                    android:layout_marginTop="@dimen/spacing_extraSmall"
+                    android:layout_toRightOf="@id/imageView_kentKartInformationFragment_sectionTitle_lastLoad"
+                    android:textSize="@dimen/textSize_biggerMedium"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

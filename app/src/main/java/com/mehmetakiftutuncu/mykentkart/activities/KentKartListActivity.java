@@ -17,12 +17,12 @@ import android.widget.LinearLayout;
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.adapters.KentKartAdapter;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
-import com.mehmetakiftutuncu.mykentkart.tasks.KentKartLoaderTask;
+import com.mehmetakiftutuncu.mykentkart.tasks.LoadKentKartsTask;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class KentKartListActivity extends ActionBarActivity implements KentKartLoaderTask.OnKentKartsLoadedListener {
+public class KentKartListActivity extends ActionBarActivity implements LoadKentKartsTask.OnKentKartsLoadedListener {
     private enum States {LOADING, EMPTY, NONEMPTY}
 
     private DrawerLayout drawer;
@@ -143,7 +143,7 @@ public class KentKartListActivity extends ActionBarActivity implements KentKartL
 
     private void loadKentKarts() {
         changeState(States.LOADING);
-        new KentKartLoaderTask(this).execute();
+        new LoadKentKartsTask(this).execute();
     }
 
     private void setLoadingLayoutVisibitility(int visibility) {

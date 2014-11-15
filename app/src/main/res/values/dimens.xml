@@ -19,6 +19,7 @@
     <dimen name="textSize_biggerMedium">20sp</dimen>
     <dimen name="textSize_large">24sp</dimen>
     <dimen name="textSize_extraLarge">36sp</dimen>
+    <dimen name="textSize_huge">64sp</dimen>
 
     <dimen name="navigationDrawer_width">240dp</dimen>
     <dimen name="cardView_kentKart_height">128dp</dimen>

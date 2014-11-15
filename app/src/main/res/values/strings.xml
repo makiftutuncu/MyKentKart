@@ -2,22 +2,24 @@
 <resources>
 
     <string name="app_name">My KentKart</string>
-    <string name="welcome">Welcome to My KentKart!</string>
 
     <string name="notSet">(not set)</string>
     <string name="loading">Loading, please wait.</string>
 
-    <string name="menu_kentKartDetailsFragment_save">Save</string>
-    <string name="menu_kentKartDetailsFragment_delete">Delete</string>
+    <string name="kentKartList_empty">You do not have any KentKart saved.</string>
 
-    <string name="title_kentKartDetailsFragment_add">Add KentKart</string>
-    <string name="title_kentKartDetailsFragment_edit">Edit KentKart</string>
-
+    <string name="kentKartDetailsFragment_title_add">Add KentKart</string>
+    <string name="kentKartDetailsFragment_title_edit">Edit KentKart</string>
+    <string name="kentKartDetailsFragment_menu_save">Save</string>
+    <string name="kentKartDetailsFragment_menu_delete">Delete</string>
     <string name="kentKartDetailsFragment_name_hint">Name of the KentKart</string>
     <string name="kentKartDetailsFragment_number_hint">Number of the KentKart</string>
     <string name="kentKartDetailsFragment_number_info">KentKart number is the 11 digit number, usually found on the back side of your card.</string>
     <string name="kentKartDetailsFragment_nfc_info">You can use NFC to see your KentKart information with just one touch. To match, touch your KentKart to back side of your device.</string>
 
-    <string name="kentKartList_empty">You do not have any KentKart saved.</string>
+    <string name="kentKartInformationFragment_section_balance">Current Balance</string>
+    <string name="kentKartInformationFragment_section_lastUse">Last Use</string>
+    <string name="kentKartInformationFragment_section_lastLoad">Last Load</string>
+    <string name="kentKartInformationFragment_error">An error occurred while loading KentKart information. Please try again later.</string>
 
 </resources>

@@ -31,7 +31,7 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
 
         if (kentKart != null) {
             viewHolder.name.setText(kentKart.name);
-            viewHolder.number.setText(kentKart.number);
+            viewHolder.number.setText(kentKart.getFormattedNumber());
             viewHolder.nfc.setVisibility(StringUtils.isEmpty(kentKart.nfcId) ? View.GONE : View.VISIBLE);
 
             viewHolder.edit.setOnClickListener(new View.OnClickListener() {

@@ -23,6 +23,32 @@ public class KentKart {
         return !StringUtils.isEmpty(number) && number.length() == 11;
     }
 
+    public String getFormattedNumber() {
+        if (number == null) {
+            return "";
+        } else {
+            String newNumberText = number;
+
+            int length = number.length();
+            if (length >= 6 && length < 11) {
+                // After first 5 digits
+                String first5 = number.substring(0, 5);
+                String rest = number.substring(5, length);
+
+                newNumberText = first5 + "-" + rest;
+            } else if (length >= 11) {
+                // After first 10 digits
+                String first5 = number.substring(0, 5);
+                String second5 = number.substring(5, 10);
+                String rest = number.substring(10, 11);
+
+                newNumberText = first5 + "-" + second5 + "-" + rest;
+            }
+
+            return newNumberText;
+        }
+    }
+
     public String toJson() {
         try {
             Gson gson = new Gson();

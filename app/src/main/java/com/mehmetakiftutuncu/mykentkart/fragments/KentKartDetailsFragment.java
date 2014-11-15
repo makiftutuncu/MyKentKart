@@ -107,9 +107,9 @@ public class KentKartDetailsFragment extends Fragment {
             ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
                 if (isEditMode) {
-                    actionBar.setTitle(R.string.title_kentKartDetailsFragment_edit);
+                    actionBar.setTitle(R.string.kentKartDetailsFragment_title_edit);
                 } else {
-                    actionBar.setTitle(R.string.title_kentKartDetailsFragment_add);
+                    actionBar.setTitle(R.string.kentKartDetailsFragment_title_add);
                 }
 
                 actionBar.setHomeButtonEnabled(true);
@@ -161,12 +161,7 @@ public class KentKartDetailsFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                if (getActivity() != null) {
-                    Activity activity = getActivity();
-                    Intent intent = new Intent(activity, KentKartListActivity.class);
-                    startActivity(intent);
-                    activity.finish();
-                }
+                goToKentKartList();
                 break;
 
             case R.id.menu_kentKartDetailsFragment_save:
@@ -187,6 +182,7 @@ public class KentKartDetailsFragment extends Fragment {
 
                     if (isValid) {
                         kentKartDetailsListener.onKentKartSave(kentKart);
+                        goToKentKartList();
                     }
                 }
                 break;
@@ -194,6 +190,7 @@ public class KentKartDetailsFragment extends Fragment {
             case R.id.menu_kentKartDetailsFragment_delete:
                 if (kentKartDetailsListener != null) {
                     kentKartDetailsListener.onKentKartDelete(kentKart);
+                    goToKentKartList();
                 }
                 break;
         }
@@ -228,28 +225,21 @@ public class KentKartDetailsFragment extends Fragment {
         }
     }
 
+    private void goToKentKartList() {
+        if (getActivity() != null) {
+            Activity activity = getActivity();
+            Intent intent = new Intent(activity, KentKartListActivity.class);
+            startActivity(intent);
+            activity.finish();
+        }
+    }
+
     private void updateNumberText() {
         numberEditText.removeTextChangedListener(numberTextWatcher);
 
-        int length = kentKart.number.length();
-        String newNumberText = kentKart.number;
-        int newLastIndex = length;
-        if (length >= 6 && length < 11) {
-            // After first 5 digits
-            String first5 = kentKart.number.substring(0, 5);
-            String rest = kentKart.number.substring(5, length);
+        String newNumberText = kentKart.getFormattedNumber();
+        int newLastIndex = newNumberText.length();
 
-            newNumberText = first5 + "-" + rest;
-            newLastIndex = newNumberText.length();
-        } else if (length >= 11) {
-            // After first 10 digits
-            String first5 = kentKart.number.substring(0, 5);
-            String second5 = kentKart.number.substring(5, 10);
-            String rest = kentKart.number.substring(10, 11);
-
-            newNumberText = first5 + "-" + second5 + "-" + rest;
-            newLastIndex = newNumberText.length();
-        }
         numberEditText.setText(newNumberText);
         numberEditText.setSelection(newLastIndex);
 
