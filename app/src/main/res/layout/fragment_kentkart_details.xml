@@ -48,31 +48,18 @@
                 android:text="@string/kentKartDetailsFragment_nfc_info"/>
 
             <ImageView
-                android:layout_width="@dimen/nfcLogo_size"
-                android:layout_height="@dimen/nfcLogo_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/spacing_medium"
                 android:src="@drawable/nfc_big"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView_kentKartDetailsFragment_nfc_id"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/kentKartDetailsFragment_nfc_id"/>
-
-                <TextView
-                    android:id="@+id/textView_kentKartDetailsFragment_nfc_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/spacing_small"
-                    android:text="@string/notSet"/>
-            </LinearLayout>
-
+                android:layout_gravity="center_horizontal"
+                android:text="@string/notSet"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

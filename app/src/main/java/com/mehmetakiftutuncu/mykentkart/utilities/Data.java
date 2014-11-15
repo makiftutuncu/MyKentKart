@@ -12,13 +12,11 @@ public final class Data {
             Log.error(Data.class, "Failed to load KentKart, key is empty!");
             return null;
         } else {
-            File dataPath = FileUtils.getDataPath();
-
-            if (dataPath == null) {
+            if (FileUtils.dataPath == null) {
                 Log.error(Data.class, "Failed to load KentKart, data path is null! key: " + key);
                 return null;
             } else {
-                String[] matchingFileNames = dataPath.list(new FilenameFilter() {
+                String[] matchingFileNames = FileUtils.dataPath.list(new FilenameFilter() {
                     @Override
                     public boolean accept(File dir, String filename) {
                         return filename.contains(key);
@@ -33,7 +31,7 @@ public final class Data {
                     return null;
                 } else {
                     String fileName = matchingFileNames[0];
-                    String data = FileUtils.loadFile(fileName);
+                    String data = FileUtils.readFile(fileName);
 
                     if (StringUtils.isEmpty(data)) {
                         Log.error(Data.class, "Failed to load KentKart, loaded data is empty! key: " + key);
@@ -58,29 +56,43 @@ public final class Data {
             Log.error(Data.class, "Failed to save KentKart, KentKart is null!");
             return false;
         } else {
-            File dataPath = FileUtils.getDataPath();
-
-            if (dataPath == null) {
+            if (FileUtils.dataPath == null) {
                 Log.error(Data.class, "Failed to save KentKart, data path is null! kentKart: " + kentKart);
                 return false;
             } else {
-                File[] matchingFiles = dataPath.listFiles(new FileFilter() {
+                String data = kentKart.toJson();
+
+                return FileUtils.writeFile(data, getKentKartFileName(kentKart));
+            }
+        }
+    }
+
+    public static boolean deleteKentKart(final KentKart kentKart) {
+        if (kentKart == null) {
+            Log.error(Data.class, "Failed to delete KentKart, KentKart is null!");
+            return false;
+        } else {
+            if (FileUtils.dataPath == null) {
+                Log.error(Data.class, "Failed to delete KentKart, data path is null! kentKart: " + kentKart);
+                return false;
+            } else {
+                File[] matchingFiles = FileUtils.dataPath.listFiles(new FileFilter() {
                     @Override
                     public boolean accept(File pathname) {
                         boolean containsNumber = pathname.getName().contains(kentKart.number);
-                        boolean containsNfcId = pathname.getName().contains(kentKart.nfcId);
+                        boolean containsNfcId = !StringUtils.isEmpty(kentKart.nfcId) && pathname.getName().contains(kentKart.nfcId);
 
                         return containsNumber || containsNfcId;
                     }
                 });
 
+                boolean result = true;
+
                 for (File file : matchingFiles) {
-                    file.delete();
+                    result &= file.delete();
                 }
 
-                String data = kentKart.toJson();
-
-                return FileUtils.saveFile(data, getKentKartFileName(kentKart));
+                return result;
             }
         }
     }

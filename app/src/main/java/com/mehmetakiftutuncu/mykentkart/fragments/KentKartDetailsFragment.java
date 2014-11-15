@@ -128,6 +128,7 @@ public class KentKartDetailsFragment extends Fragment {
         nameEditText.setText(kentKart.name);
         numberEditText.addTextChangedListener(numberTextWatcher);
         numberEditText.setText(kentKart.number);
+        numberEditText.setEnabled(!isEditMode);
 
         LinearLayout nfcLayout = (LinearLayout) layout.findViewById(R.id.linearLayout_kentKartDetailsFragment_nfc);
         nfcIdTextView = (TextView) layout.findViewById(R.id.textView_kentKartDetailsFragment_nfc_id);

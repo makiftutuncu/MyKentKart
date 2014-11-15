@@ -1,4 +1,4 @@
-package com.mehmetakiftutuncu.mykentkart.utilities;
+package com.mehmetakiftutuncu.mykentkart.adapters;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -12,15 +12,12 @@ import android.widget.TextView;
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.activities.KentKartDetailsActivity;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
+import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
 import java.util.ArrayList;
 
-public class KentKartCardViewAdapter extends RecyclerView.Adapter<KentKartCardViewAdapter.ViewHolder> {
+public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHolder> {
     private ArrayList<KentKart> kentKarts;
-
-    public KentKartCardViewAdapter(ArrayList<KentKart> kentKarts) {
-        this.kentKarts = kentKarts;
-    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -30,28 +27,35 @@ public class KentKartCardViewAdapter extends RecyclerView.Adapter<KentKartCardVi
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        final KentKart kentKart = kentKarts.get(position);
+        final KentKart kentKart = kentKarts != null ? kentKarts.get(position) : null;
 
-        viewHolder.name.setText(kentKart.name);
-        viewHolder.number.setText(kentKart.number);
-        viewHolder.nfc.setVisibility(StringUtils.isEmpty(kentKart.nfcId) ? View.GONE : View.VISIBLE);
+        if (kentKart != null) {
+            viewHolder.name.setText(kentKart.name);
+            viewHolder.number.setText(kentKart.number);
+            viewHolder.nfc.setVisibility(StringUtils.isEmpty(kentKart.nfcId) ? View.GONE : View.VISIBLE);
 
-        viewHolder.edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), KentKartDetailsActivity.class);
-                intent.setAction(KentKartDetailsActivity.EDIT_MODE);
-                intent.putExtra(KentKartDetailsActivity.KENT_KART_NAME, kentKart.name);
-                intent.putExtra(KentKartDetailsActivity.KENT_KART_NUMBER, kentKart.number);
-                intent.putExtra(KentKartDetailsActivity.KENT_KART_NFC_ID, kentKart.nfcId);
-                v.getContext().startActivity(intent);
-            }
-        });
+            viewHolder.edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), KentKartDetailsActivity.class);
+                    intent.setAction(KentKartDetailsActivity.EDIT_MODE);
+                    intent.putExtra(KentKartDetailsActivity.KENT_KART_NAME, kentKart.name);
+                    intent.putExtra(KentKartDetailsActivity.KENT_KART_NUMBER, kentKart.number);
+                    intent.putExtra(KentKartDetailsActivity.KENT_KART_NFC_ID, kentKart.nfcId);
+                    v.getContext().startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return kentKarts.size();
+        return kentKarts != null ? kentKarts.size() : 0;
+    }
+
+    public void setKentKarts(ArrayList<KentKart> kentKarts) {
+        this.kentKarts = kentKarts;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

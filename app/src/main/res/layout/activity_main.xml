@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:fitsSystemWindows="true">
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -17,19 +17,42 @@
         android:layout_height="match_parent">
 
         <!-- Main layout -->
-        <RelativeLayout android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/loading" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout_kentKartList_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_small"
+                    android:src="@drawable/card_big"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kentKartList_empty"/>
+            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView_kentKartList"
-                android:scrollbars="vertical"
-                android:padding="@dimen/spacing_small"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:padding="@dimen/spacing_small"
+                android:scrollbars="vertical"/>
 
             <com.melnykov.fab.FloatingActionButton
-                xmlns:fab="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/floatingActionButton_add"
+                xmlns:fab="http://schemas.android.com/apk/res-auto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

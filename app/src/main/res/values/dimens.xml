@@ -23,7 +23,6 @@
     <dimen name="navigationDrawer_width">240dp</dimen>
     <dimen name="cardView_kentKart_height">128dp</dimen>
     <dimen name="cardView_kentKart_cornerRadius">2dp</dimen>
-    <dimen name="cardView_kentKart_elevation">8dp</dimen>
-    <dimen name="nfcLogo_size">128dp</dimen>
+    <dimen name="cardView_kentKart_elevation">4dp</dimen>
 
 </resources>

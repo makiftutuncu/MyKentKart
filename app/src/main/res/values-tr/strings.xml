@@ -3,6 +3,7 @@
     <string name="welcome">KentKart\'ım\'a Hoş Geldiniz!</string>
 
     <string name="notSet">(belirlenmemiş)</string>
+    <string name="loading">Yükleniyor, lütfen bekleyin.</string>
 
     <string name="menu_kentKartDetailsFragment_save">Kaydet</string>
     <string name="menu_kentKartDetailsFragment_delete">Sil</string>
@@ -14,5 +15,6 @@
     <string name="kentKartDetailsFragment_number_hint">KentKart\'ın Numarası</string>
     <string name="kentKartDetailsFragment_number_info">KentKart numarası genellikle kartın arka yüzünde bulunan 11 haneli numaradır.</string>
     <string name="kentKartDetailsFragment_nfc_info">NFC\'yi kullanarak tek bir dokunuşla KentKart bilgilerinizi görebilirsiniz. Eşleştirmek için, KentKart\'ınızı cihazınızın arka yüzüne dokundurun.</string>
-    <string name="kentKartDetailsFragment_nfc_id">NFC Kimliği:</string>
+
+    <string name="kentKartList_empty">Kayıtlı KentKart\'ınız yok.</string>
 </resources>

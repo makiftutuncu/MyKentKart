@@ -7,21 +7,21 @@ import java.io.*;
 public class FileUtils {
     private static final String DATA_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.mehmetakiftutuncu.mykentkart";
 
-    public static String loadFile(String fileName) {
+    public static File dataPath = getDataPath();
+
+    public static String readFile(String fileName) {
         if (StringUtils.isEmpty(fileName)) {
-            Log.error(FileUtils.class, "Failed to load file, file name is empty!");
+            Log.error(FileUtils.class, "Failed to read file, file name is empty!");
             return null;
         } else {
-            File dataPath = getDataPath();
-
             if (dataPath == null) {
-                Log.error(FileUtils.class, "Failed to load file, data path is null! fileName: " + fileName);
+                Log.error(FileUtils.class, "Failed to read file, data path is null! fileName: " + fileName);
                 return null;
             } else {
                 File file = new File(dataPath.getAbsolutePath() + "/" + fileName);
 
                 if (!file.exists() || !file.canRead()) {
-                    Log.error(FileUtils.class, "Failed to load file, file cannot be accessed! file: " + file);
+                    Log.error(FileUtils.class, "Failed to read file, file cannot be accessed! file: " + file);
                     return null;
                 } else {
                     try {
@@ -36,7 +36,7 @@ public class FileUtils {
 
                         return stringBuilder.toString();
                     } catch (Exception e) {
-                        Log.error(FileUtils.class, "Failed to load file with exception! file: " + file, e);
+                        Log.error(FileUtils.class, "Failed to read file! file: " + file, e);
                         return null;
                     }
                 }
@@ -44,18 +44,16 @@ public class FileUtils {
         }
     }
 
-    public static boolean saveFile(String data, String fileName) {
+    public static boolean writeFile(String data, String fileName) {
         if (StringUtils.isEmpty(data)) {
-            Log.error(FileUtils.class, "Failed to save file, data is empty! fileName: " + fileName);
+            Log.error(FileUtils.class, "Failed to write file, data is empty! fileName: " + fileName);
             return false;
         } else if (StringUtils.isEmpty(fileName)) {
-            Log.error(FileUtils.class, "Failed to save file, file name is empty! data: " + data);
+            Log.error(FileUtils.class, "Failed to write file, file name is empty! data: " + data);
             return false;
         } else {
-            File dataPath = getDataPath();
-
             if (dataPath == null) {
-                Log.error(FileUtils.class, "Failed to save file, data path is null! data: " + data + ", fileName: " + fileName);
+                Log.error(FileUtils.class, "Failed to write file, data path is null! data: " + data + ", fileName: " + fileName);
                 return false;
             } else {
                 File file = new File(dataPath.getAbsolutePath() + "/" + fileName);
@@ -70,7 +68,7 @@ public class FileUtils {
 
                     return true;
                 } catch (Exception e) {
-                    Log.error(FileUtils.class, "Failed to save file with exception! data: " + data + ", file: " + file, e);
+                    Log.error(FileUtils.class, "Failed to write file! data: " + data + ", file: " + file, e);
                     return false;
                 }
             }
@@ -78,13 +76,13 @@ public class FileUtils {
     }
 
     public static File getDataPath() {
-        File dataPath = new File(DATA_PATH);
+        File path = new File(DATA_PATH);
 
-        if ((!dataPath.exists() && !dataPath.mkdirs()) || !dataPath.canRead()) {
+        if ((!path.exists() && !path.mkdirs()) || !path.canRead()) {
             Log.error(Data.class, "Failed to get data path, data directory cannot be accessed!");
             return null;
         } else {
-            return dataPath;
+            return path;
         }
     }
 }

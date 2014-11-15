@@ -167,6 +167,7 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
     public void onKentKartSave(KentKart kentKart) {
         String message = "Saving KentKart: " + kentKart;
         Log.info(this, message);
+        Data.saveKentKart(kentKart);
         finish();
     }
 
@@ -174,6 +175,7 @@ public class KentKartDetailsActivity extends ActionBarActivity implements KentKa
     public void onKentKartDelete(KentKart kentKart) {
         String message = "Deleting KentKart: " + kentKart;
         Log.info(this, message);
+        Data.deleteKentKart(kentKart);
         finish();
     }
 }
