@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.activities.KentKartDetailsActivity;
+import com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
 import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
@@ -23,7 +24,17 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_kentkart, parent, false);
-        return new ViewHolder(view);
+        final ViewHolder viewHolder = new ViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), KentKartInformationActivity.class);
+                intent.putExtra(Constants.KENT_KART_NAME, viewHolder.name);
+                intent.putExtra(Constants.KENT_KART_NUMBER, viewHolder.number);
+                v.getContext().startActivity(intent);
+            }
+        });
+        return viewHolder;
     }
 
     @Override
@@ -31,11 +42,14 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
         final KentKart kentKart = kentKarts != null ? kentKarts.get(position) : null;
 
         if (kentKart != null) {
-            viewHolder.name.setText(kentKart.name);
-            viewHolder.number.setText(kentKart.getFormattedNumber());
-            viewHolder.nfc.setVisibility(StringUtils.isEmpty(kentKart.nfcId) ? View.GONE : View.VISIBLE);
+            viewHolder.name = kentKart.name;
+            viewHolder.number = kentKart.number;
 
-            viewHolder.edit.setOnClickListener(new View.OnClickListener() {
+            viewHolder.nameTextView.setText(kentKart.name);
+            viewHolder.numberTextView.setText(kentKart.getFormattedNumber());
+            viewHolder.nfcImageView.setVisibility(StringUtils.isEmpty(kentKart.nfcId) ? View.GONE : View.VISIBLE);
+
+            viewHolder.editImageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), KentKartDetailsActivity.class);
@@ -60,18 +74,20 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView name;
-        public TextView number;
-        public ImageView nfc;
-        public ImageButton edit;
+        public String name;
+        public String number;
+        public TextView nameTextView;
+        public TextView numberTextView;
+        public ImageView nfcImageView;
+        public ImageButton editImageButton;
 
         public ViewHolder(View view) {
             super(view);
 
-            this.name = (TextView) view.findViewById(R.id.textView_kentKart_name);
-            this.number = (TextView) view.findViewById(R.id.textView_kentKart_number);
-            this.nfc = (ImageView) view.findViewById(R.id.imageView_kentKart_nfcState);
-            this.edit = (ImageButton) view.findViewById(R.id.imageButton_kentKart_edit);
+            this.nameTextView = (TextView) view.findViewById(R.id.textView_kentKart_name);
+            this.numberTextView = (TextView) view.findViewById(R.id.textView_kentKart_number);
+            this.nfcImageView = (ImageView) view.findViewById(R.id.imageView_kentKart_nfcState);
+            this.editImageButton = (ImageButton) view.findViewById(R.id.imageButton_kentKart_edit);
         }
     }
 }
