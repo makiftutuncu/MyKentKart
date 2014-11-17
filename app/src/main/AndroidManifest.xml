@@ -25,6 +25,10 @@
 
         <activity
             android:name="com.mehmetakiftutuncu.mykentkart.activities.KentKartDetailsActivity"
+            android:launchMode="singleInstance" />
+
+        <activity
+            android:name="com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED"/>

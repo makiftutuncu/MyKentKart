@@ -6,17 +6,17 @@
 
     <string name="kentKartList_empty">Kayıtlı KentKart\'ınız yok.</string>
 
-    <string name="kentKartDetailsFragment_title_add">KentKart Ekle</string>
-    <string name="kentKartDetailsFragment_title_edit">KentKart Düzenle</string>
-    <string name="kentKartDetailsFragment_menu_save">Kaydet</string>
-    <string name="kentKartDetailsFragment_menu_delete">Sil</string>
-    <string name="kentKartDetailsFragment_name_hint">KentKart\'ın Adı</string>
-    <string name="kentKartDetailsFragment_number_hint">KentKart\'ın Numarası</string>
-    <string name="kentKartDetailsFragment_number_info">KentKart numarası genellikle kartın arka yüzünde bulunan 11 haneli numaradır.</string>
-    <string name="kentKartDetailsFragment_nfc_info">NFC\'yi kullanarak tek bir dokunuşla KentKart bilgilerinizi görebilirsiniz. Eşleştirmek için, KentKart\'ınızı cihazınızın arka yüzüne dokundurun.</string>
+    <string name="kentKartDetailsActivity_title_add">KentKart Ekle</string>
+    <string name="kentKartDetailsActivity_title_edit">KentKart Düzenle</string>
+    <string name="kentKartDetailsActivity_menu_save">Kaydet</string>
+    <string name="kentKartDetailsActivity_menu_delete">Sil</string>
+    <string name="kentKartDetailsActivity_name_hint">KentKart\'ın Adı</string>
+    <string name="kentKartDetailsActivity_number_hint">KentKart\'ın Numarası</string>
+    <string name="kentKartDetailsActivity_number_info">KentKart numarası genellikle kartın arka yüzünde bulunan 11 haneli numaradır.</string>
+    <string name="kentKartDetailsActivity_nfc_info">NFC\'yi kullanarak tek bir dokunuşla KentKart bilgilerinizi görebilirsiniz. Eşleştirmek için, KentKart\'ınızı cihazınızın arka yüzüne dokundurun.</string>
 
-    <string name="kentKartInformationFragment_section_balance">Şu Anki Bakiye</string>
-    <string name="kentKartInformationFragment_section_lastUse">Son Kullanım</string>
-    <string name="kentKartInformationFragment_section_lastLoad">Son Yükleme</string>
-    <string name="kentKartInformationFragment_error">KentKart bilgilerini yüklerken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</string>
+    <string name="kentKartInformationActivity_section_balance">Şu Anki Bakiye</string>
+    <string name="kentKartInformationActivity_section_lastUse">Son Kullanım</string>
+    <string name="kentKartInformationActivity_section_lastLoad">Son Yükleme</string>
+    <string name="kentKartInformationActivity_error">KentKart bilgilerini yüklerken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</string>
 </resources>

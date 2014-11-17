@@ -24,6 +24,10 @@ public class KentKart {
     }
 
     public String getFormattedNumber() {
+        return KentKart.getFormattedNumber(number);
+    }
+
+    public static String getFormattedNumber(String number) {
         if (number == null) {
             return "";
         } else {

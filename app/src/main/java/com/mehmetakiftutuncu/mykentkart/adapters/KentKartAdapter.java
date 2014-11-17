@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.activities.KentKartDetailsActivity;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
+import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
 import java.util.ArrayList;
@@ -38,10 +39,10 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), KentKartDetailsActivity.class);
-                    intent.setAction(KentKartDetailsActivity.EDIT_MODE);
-                    intent.putExtra(KentKartDetailsActivity.KENT_KART_NAME, kentKart.name);
-                    intent.putExtra(KentKartDetailsActivity.KENT_KART_NUMBER, kentKart.number);
-                    intent.putExtra(KentKartDetailsActivity.KENT_KART_NFC_ID, kentKart.nfcId);
+                    intent.putExtra(Constants.EDIT_MODE, true);
+                    intent.putExtra(Constants.KENT_KART_NAME, kentKart.name);
+                    intent.putExtra(Constants.KENT_KART_NUMBER, kentKart.number);
+                    intent.putExtra(Constants.KENT_KART_NFC_ID, kentKart.nfcId);
                     v.getContext().startActivity(intent);
                 }
             });
