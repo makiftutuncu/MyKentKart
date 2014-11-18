@@ -94,7 +94,7 @@ public class GetKentKartInformationTask extends AsyncTask<Void, Void, KentKartIn
 
                         double lastLoadAmount = -1;
                         try {
-                            String lastLoadAmountString = json.getString("usageAmt");
+                            String lastLoadAmountString = json.getString("chargeAmt");
                             lastLoadAmount = Double.parseDouble(lastLoadAmountString.replaceAll(",", "\\."));
                         } catch (Exception e) {}
 
