@@ -8,6 +8,12 @@
 
     <string name="kentKartList_empty">You do not have any KentKart saved.</string>
 
+    <string name="drawer_rate">Rate &amp; Comment</string>
+    <string name="drawer_feedback">Send Feedback</string>
+    <string name="drawer_about">About</string>
+    <string name="drawer_preferences">Preferences</string>
+    <string name="drawer_help">Help</string>
+
     <string name="kentKartDetailsActivity_title_add">Add KentKart</string>
     <string name="kentKartDetailsActivity_title_edit">Edit KentKart</string>
     <string name="kentKartDetailsActivity_menu_save">Save</string>

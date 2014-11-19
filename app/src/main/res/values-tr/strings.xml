@@ -6,6 +6,12 @@
 
     <string name="kentKartList_empty">Kayıtlı KentKart\'ınız yok.</string>
 
+    <string name="drawer_rate">Oy Verin &amp; Yourm Yapın</string>
+    <string name="drawer_feedback">Geribildirim Gönderin</string>
+    <string name="drawer_about">Hakkında</string>
+    <string name="drawer_preferences">Seçenekler</string>
+    <string name="drawer_help">Yardım</string>
+
     <string name="kentKartDetailsActivity_title_add">KentKart Ekle</string>
     <string name="kentKartDetailsActivity_title_edit">KentKart Düzenle</string>
     <string name="kentKartDetailsActivity_menu_save">Kaydet</string>

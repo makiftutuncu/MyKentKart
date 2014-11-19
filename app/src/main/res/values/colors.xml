@@ -5,4 +5,5 @@
     <color name="accent">#FF0077FF</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
+    <color name="pressed">#88CCCCCC</color>
 </resources>
