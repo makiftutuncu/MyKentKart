@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:title="@string/preferences_connectedTransport_categoryTitle" >
+
+        <SwitchPreference
+            android:key="preference_connectedTransport_enabled"
+            android:title="@string/preferences_connectedTransport_title"
+            android:summary="@string/preferences_connectedTransport_summary"
+            android:defaultValue="true" />
+
+        <ListPreference
+            android:key="preference_connectedTransport_duration"
+            android:title="@string/preferences_connectedTransport_duration_title"
+            android:summary="@string/preferences_connectedTransport_duration_summary"
+            android:defaultValue="@string/preferences_connectedTransport_duration_default"
+            android:entries="@array/preferences_connectedTransport_durations"
+            android:entryValues="@array/preferences_connectedTransport_durationValues"
+            android:dependency="preference_connectedTransport_enabled"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

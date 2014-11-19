@@ -38,6 +38,11 @@
                 android:name="android.nfc.action.TECH_DISCOVERED"
                 android:resource="@xml/nfc_filter"/>
         </activity>
+
+        <activity
+            android:name=".activities.PreferencesActivity"
+            android:label="@string/preferences_title">
+        </activity>
     </application>
 
 </manifest>

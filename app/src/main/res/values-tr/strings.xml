@@ -19,4 +19,18 @@
     <string name="kentKartInformationActivity_section_lastUse">Son Kullanım</string>
     <string name="kentKartInformationActivity_section_lastLoad">Son Yükleme</string>
     <string name="kentKartInformationActivity_error">KentKart bilgilerini yüklerken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</string>
+
+    <string name="preferences_title">KentKart\'ım Seçenekleri</string>
+    <string name="preferences_connectedTransport_categoryTitle">Aktarmalı Ulaşım</string>
+    <string name="preferences_connectedTransport_title">Kullanılabilir</string>
+    <string name="preferences_connectedTransport_summary">Aktarma süresinin bitimine kalan süreyi görmek için etkinleştirin.</string>
+    <string name="preferences_connectedTransport_duration_title">Aktarmalı Ulaşım Süresi</string>
+    <string name="preferences_connectedTransport_duration_summary">Aktarmalı ulaşım %1$s dakika geçerli.</string>
+    <string name="preferences_connectedTransport_duration_default">90</string>
+    <string-array name="preferences_connectedTransport_durations">
+        <item>30 dakika</item>
+        <item>45 dakika</item>
+        <item>60 dakika</item>
+        <item>90 dakika</item>
+    </string-array>
 </resources>

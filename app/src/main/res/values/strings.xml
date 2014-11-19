@@ -22,4 +22,24 @@
     <string name="kentKartInformationActivity_section_lastLoad">Last Load</string>
     <string name="kentKartInformationActivity_error">An error occurred while loading KentKart information. Please try again later.</string>
 
+    <string name="preferences_title">My KentKart Preferences</string>
+    <string name="preferences_connectedTransport_categoryTitle">Connected Transport</string>
+    <string name="preferences_connectedTransport_title">Available</string>
+    <string name="preferences_connectedTransport_summary">Enable to see remaining time until connected transport duration ends.</string>
+    <string name="preferences_connectedTransport_duration_title">Connected Transport Duration</string>
+    <string name="preferences_connectedTransport_duration_summary">Connected transport lasts for %1$s minutes.</string>
+    <string name="preferences_connectedTransport_duration_default">90</string>
+    <string-array name="preferences_connectedTransport_durations">
+        <item>30 minutes</item>
+        <item>45 minutes</item>
+        <item>60 minutes</item>
+        <item>90 minutes</item>
+    </string-array>
+    <string-array name="preferences_connectedTransport_durationValues">
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+        <item>90</item>
+    </string-array>
+
 </resources>
