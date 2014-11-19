@@ -18,6 +18,7 @@
     <string name="kentKartInformationActivity_section_balance">Şu Anki Bakiye</string>
     <string name="kentKartInformationActivity_section_lastUse">Son Kullanım</string>
     <string name="kentKartInformationActivity_section_lastLoad">Son Yükleme</string>
+    <string name="kentKartInformationActivity_connectedTransport_duration">Kalan aktarmalı ulaşım süresi: %1$s dakika</string>
     <string name="kentKartInformationActivity_error">KentKart bilgilerini yüklerken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</string>
 
     <string name="preferences_title">KentKart\'ım Seçenekleri</string>

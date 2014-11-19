@@ -127,6 +127,16 @@
                         android:layout_marginTop="@dimen/spacing_extraSmall"
                         android:layout_toRightOf="@id/imageView_kentKartInformationActivity_sectionTitle_lastUse"
                         android:textSize="@dimen/textSize_biggerMedium"/>
+
+                    <TextView
+                        android:id="@+id/textView_kentKartInformationActivity_connectedTransport"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/textView_kentKartInformationActivity_lastUseAmount"
+                        android:layout_marginTop="@dimen/spacing_extraSmall"
+                        android:layout_toRightOf="@id/imageView_kentKartInformationActivity_sectionTitle_lastUse"
+                        android:textSize="@dimen/textSize_biggerMedium"/>
                 </RelativeLayout>
 
                 <RelativeLayout

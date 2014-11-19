@@ -20,6 +20,7 @@
     <string name="kentKartInformationActivity_section_balance">Current Balance</string>
     <string name="kentKartInformationActivity_section_lastUse">Last Use</string>
     <string name="kentKartInformationActivity_section_lastLoad">Last Load</string>
+    <string name="kentKartInformationActivity_connectedTransport_duration">Remaining connected transport duration: %1$s minutes</string>
     <string name="kentKartInformationActivity_error">An error occurred while loading KentKart information. Please try again later.</string>
 
     <string name="preferences_title">My KentKart Preferences</string>

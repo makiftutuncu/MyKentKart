@@ -3,9 +3,11 @@ package com.mehmetakiftutuncu.mykentkart.activities;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.nfc.NfcAdapter;
 import android.nfc.tech.NfcA;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -42,6 +44,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
     private TextView balanceTextView;
     private TextView lastUseAmountTextView;
     private TextView lastUseTimeTextView;
+    private TextView connectedTransportTextView;
     private TextView lastLoadAmountTextView;
     private TextView lastLoadTimeTextView;
 
@@ -81,6 +84,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         balanceTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_balance);
         lastUseAmountTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_lastUseAmount);
         lastUseTimeTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_lastUseTime);
+        connectedTransportTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_connectedTransport);
         lastLoadAmountTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_lastLoadAmount);
         lastLoadTimeTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_lastLoadTime);
 
@@ -155,6 +159,20 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
                 if (isLastUseTimeFound) {
                     lastUseTimeTextView.setText(new SimpleDateFormat(DATE_TIME_FORMAT).format(new Date(kentKartInformation.lastUseTime)));
+
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                    if (preferences.getBoolean(Constants.PREFERENCE_CONNECTED_TRANSPORT_ENABLED, false)) {
+                        String durationPreference = preferences.getString(Constants.PREFERENCE_CONNECTED_TRANSPORT_DURATION, "");
+                        long connectedTransportDuration = !durationPreference.isEmpty() ? Long.parseLong(durationPreference) * 60 * 1000 : -1;
+                        long difference = System.currentTimeMillis() - kentKartInformation.lastUseTime;
+
+                        if (difference >= 0 && difference < connectedTransportDuration) {
+                            String differenceMinutes = "" + (difference / (60 * 1000));
+                            connectedTransportTextView.setText(getString(R.string.kentKartInformationActivity_connectedTransport_duration, differenceMinutes));
+                        } else {
+                            connectedTransportTextView.setVisibility(View.GONE);
+                        }
+                    }
                 } else {
                     lastUseTimeTextView.setVisibility(View.GONE);
                 }
