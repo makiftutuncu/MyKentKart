@@ -17,6 +17,7 @@ import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.adapters.KentKartAdapter;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
 import com.mehmetakiftutuncu.mykentkart.tasks.LoadKentKartsTask;
+import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -24,8 +25,6 @@ import java.util.ArrayList;
 import ru.vang.progressswitcher.ProgressWidget;
 
 public class KentKartListActivity extends ActionBarActivity implements LoadKentKartsTask.OnKentKartsLoadedListener {
-    public static final String EXTRA_RELOAD_KENTKARTS = "reloadKentKarts";
-
     private enum States {PROGRESS, EMPTY, SUCCESS}
 
     private States state;
@@ -36,9 +35,6 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
     private FloatingActionButton floatingActionButton;
 
     private KentKartAdapter adapter;
-
-    private static final String EXTRA_STATE     = "state";
-    private static final String EXTRA_KENTKARTS = "kentKarts";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +99,7 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         super.onResume();
 
         Bundle extras = getIntent().getExtras();
-        boolean shouldReloadKentKartList = extras != null && extras.getBoolean(EXTRA_RELOAD_KENTKARTS, false);
+        boolean shouldReloadKentKartList = extras != null && extras.getBoolean(Constants.RELOAD_KENT_KART_LIST, false);
 
         if (state == null || shouldReloadKentKartList) {
             // State being null means this is the first time this activity is running, so load stuff
@@ -148,21 +144,21 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         super.onSaveInstanceState(outState);
 
         // Save current state
-        outState.putString(EXTRA_STATE, state.toString());
+        outState.putString(Constants.STATE, state.toString());
 
         // Save KentKart list
         if (adapter != null) {
-            outState.putParcelableArrayList(EXTRA_KENTKARTS, adapter.getKentKarts());
+            outState.putParcelableArrayList(Constants.KENT_KART_LIST, adapter.getKentKarts());
         }
     }
 
     private void restoreInstanceState(Bundle savedState) {
         if (savedState != null) {
             // Restore current state
-            changeState(States.valueOf(savedState.getString(EXTRA_STATE)));
+            changeState(States.valueOf(savedState.getString(Constants.STATE)));
 
             // Restore KentKart list
-            ArrayList<KentKart> kentKarts = savedState.getParcelableArrayList(EXTRA_KENTKARTS);
+            ArrayList<KentKart> kentKarts = savedState.getParcelableArrayList(Constants.KENT_KART_LIST);
             if (adapter != null) {
                 adapter.setKentKarts(kentKarts);
             }

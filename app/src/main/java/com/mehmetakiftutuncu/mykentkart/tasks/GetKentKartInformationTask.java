@@ -3,6 +3,7 @@ package com.mehmetakiftutuncu.mykentkart.tasks;
 import android.os.AsyncTask;
 
 import com.mehmetakiftutuncu.mykentkart.models.KentKartInformation;
+import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
@@ -32,8 +33,6 @@ public class GetKentKartInformationTask extends AsyncTask<Void, Void, KentKartIn
         "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:24.0) Gecko/20100101 Firefox/24.0 Waterfox/24.0",
         "Mozilla/5.0 (Linux; U; Android 4.0.3; de-ch; HTC Sensation Build/IML74K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30"
     };
-
-    public static final String KENT_KART_RESPONSE_DATE_TIME_FORMAT = "yyyyMMddHHmmss";
 
     private OnKentKartInformationReadyListener listener;
     private String kentKartNumber;
@@ -89,7 +88,7 @@ public class GetKentKartInformationTask extends AsyncTask<Void, Void, KentKartIn
                         long lastUseTime = -1;
                         try {
                             String lastUseTimeString = json.getString("usageresult");
-                            lastUseTime = new SimpleDateFormat(KENT_KART_RESPONSE_DATE_TIME_FORMAT).parse(lastUseTimeString).getTime();
+                            lastUseTime = new SimpleDateFormat(Constants.KENT_KART_RESPONSE_DATE_TIME_FORMAT).parse(lastUseTimeString).getTime();
                         } catch (Exception e) {}
 
                         double lastLoadAmount = -1;
@@ -101,7 +100,7 @@ public class GetKentKartInformationTask extends AsyncTask<Void, Void, KentKartIn
                         long lastLoadTime = -1;
                         try {
                             String lastLoadTimeString = json.getString("chargeresult");
-                            lastLoadTime = new SimpleDateFormat(KENT_KART_RESPONSE_DATE_TIME_FORMAT).parse(lastLoadTimeString).getTime();
+                            lastLoadTime = new SimpleDateFormat(Constants.KENT_KART_RESPONSE_DATE_TIME_FORMAT).parse(lastLoadTimeString).getTime();
                         } catch (Exception e) {}
 
                         return new KentKartInformation(balance, lastUseAmount, lastUseTime, lastLoadAmount, lastLoadTime);

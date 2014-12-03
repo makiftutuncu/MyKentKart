@@ -5,7 +5,7 @@ import android.os.Environment;
 import java.io.*;
 
 public class FileUtils {
-    private static final String DATA_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.mehmetakiftutuncu.mykentkart";
+    private static final String DATA_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + Constants.DATA_PATH;
 
     public static File dataPath = getDataPath();
 

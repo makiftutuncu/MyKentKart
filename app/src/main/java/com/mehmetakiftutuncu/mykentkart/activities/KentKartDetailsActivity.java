@@ -183,7 +183,7 @@ public class KentKartDetailsActivity extends ActionBarActivity {
     private void goToKentKartList(boolean shouldReloadKentKartList) {
         Intent intent = new Intent(this, KentKartListActivity.class);
         if (shouldReloadKentKartList) {
-            intent.putExtra(KentKartListActivity.EXTRA_RELOAD_KENTKARTS, true);
+            intent.putExtra(Constants.RELOAD_KENT_KART_LIST, true);
         }
         startActivity(intent);
         finish();

@@ -31,8 +31,6 @@ import java.util.Date;
 import ru.vang.progressswitcher.ProgressWidget;
 
 public class KentKartInformationActivity extends ActionBarActivity implements GetKentKartInformationTask.OnKentKartInformationReadyListener {
-    public static final String DATE_TIME_FORMAT = "dd MMMM yyyy, HH:mm";
-
     private enum States {PROGRESS, ERROR, SUCCESS}
 
     private States state;
@@ -55,11 +53,6 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
     private NfcAdapter nfcAdapter;
 
     private KentKartInformation kentKartInformation;
-
-    private static final String EXTRA_STATE                = "state";
-    private static final String EXTRA_KENTKART_NAME        = "kentKartName";
-    private static final String EXTRA_KENTKART_NUMBER      = "kentKartNumber";
-    private static final String EXTRA_KENTKART_INFORMATION = "kentKartInformation";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -135,15 +128,32 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         super.onSaveInstanceState(outState);
 
         // Save current state
-        outState.putString(EXTRA_STATE, state.toString());
+        outState.putString(Constants.STATE, state.toString());
 
         // Save KentKart name and number
-        outState.putString(EXTRA_KENTKART_NAME, kentKartName);
-        outState.putString(EXTRA_KENTKART_NUMBER, kentKartNumber);
+        outState.putString(Constants.KENT_KART_NAME, kentKartName);
+        outState.putString(Constants.KENT_KART_NUMBER, kentKartNumber);
 
         // Save KentKart information
         if (kentKartInformation != null) {
-            outState.putParcelable(EXTRA_KENTKART_INFORMATION, kentKartInformation);
+            outState.putParcelable(Constants.KENT_KART_INFORMATION, kentKartInformation);
+        }
+    }
+
+    private void restoreInstanceState(Bundle savedState) {
+        if (savedState != null) {
+            // Restore current state
+            changeState(States.valueOf(savedState.getString(Constants.STATE)));
+
+            // Restore KentKart name and number
+            kentKartName = savedState.getString(Constants.KENT_KART_NAME);
+            kentKartNumber = savedState.getString(Constants.KENT_KART_NUMBER);
+
+            // Restore KentKart information
+            kentKartInformation = savedState.getParcelable(Constants.KENT_KART_INFORMATION);
+            if (kentKartInformation != null) {
+                showKentKartInformationResult(kentKartNumber, kentKartInformation);
+            }
         }
     }
 
@@ -197,7 +207,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
                 }
 
                 if (isLastUseTimeFound) {
-                    lastUseTimeTextView.setText(new SimpleDateFormat(DATE_TIME_FORMAT).format(new Date(kentKartInformation.lastUseTime)));
+                    lastUseTimeTextView.setText(new SimpleDateFormat(Constants.DATE_TIME_FORMAT).format(new Date(kentKartInformation.lastUseTime)));
 
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
                     if (preferences.getBoolean(Constants.PREFERENCE_CONNECTED_TRANSPORT_ENABLED, false)) {
@@ -227,30 +237,13 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
                 }
 
                 if (isLastLoadTimeFound) {
-                    lastLoadTimeTextView.setText(new SimpleDateFormat(DATE_TIME_FORMAT).format(new Date(kentKartInformation.lastLoadTime)));
+                    lastLoadTimeTextView.setText(new SimpleDateFormat(Constants.DATE_TIME_FORMAT).format(new Date(kentKartInformation.lastLoadTime)));
                 } else {
                     lastLoadTimeTextView.setVisibility(View.GONE);
                 }
             }
 
             changeState(States.SUCCESS);
-        }
-    }
-
-    private void restoreInstanceState(Bundle savedState) {
-        if (savedState != null) {
-            // Restore current state
-            changeState(States.valueOf(savedState.getString(EXTRA_STATE)));
-
-            // Restore KentKart name and number
-            kentKartName = savedState.getString(EXTRA_KENTKART_NAME);
-            kentKartNumber = savedState.getString(EXTRA_KENTKART_NUMBER);
-
-            // Restore KentKart information
-            kentKartInformation = savedState.getParcelable(EXTRA_KENTKART_INFORMATION);
-            if (kentKartInformation != null) {
-                showKentKartInformationResult(kentKartNumber, kentKartInformation);
-            }
         }
     }
 
