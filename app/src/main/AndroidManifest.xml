@@ -14,8 +14,7 @@
         android:theme="@style/MyKentKart">
 
         <activity
-            android:name=".activities.KentKartListActivity"
-            android:launchMode="singleInstance">
+            android:name=".activities.KentKartListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -24,13 +23,10 @@
         </activity>
 
         <activity
-            android:name="com.mehmetakiftutuncu.mykentkart.activities.KentKartDetailsActivity"
-            android:launchMode="singleInstance"
-            android:screenOrientation="portrait"/>
+            android:name="com.mehmetakiftutuncu.mykentkart.activities.KentKartDetailsActivity"/>
 
         <activity
-            android:name="com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity"
-            android:launchMode="singleInstance">
+            android:name="com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity">
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED"/>
             </intent-filter>

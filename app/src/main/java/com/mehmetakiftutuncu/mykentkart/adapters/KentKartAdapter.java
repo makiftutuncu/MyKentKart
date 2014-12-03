@@ -1,5 +1,6 @@
 package com.mehmetakiftutuncu.mykentkart.adapters;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
                 intent.putExtra(Constants.KENT_KART_NAME, viewHolder.name);
                 intent.putExtra(Constants.KENT_KART_NUMBER, viewHolder.number);
                 v.getContext().startActivity(intent);
+                ((Activity) v.getContext()).finish();
             }
         });
         return viewHolder;
@@ -58,6 +60,7 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
                     intent.putExtra(Constants.KENT_KART_NUMBER, kentKart.number);
                     intent.putExtra(Constants.KENT_KART_NFC_ID, kentKart.nfcId);
                     v.getContext().startActivity(intent);
+                    ((Activity) v.getContext()).finish();
                 }
             });
         }

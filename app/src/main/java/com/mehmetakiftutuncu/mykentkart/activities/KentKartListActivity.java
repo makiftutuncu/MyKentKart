@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import ru.vang.progressswitcher.ProgressWidget;
 
 public class KentKartListActivity extends ActionBarActivity implements LoadKentKartsTask.OnKentKartsLoadedListener {
+    public static final String EXTRA_RELOAD_KENTKARTS = "reloadKentKarts";
+
     private enum States {PROGRESS, EMPTY, SUCCESS}
 
     private States state;
@@ -62,6 +64,7 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
             public void onClick(View v) {
                 Intent intent = new Intent(KentKartListActivity.this, KentKartDetailsActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -99,7 +102,10 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
     protected void onResume() {
         super.onResume();
 
-        if (state == null) {
+        Bundle extras = getIntent().getExtras();
+        boolean shouldReloadKentKartList = extras != null && extras.getBoolean(EXTRA_RELOAD_KENTKARTS, false);
+
+        if (state == null || shouldReloadKentKartList) {
             // State being null means this is the first time this activity is running, so load stuff
             changeState(States.PROGRESS);
         }

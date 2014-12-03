@@ -25,7 +25,6 @@ import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 public class KentKartDetailsActivity extends ActionBarActivity {
     private EditText nameEditText;
     private EditText numberEditText;
-    private TextView nfcIdTextView;
 
     private boolean isEditMode;
     private boolean hasNfc;
@@ -85,7 +84,7 @@ public class KentKartDetailsActivity extends ActionBarActivity {
         numberEditText.setEnabled(!isEditMode);
 
         LinearLayout nfcLayout = (LinearLayout) findViewById(R.id.linearLayout_kentKartDetailsActivity_nfc);
-        nfcIdTextView = (TextView) findViewById(R.id.textView_kentKartDetailsActivity_nfc_id);
+        TextView nfcIdTextView = (TextView) findViewById(R.id.textView_kentKartDetailsActivity_nfc_id);
 
         if (hasNfc && !isEditMode) {
             // Read a new card
@@ -119,7 +118,7 @@ public class KentKartDetailsActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                goToKentKartList();
+                goToKentKartList(false);
                 break;
 
             case R.id.menu_kentKartDetailsActivity_save:
@@ -139,16 +138,26 @@ public class KentKartDetailsActivity extends ActionBarActivity {
 
                 if (isValid) {
                     saveKentKart(kentKart);
-                    goToKentKartList();
+
+                    if (!isEditMode) {
+                        goToKentKartInformation(kentKart);
+                    } else {
+                        goToKentKartList(true);
+                    }
                 }
                 break;
 
             case R.id.menu_kentKartDetailsActivity_delete:
                 deleteKentKart(kentKart);
-                goToKentKartList();
+                goToKentKartList(true);
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        goToKentKartList(false);
     }
 
     private void saveKentKart(KentKart kentKart) {
@@ -163,8 +172,19 @@ public class KentKartDetailsActivity extends ActionBarActivity {
         Data.deleteKentKart(kentKart);
     }
 
-    private void goToKentKartList() {
+    private void goToKentKartInformation(KentKart kentKart) {
+        Intent intent = new Intent(this, KentKartInformationActivity.class);
+        intent.putExtra(Constants.KENT_KART_NAME, kentKart.name);
+        intent.putExtra(Constants.KENT_KART_NUMBER, kentKart.number);
+        startActivity(intent);
+        finish();
+    }
+
+    private void goToKentKartList(boolean shouldReloadKentKartList) {
         Intent intent = new Intent(this, KentKartListActivity.class);
+        if (shouldReloadKentKartList) {
+            intent.putExtra(KentKartListActivity.EXTRA_RELOAD_KENTKARTS, true);
+        }
         startActivity(intent);
         finish();
     }

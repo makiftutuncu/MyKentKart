@@ -158,6 +158,11 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
     }
 
     @Override
+    public void onBackPressed() {
+        goToKentKartList();
+    }
+
+    @Override
     public void onKentKartInformationReady(String kentKartNumber, KentKartInformation kentKartInformation) {
         showKentKartInformationResult(kentKartNumber, kentKartInformation);
     }
