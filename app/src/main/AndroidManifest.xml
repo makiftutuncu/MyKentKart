@@ -15,8 +15,7 @@
 
         <activity
             android:name=".activities.KentKartListActivity"
-            android:launchMode="singleInstance"
-            android:screenOrientation="portrait">
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

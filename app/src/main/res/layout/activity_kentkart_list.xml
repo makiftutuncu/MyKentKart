@@ -17,32 +17,13 @@
         android:layout_height="match_parent">
 
         <!-- Main layout -->
-        <RelativeLayout
+        <ru.vang.progressswitcher.ProgressWidget
+            xmlns:progress="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/progressWidget_kentKartList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <include layout="@layout/loading" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout_kentKartList_empty"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/spacing_small"
-                    android:src="@drawable/card_big"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/kentKartList_empty"/>
-            </LinearLayout>
+            android:layout_height="match_parent"
+            progress:emptyViewLayout="@layout/empty"
+            progress:progressViewLayout="@layout/loading">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView_kentKartList"
@@ -56,15 +37,14 @@
                 xmlns:fab="http://schemas.android.com/apk/res-auto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
+                android:layout_gravity="bottom|right"
                 android:layout_margin="@dimen/spacing_small"
                 android:src="@drawable/floatingaction_add"
                 fab:fab_colorNormal="@color/accent"
                 fab:fab_colorPressed="@color/primary"
                 fab:fab_colorRipple="@color/primaryDark"/>
 
-        </RelativeLayout>
+        </ru.vang.progressswitcher.ProgressWidget>
 
         <!-- Nav drawer -->
         <fragment

@@ -1,10 +1,13 @@
 package com.mehmetakiftutuncu.mykentkart.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.Gson;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
-public class KentKart {
+public class KentKart implements Parcelable {
     public String name;
     public String number;
     public String nfcId;
@@ -76,5 +79,17 @@ public class KentKart {
     @Override
     public String toString() {
         return toJson();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(number);
+        dest.writeString(nfcId);
     }
 }

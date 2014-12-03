@@ -68,6 +68,10 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
         return kentKarts != null ? kentKarts.size() : 0;
     }
 
+    public ArrayList<KentKart> getKentKarts() {
+        return kentKarts;
+    }
+
     public void setKentKarts(ArrayList<KentKart> kentKarts) {
         this.kentKarts = kentKarts;
         notifyDataSetChanged();

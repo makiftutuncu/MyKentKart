@@ -12,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.adapters.KentKartAdapter;
@@ -22,52 +21,39 @@ import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class KentKartListActivity extends ActionBarActivity implements LoadKentKartsTask.OnKentKartsLoadedListener {
-    private enum States {LOADING, EMPTY, NONEMPTY}
+import ru.vang.progressswitcher.ProgressWidget;
 
+public class KentKartListActivity extends ActionBarActivity implements LoadKentKartsTask.OnKentKartsLoadedListener {
+    private enum States {PROGRESS, EMPTY, SUCCESS}
+
+    private States state;
+
+    private ProgressWidget progressWidget;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
-    private LinearLayout loadingLayout;
-    private LinearLayout emptyLayout;
-    private RecyclerView recyclerView;
     private FloatingActionButton floatingActionButton;
 
     private KentKartAdapter adapter;
+
+    private static final String EXTRA_STATE     = "state";
+    private static final String EXTRA_KENTKARTS = "kentKarts";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_kentkart_list);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
         }
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer);
-        drawerToggle = new ActionBarDrawerToggle(this, drawer, mToolbar, R.string.app_name, R.string.app_name);
-        drawer.setDrawerListener(drawerToggle);
-        drawer.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-
-        loadingLayout = (LinearLayout) findViewById(R.id.linearLayout_loading);
-
-        emptyLayout = (LinearLayout) findViewById(R.id.linearLayout_kentKartList_empty);
-
-        adapter = new KentKartAdapter();
-        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onChanged() {
-                super.onChanged();
-
-                showKentKartListOrEmptyLayout();
-            }
-        });
-
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView_kentKartList);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView_kentKartList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+
+        progressWidget = (ProgressWidget) findViewById(R.id.progressWidget_kentKartList);
 
         floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton_add);
         floatingActionButton.attachToRecyclerView(recyclerView);
@@ -78,19 +64,26 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
                 startActivity(intent);
             }
         });
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+        drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawerToggle = new ActionBarDrawerToggle(this, drawer, mToolbar, R.string.app_name, R.string.app_name);
+        drawer.setDrawerListener(drawerToggle);
+        drawer.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        loadKentKarts();
-    }
+        adapter = new KentKartAdapter();
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return drawerToggle != null || super.onOptionsItemSelected(item);
+                showKentKartListResult();
+            }
+        });
+        recyclerView.setAdapter(adapter);
 
+        if (savedInstanceState != null) {
+            restoreKentKartsFromBundle(savedInstanceState);
+        }
     }
 
     @Override
@@ -100,6 +93,21 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         if (drawerToggle != null) {
             drawerToggle.syncState();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (state == null) {
+            // State being null means this is the first time this activity is running, so load stuff
+            changeState(States.PROGRESS);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return drawerToggle != null || super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -122,74 +130,108 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
 
     @Override
     public void onKentKartsLoaded(ArrayList<KentKart> kentKarts) {
-        if (recyclerView != null && adapter != null) {
+        if (adapter != null) {
             adapter.setKentKarts(kentKarts);
         }
 
-        showKentKartListOrEmptyLayout();
+        showKentKartListResult();
     }
 
-    private void showKentKartListOrEmptyLayout() {
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Save current state
+        outState.putString(EXTRA_STATE, state.toString());
+
+        // Save KentKart list
+        if (adapter != null) {
+            outState.putParcelableArrayList(EXTRA_KENTKARTS, adapter.getKentKarts());
+        }
+    }
+
+    private void restoreKentKartsFromBundle(Bundle bundle) {
+        if (bundle != null) {
+            // Restore current state
+            changeState(States.valueOf(bundle.getString(EXTRA_STATE)));
+
+            // Restore KentKart list
+            ArrayList<KentKart> kentKarts = bundle.getParcelableArrayList(EXTRA_KENTKARTS);
+            if (adapter != null) {
+                adapter.setKentKarts(kentKarts);
+            }
+            showKentKartListResult();
+        }
+    }
+
+    private void showKentKartListResult() {
         if (adapter != null) {
             boolean isEmpty = adapter.getItemCount() == 0;
 
             if (isEmpty) {
                 changeState(States.EMPTY);
             } else {
-                changeState(States.NONEMPTY);
+                changeState(States.SUCCESS);
             }
         }
     }
 
-    private void loadKentKarts() {
-        changeState(States.LOADING);
-        new LoadKentKartsTask(this).execute();
-    }
-
-    private void setLoadingLayoutVisibitility(int visibility) {
-        if (loadingLayout != null) {
-            loadingLayout.setVisibility(visibility);
+    private void showProgressLayout() {
+        if (progressWidget != null) {
+            progressWidget.showProgress(true);
         }
     }
 
-    private void setRecyclerViewVisibitility(int visibility) {
-        if (recyclerView != null) {
-            recyclerView.setVisibility(visibility);
+    private void showContentLayout() {
+        if (progressWidget != null) {
+            progressWidget.showContent(true);
         }
     }
 
-    private void setEmptyLayoutVisibitility(int visibility) {
-        if (emptyLayout != null) {
-            emptyLayout.setVisibility(visibility);
+    private void showEmptyLayout() {
+        if (progressWidget != null) {
+            progressWidget.showEmpty(true);
         }
     }
 
-    private void setFloatingActionButtonVisibitility(int visibility) {
+    private void showFloatingActionButton() {
         if (floatingActionButton != null) {
-            floatingActionButton.setVisibility(visibility);
+            floatingActionButton.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideFloatingActionButton() {
+        if (floatingActionButton != null) {
+            floatingActionButton.setVisibility(View.GONE);
         }
     }
 
     private void changeState(States state) {
-        switch (state) {
-            case LOADING:
-                setLoadingLayoutVisibitility(View.VISIBLE);
-                setEmptyLayoutVisibitility(View.GONE);
-                setRecyclerViewVisibitility(View.GONE);
-                setFloatingActionButtonVisibitility(View.GONE);
-                break;
-            case EMPTY:
-                setLoadingLayoutVisibitility(View.GONE);
-                setEmptyLayoutVisibitility(View.VISIBLE);
-                setRecyclerViewVisibitility(View.GONE);
-                setFloatingActionButtonVisibitility(View.VISIBLE);
-                break;
-            case NONEMPTY:
-                setLoadingLayoutVisibitility(View.GONE);
-                setEmptyLayoutVisibitility(View.GONE);
-                setRecyclerViewVisibitility(View.VISIBLE);
-                setFloatingActionButtonVisibitility(View.VISIBLE);
-                break;
+        /* Either
+         *   state is null and new state is not, meaning that this is the first time activity is running and a state is being set
+         * Or
+         *   state is not null and a different state came, meaning that a state change is actually needed
+         */
+        boolean shouldChangeState = (this.state == null && state != null) || (this.state != null && !this.state.equals(state));
+
+        if (shouldChangeState) {
+            this.state = state;
+
+            switch (state) {
+                case PROGRESS:
+                    showProgressLayout();
+                    hideFloatingActionButton();
+                    new LoadKentKartsTask(this).execute();
+                    break;
+                case EMPTY:
+                    showEmptyLayout();
+                    showFloatingActionButton();
+                    break;
+                case SUCCESS:
+                    showContentLayout();
+                    showFloatingActionButton();
+                    break;
+            }
         }
     }
 }
