@@ -22,7 +22,7 @@
             android:orientation="vertical">
 
             <com.andreabaccega.widget.FormEditText
-                validator:testType="personName"
+                validator:testType="nocheck"
                 validator:emptyErrorString="@string/kentKartDetailsActivity_name_empty"
                 android:id="@+id/formEditText_kentKartDetailsActivity_name"
                 android:layout_width="match_parent"
