@@ -17,8 +17,11 @@
     <string name="kentKartDetailsActivity_menu_save">Kaydet</string>
     <string name="kentKartDetailsActivity_menu_delete">Sil</string>
     <string name="kentKartDetailsActivity_name_hint">KentKart\'ın Adı</string>
+    <string name="kentKartDetailsActivity_name_empty">KentKart adı boş olamaz!</string>
     <string name="kentKartDetailsActivity_number_hint">KentKart\'ın Numarası</string>
     <string name="kentKartDetailsActivity_number_info">KentKart numarası genellikle kartın arka yüzünde bulunan 11 haneli numaradır.</string>
+    <string name="kentKartDetailsActivity_number_empty">KentKart numarası boş olamaz!</string>
+    <string name="kentKartDetailsActivity_number_error">KentKart numarası geçersiz!</string>
     <string name="kentKartDetailsActivity_nfc_info">NFC\'yi kullanarak tek bir dokunuşla KentKart bilgilerinizi görebilirsiniz. Eşleştirmek için, KentKart\'ınızı cihazınızın arka yüzüne dokundurun.</string>
 
     <string name="kentKartInformationActivity_section_balance">Şu Anki Bakiye</string>

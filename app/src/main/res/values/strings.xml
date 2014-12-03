@@ -19,8 +19,11 @@
     <string name="kentKartDetailsActivity_menu_save">Save</string>
     <string name="kentKartDetailsActivity_menu_delete">Delete</string>
     <string name="kentKartDetailsActivity_name_hint">Name of the KentKart</string>
+    <string name="kentKartDetailsActivity_name_empty">KentKart name cannot be empty!</string>
     <string name="kentKartDetailsActivity_number_hint">Number of the KentKart</string>
     <string name="kentKartDetailsActivity_number_info">KentKart number is the 11 digit number, usually found on the back side of your card.</string>
+    <string name="kentKartDetailsActivity_number_empty">KentKart number cannot be empty!</string>
+    <string name="kentKartDetailsActivity_number_error">Number of the KentKart is invalid!</string>
     <string name="kentKartDetailsActivity_nfc_info">You can use NFC to see your KentKart information with just one touch. To match, touch your KentKart to back side of your device.</string>
 
     <string name="kentKartInformationActivity_section_balance">Current Balance</string>

@@ -18,14 +18,6 @@ public class KentKart implements Parcelable {
         this.nfcId = nfcId;
     }
 
-    public boolean isNameValid() {
-        return !StringUtils.isEmpty(name);
-    }
-
-    public boolean isNumberValid() {
-        return !StringUtils.isEmpty(number) && number.length() == 11;
-    }
-
     public String getFormattedNumber() {
         return KentKart.getFormattedNumber(number);
     }

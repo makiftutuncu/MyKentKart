@@ -11,10 +11,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.andreabaccega.widget.FormEditText;
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
 import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
@@ -23,8 +23,8 @@ import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
 public class KentKartDetailsActivity extends ActionBarActivity {
-    private EditText nameEditText;
-    private EditText numberEditText;
+    private FormEditText nameEditText;
+    private FormEditText numberEditText;
 
     private boolean isEditMode;
     private boolean hasNfc;
@@ -75,8 +75,8 @@ public class KentKartDetailsActivity extends ActionBarActivity {
             actionBar.setTitle(R.string.kentKartDetailsActivity_title_add);
         }
 
-        nameEditText = (EditText) findViewById(R.id.editText_kentKartDetailsActivity_name);
-        numberEditText = (EditText) findViewById(R.id.editText_kentKartDetailsActivity_number);
+        nameEditText = (FormEditText) findViewById(R.id.formEditText_kentKartDetailsActivity_name);
+        numberEditText = (FormEditText) findViewById(R.id.formEditText_kentKartDetailsActivity_number);
 
         nameEditText.setText(kentKart.name);
         numberEditText.addTextChangedListener(numberTextWatcher);
@@ -125,13 +125,13 @@ public class KentKartDetailsActivity extends ActionBarActivity {
                 kentKart.name = nameEditText.getText().toString();
                 boolean isValid = true;
 
-                if (!kentKart.isNameValid()) {
+                if (!nameEditText.testValidity()) {
                     String message = "Name is invalid, it cannot be empty!";
                     Log.error(this, message);
                     isValid = false;
                 }
-                if (!kentKart.isNumberValid()) {
-                    String message = "Number is invalid, it should be 11 digits!";
+                if (!numberEditText.testValidity()) {
+                    String message = "Number is invalid! number: " + kentKart.number;
                     Log.error(this, message);
                     isValid = false;
                 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:validator="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:fitsSystemWindows="true"
@@ -20,8 +21,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editText_kentKartDetailsActivity_name"
+            <com.andreabaccega.widget.FormEditText
+                validator:testType="personName"
+                validator:emptyErrorString="@string/kentKartDetailsActivity_name_empty"
+                android:id="@+id/formEditText_kentKartDetailsActivity_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -29,8 +32,12 @@
                 android:inputType="textPersonName"
                 android:textSize="@dimen/textSize_large"/>
 
-            <EditText
-                android:id="@+id/editText_kentKartDetailsActivity_number"
+            <com.andreabaccega.widget.FormEditText
+                validator:testType="regexp"
+                validator:customRegexp="^[0-9]{5}-[0-9]{5}-[0-9]{1}$"
+                validator:emptyErrorString="@string/kentKartDetailsActivity_number_empty"
+                validator:testErrorString="@string/kentKartDetailsActivity_number_error"
+                android:id="@+id/formEditText_kentKartDetailsActivity_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
