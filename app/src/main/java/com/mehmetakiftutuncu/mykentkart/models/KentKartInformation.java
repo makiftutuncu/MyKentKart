@@ -1,9 +1,12 @@
 package com.mehmetakiftutuncu.mykentkart.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.Gson;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 
-public class KentKartInformation {
+public class KentKartInformation implements Parcelable {
     public double balance;
     public double lastUseAmount;
     public long lastUseTime;
@@ -44,5 +47,19 @@ public class KentKartInformation {
     @Override
     public String toString() {
         return toJson();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(balance);
+        dest.writeDouble(lastUseAmount);
+        dest.writeLong(lastUseTime);
+        dest.writeDouble(lastLoadAmount);
+        dest.writeLong(lastLoadTime);
     }
 }

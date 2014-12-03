@@ -13,9 +13,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.mehmetakiftutuncu.mykentkart.R;
@@ -30,14 +28,17 @@ import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ru.vang.progressswitcher.ProgressWidget;
+
 public class KentKartInformationActivity extends ActionBarActivity implements GetKentKartInformationTask.OnKentKartInformationReadyListener {
     public static final String DATE_TIME_FORMAT = "dd MMMM yyyy, HH:mm";
 
-    private enum States {LOADING, ERROR, SUCCESS}
+    private enum States {PROGRESS, ERROR, SUCCESS}
 
-    private LinearLayout loadingLayout;
-    private LinearLayout errorLayout;
-    private ScrollView contentLayout;
+    private States state;
+
+    private ProgressWidget progressWidget;
+
     private RelativeLayout lastUseSectionLayout;
     private RelativeLayout lastLoadSectionLayout;
 
@@ -52,6 +53,13 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
     private String kentKartNumber;
 
     private NfcAdapter nfcAdapter;
+
+    private KentKartInformation kentKartInformation;
+
+    private static final String EXTRA_STATE                = "state";
+    private static final String EXTRA_KENTKART_NAME        = "kentKartName";
+    private static final String EXTRA_KENTKART_NUMBER      = "kentKartNumber";
+    private static final String EXTRA_KENTKART_INFORMATION = "kentKartInformation";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,9 +83,8 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         actionBar.setDisplayHomeAsUpEnabled(true);
         updateTitle(actionBar);
 
-        loadingLayout = (LinearLayout) findViewById(R.id.linearLayout_loading);
-        errorLayout = (LinearLayout) findViewById(R.id.linearLayout_kentKartInformationActivity_error);
-        contentLayout = (ScrollView) findViewById(R.id.scrollView_kentKartInformationActivity_content);
+        progressWidget = (ProgressWidget) findViewById(R.id.progressWidget_kentKartInformation);
+
         lastUseSectionLayout = (RelativeLayout) findViewById(R.id.relativeLayout_kentKartInformationActivity_section_lastUse);
         lastLoadSectionLayout = (RelativeLayout) findViewById(R.id.relativeLayout_kentKartInformationActivity_section_lastLoad);
 
@@ -90,16 +97,11 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
         initializeNFCAdapter();
 
-        handleIntent(getIntent());
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        if (nfcAdapter != null) {
-            nfcAdapter.disableForegroundDispatch(this);
+        if (savedInstanceState != null) {
+            restoreInstanceState(savedInstanceState);
         }
+
+        handleIntent(getIntent());
     }
 
     @Override
@@ -115,8 +117,34 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+
+        if (nfcAdapter != null) {
+            nfcAdapter.disableForegroundDispatch(this);
+        }
+    }
+
+    @Override
     public void onNewIntent(Intent intent) {
         handleIntent(intent);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Save current state
+        outState.putString(EXTRA_STATE, state.toString());
+
+        // Save KentKart name and number
+        outState.putString(EXTRA_KENTKART_NAME, kentKartName);
+        outState.putString(EXTRA_KENTKART_NUMBER, kentKartNumber);
+
+        // Save KentKart information
+        if (kentKartInformation != null) {
+            outState.putParcelable(EXTRA_KENTKART_INFORMATION, kentKartInformation);
+        }
     }
 
     @Override
@@ -131,6 +159,10 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
     @Override
     public void onKentKartInformationReady(String kentKartNumber, KentKartInformation kentKartInformation) {
+        showKentKartInformationResult(kentKartNumber, kentKartInformation);
+    }
+
+    private void showKentKartInformationResult(String kentKartNumber, KentKartInformation kentKartInformation) {
         if (StringUtils.isEmpty(kentKartNumber)) {
             Log.error(this, "Failed to get KentKart information, kentKartNumber is empty!");
             changeState(States.ERROR);
@@ -141,6 +173,8 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
             Log.error(this, "Failed to get KentKart information, kentKartInformation is empty!");
             changeState(States.ERROR);
         } else {
+            this.kentKartInformation = kentKartInformation;
+
             balanceTextView.setText(kentKartInformation.balance + " TL");
 
             boolean isLastUseAmountFound = kentKartInformation.lastUseAmount != -1;
@@ -166,7 +200,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
                         long connectedTransportDuration = !durationPreference.isEmpty() ? Long.parseLong(durationPreference) * 60 * 1000 : -1;
                         long difference = System.currentTimeMillis() - kentKartInformation.lastUseTime;
 
-                        if (difference >= 0 && difference < connectedTransportDuration) {
+                        if (difference >= 0 && difference < connectedTransportDuration && kentKartInformation.lastLoadAmount > 0) {
                             String differenceMinutes = "" + (difference / (60 * 1000));
                             connectedTransportTextView.setText(getString(R.string.kentKartInformationActivity_connectedTransport_duration, differenceMinutes));
                         } else {
@@ -198,6 +232,23 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         }
     }
 
+    private void restoreInstanceState(Bundle savedState) {
+        if (savedState != null) {
+            // Restore current state
+            changeState(States.valueOf(savedState.getString(EXTRA_STATE)));
+
+            // Restore KentKart name and number
+            kentKartName = savedState.getString(EXTRA_KENTKART_NAME);
+            kentKartNumber = savedState.getString(EXTRA_KENTKART_NUMBER);
+
+            // Restore KentKart information
+            kentKartInformation = savedState.getParcelable(EXTRA_KENTKART_INFORMATION);
+            if (kentKartInformation != null) {
+                showKentKartInformationResult(kentKartNumber, kentKartInformation);
+            }
+        }
+    }
+
     private void goToKentKartList() {
         Intent intent = new Intent(this, KentKartListActivity.class);
         startActivity(intent);
@@ -224,7 +275,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
     }
 
     private void handleIntent(Intent intent) {
-        if (intent != null) {
+        if (intent != null && state == null) {
             String action = intent.getAction();
 
             if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
@@ -244,7 +295,8 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
                     kentKartName = loadedKentKart.name;
                     kentKartNumber = loadedKentKart.number;
-                    getKentKartInformation();
+
+                    changeState(States.PROGRESS);
                 } else {
                     // This is a new KentKart
                     Log.info(this, "New KentKart with id: " + id);
@@ -257,16 +309,9 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
                 }
             } else {
                 // User came to this activity from UI
-                getKentKartInformation();
+                changeState(States.PROGRESS);
             }
         }
-    }
-
-    private void getKentKartInformation() {
-        updateTitle(getSupportActionBar());
-        changeState(States.LOADING);
-
-        new GetKentKartInformationTask(kentKartNumber, this).execute();
     }
 
     private void updateTitle(ActionBar actionBar) {
@@ -276,41 +321,48 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         }
     }
 
-    private void setLoadingLayoutVisibitility(int visibility) {
-        if (loadingLayout != null) {
-            loadingLayout.setVisibility(visibility);
+    private void showProgressLayout() {
+        if (progressWidget != null) {
+            progressWidget.showProgress(true);
         }
     }
 
-    private void setErrorLayoutVisibitility(int visibility) {
-        if (errorLayout != null) {
-            errorLayout.setVisibility(visibility);
+    private void showContentLayout() {
+        if (progressWidget != null) {
+            progressWidget.showContent(true);
         }
     }
 
-    private void setContentLayoutVisibitility(int visibility) {
-        if (contentLayout != null) {
-            contentLayout.setVisibility(visibility);
+    private void showErrorLayout() {
+        if (progressWidget != null) {
+            progressWidget.showError(true);
         }
     }
 
     private void changeState(States state) {
-        switch (state) {
-            case LOADING:
-                setLoadingLayoutVisibitility(View.VISIBLE);
-                setErrorLayoutVisibitility(View.GONE);
-                setContentLayoutVisibitility(View.GONE);
-                break;
-            case ERROR:
-                setLoadingLayoutVisibitility(View.GONE);
-                setErrorLayoutVisibitility(View.VISIBLE);
-                setContentLayoutVisibitility(View.GONE);
-                break;
-            case SUCCESS:
-                setLoadingLayoutVisibitility(View.GONE);
-                setErrorLayoutVisibitility(View.GONE);
-                setContentLayoutVisibitility(View.VISIBLE);
-                break;
+        /* Either
+         *   state is null and new state is not, meaning that this is the first time activity is running and a state is being set
+         * Or
+         *   state is not null and a different state came, meaning that a state change is actually needed
+         */
+        boolean shouldChangeState = (this.state == null && state != null) || (this.state != null && !this.state.equals(state));
+
+        if (shouldChangeState) {
+            this.state = state;
+
+            switch (state) {
+                case PROGRESS:
+                    showProgressLayout();
+                    updateTitle(getSupportActionBar());
+                    new GetKentKartInformationTask(kentKartNumber, this).execute();
+                    break;
+                case ERROR:
+                    showErrorLayout();
+                    break;
+                case SUCCESS:
+                    showContentLayout();
+                    break;
+            }
         }
     }
 }

@@ -82,7 +82,7 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         recyclerView.setAdapter(adapter);
 
         if (savedInstanceState != null) {
-            restoreKentKartsFromBundle(savedInstanceState);
+            restoreInstanceState(savedInstanceState);
         }
     }
 
@@ -150,13 +150,13 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         }
     }
 
-    private void restoreKentKartsFromBundle(Bundle bundle) {
-        if (bundle != null) {
+    private void restoreInstanceState(Bundle savedState) {
+        if (savedState != null) {
             // Restore current state
-            changeState(States.valueOf(bundle.getString(EXTRA_STATE)));
+            changeState(States.valueOf(savedState.getString(EXTRA_STATE)));
 
             // Restore KentKart list
-            ArrayList<KentKart> kentKarts = bundle.getParcelableArrayList(EXTRA_KENTKARTS);
+            ArrayList<KentKart> kentKarts = savedState.getParcelableArrayList(EXTRA_KENTKARTS);
             if (adapter != null) {
                 adapter.setKentKarts(kentKarts);
             }

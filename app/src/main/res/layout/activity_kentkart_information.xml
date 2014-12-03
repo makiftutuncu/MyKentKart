@@ -11,32 +11,14 @@
         android:layout_height="wrap_content"
         android:background="@color/primary"/>
 
-    <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/spacing_medium">
-
-        <include layout="@layout/loading" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout_kentKartInformationActivity_error"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_small"
-                android:src="@drawable/bug"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/kentKartInformationActivity_error"/>
-        </LinearLayout>
+    <ru.vang.progressswitcher.ProgressWidget
+        xmlns:progress="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/progressWidget_kentKartInformation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/spacing_medium"
+        progress:errorViewLayout="@layout/error"
+        progress:progressViewLayout="@layout/loading">
 
         <ScrollView
             android:id="@+id/scrollView_kentKartInformationActivity_content"
@@ -47,7 +29,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -187,6 +168,7 @@
                 </RelativeLayout>
             </LinearLayout>
         </ScrollView>
-    </RelativeLayout>
+
+    </ru.vang.progressswitcher.ProgressWidget>
 
 </LinearLayout>
