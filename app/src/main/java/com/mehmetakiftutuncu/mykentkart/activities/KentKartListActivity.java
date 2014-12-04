@@ -1,5 +1,6 @@
 package com.mehmetakiftutuncu.mykentkart.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -59,8 +60,7 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(KentKartListActivity.this, KentKartDetailsActivity.class);
-                startActivity(intent);
-                finish();
+                startActivityForResult(intent, KentKartDetailsActivity.REQUEST_CODE);
             }
         });
 
@@ -98,10 +98,7 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
     protected void onResume() {
         super.onResume();
 
-        Bundle extras = getIntent().getExtras();
-        boolean shouldReloadKentKartList = extras != null && extras.getBoolean(Constants.RELOAD_KENT_KART_LIST, false);
-
-        if (state == null || shouldReloadKentKartList) {
+        if (state == null) {
             // State being null means this is the first time this activity is running, so load stuff
             changeState(States.PROGRESS);
         }
@@ -149,6 +146,16 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         // Save KentKart list
         if (adapter != null) {
             outState.putParcelableArrayList(Constants.KENT_KART_LIST, adapter.getKentKarts());
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == KentKartDetailsActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // Coming back after a change to KentKart list
+            changeState(States.PROGRESS);
         }
     }
 

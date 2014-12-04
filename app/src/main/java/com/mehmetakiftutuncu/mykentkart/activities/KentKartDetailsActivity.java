@@ -1,5 +1,6 @@
 package com.mehmetakiftutuncu.mykentkart.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -23,11 +24,13 @@ import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
 public class KentKartDetailsActivity extends ActionBarActivity {
+    public static int REQUEST_CODE = 1;
+
     private FormEditText nameEditText;
     private FormEditText numberEditText;
 
     private boolean isEditMode;
-    private boolean hasNfc;
+    private boolean isStartedWithNfc;
 
     private KentKart kentKart;
 
@@ -59,11 +62,11 @@ public class KentKartDetailsActivity extends ActionBarActivity {
         kentKart = new KentKart(null, null, null);
         Bundle args = getIntent().getExtras();
         if (args != null) {
-            kentKart.name   = args.getString(Constants.KENT_KART_NAME);
-            kentKart.number = args.getString(Constants.KENT_KART_NUMBER);
-            kentKart.nfcId  = args.getString(Constants.KENT_KART_NFC_ID);
-            isEditMode      = args.getBoolean(Constants.EDIT_MODE, false);
-            hasNfc          = args.getBoolean(Constants.HAS_NFC, false);
+            kentKart.name    = args.getString(Constants.KENT_KART_NAME);
+            kentKart.number  = args.getString(Constants.KENT_KART_NUMBER);
+            kentKart.nfcId   = args.getString(Constants.KENT_KART_NFC_ID);
+            isEditMode       = args.getBoolean(Constants.EDIT_MODE, false);
+            isStartedWithNfc = args.getBoolean(Constants.HAS_NFC, false);
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -86,13 +89,13 @@ public class KentKartDetailsActivity extends ActionBarActivity {
         LinearLayout nfcLayout = (LinearLayout) findViewById(R.id.linearLayout_kentKartDetailsActivity_nfc);
         TextView nfcIdTextView = (TextView) findViewById(R.id.textView_kentKartDetailsActivity_nfc_id);
 
-        if (hasNfc && !isEditMode) {
+        if (isStartedWithNfc && !isEditMode) {
             // Read a new card
             nfcIdTextView.setText(kentKart.nfcId);
-        } else if (!hasNfc && isEditMode && !StringUtils.isEmpty(kentKart.nfcId)) {
+        } else if (!isStartedWithNfc && isEditMode && !StringUtils.isEmpty(kentKart.nfcId)) {
             // Clicked edit button, card saved with NFC
             nfcIdTextView.setText(kentKart.nfcId);
-        } else if (!hasNfc && isEditMode && StringUtils.isEmpty(kentKart.nfcId)) {
+        } else if (!isStartedWithNfc && isEditMode && StringUtils.isEmpty(kentKart.nfcId)) {
             // Clicked edit button, card saved without NFC
             nfcLayout.setVisibility(View.GONE);
         } else {
@@ -176,16 +179,22 @@ public class KentKartDetailsActivity extends ActionBarActivity {
         Intent intent = new Intent(this, KentKartInformationActivity.class);
         intent.putExtra(Constants.KENT_KART_NAME, kentKart.name);
         intent.putExtra(Constants.KENT_KART_NUMBER, kentKart.number);
+        intent.putExtra(Constants.HAS_NFC, isStartedWithNfc);
         startActivity(intent);
+        setResult(Activity.RESULT_OK);
         finish();
     }
 
     private void goToKentKartList(boolean shouldReloadKentKartList) {
-        Intent intent = new Intent(this, KentKartListActivity.class);
         if (shouldReloadKentKartList) {
-            intent.putExtra(Constants.RELOAD_KENT_KART_LIST, true);
+            setResult(Activity.RESULT_OK);
+        } else {
+            setResult(Activity.RESULT_CANCELED);
         }
-        startActivity(intent);
+        if (isStartedWithNfc) {
+            Intent intent = new Intent(this, KentKartListActivity.class);
+            startActivity(intent);
+        }
         finish();
     }
 

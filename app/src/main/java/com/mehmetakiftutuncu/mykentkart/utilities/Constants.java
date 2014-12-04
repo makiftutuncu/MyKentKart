@@ -10,7 +10,6 @@ public class Constants {
     public static final String HAS_NFC               = PACKAGE_NAME + ".hasnfc";
     public static final String STATE                 = PACKAGE_NAME + ".state";
     public static final String KENT_KART_LIST        = PACKAGE_NAME + ".kentkartlist";
-    public static final String RELOAD_KENT_KART_LIST = PACKAGE_NAME + ".reloadkentkartlist";
     public static final String KENT_KART_INFORMATION = PACKAGE_NAME + ".kentkartinformation";
 
     public static final String DATE_TIME_FORMAT                    = "dd MMMM yyyy, HH:mm";

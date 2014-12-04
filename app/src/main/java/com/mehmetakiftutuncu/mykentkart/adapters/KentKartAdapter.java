@@ -32,8 +32,7 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
                 Intent intent = new Intent(v.getContext(), KentKartInformationActivity.class);
                 intent.putExtra(Constants.KENT_KART_NAME, viewHolder.name);
                 intent.putExtra(Constants.KENT_KART_NUMBER, viewHolder.number);
-                v.getContext().startActivity(intent);
-                ((Activity) v.getContext()).finish();
+                ((Activity) v.getContext()).startActivityForResult(intent, KentKartDetailsActivity.REQUEST_CODE);
             }
         });
         return viewHolder;
@@ -59,8 +58,8 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
                     intent.putExtra(Constants.KENT_KART_NAME, kentKart.name);
                     intent.putExtra(Constants.KENT_KART_NUMBER, kentKart.number);
                     intent.putExtra(Constants.KENT_KART_NFC_ID, kentKart.nfcId);
-                    v.getContext().startActivity(intent);
-                    ((Activity) v.getContext()).finish();
+
+                    ((Activity) v.getContext()).startActivityForResult(intent, KentKartDetailsActivity.REQUEST_CODE);
                 }
             });
         }

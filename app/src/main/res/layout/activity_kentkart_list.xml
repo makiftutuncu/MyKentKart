@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
-                android:layout_margin="@dimen/spacing_small"
+                android:layout_margin="@dimen/spacing_medium"
                 android:src="@drawable/floatingaction_add"
                 fab:fab_colorNormal="@color/accent"
                 fab:fab_colorPressed="@color/primary"

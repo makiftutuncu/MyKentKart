@@ -49,6 +49,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
     private String kentKartName;
     private String kentKartNumber;
+    private boolean isStartedWithNfc = false;
 
     private NfcAdapter nfcAdapter;
 
@@ -69,6 +70,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         if (args != null) {
             kentKartName = args.getString(Constants.KENT_KART_NAME);
             kentKartNumber = args.getString(Constants.KENT_KART_NUMBER);
+            isStartedWithNfc = args.getBoolean(Constants.HAS_NFC, false);
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -248,8 +250,10 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
     }
 
     private void goToKentKartList() {
-        Intent intent = new Intent(this, KentKartListActivity.class);
-        startActivity(intent);
+        if (isStartedWithNfc) {
+            Intent intent = new Intent(this, KentKartListActivity.class);
+            startActivity(intent);
+        }
         finish();
     }
 
@@ -293,6 +297,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
                     kentKartName = loadedKentKart.name;
                     kentKartNumber = loadedKentKart.number;
+                    isStartedWithNfc = true;
 
                     changeState(States.PROGRESS);
                 } else {
