@@ -152,6 +152,7 @@ public class KentKartDetailsActivity extends ActionBarActivity {
 
             case R.id.menu_kentKartDetailsActivity_delete:
                 deleteKentKart(kentKart);
+
                 goToKentKartList(true);
                 break;
         }
