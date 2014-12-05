@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"/>
+
+    <ru.vang.progressswitcher.ProgressWidget
+        xmlns:progress="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/progressWidget_kentKartInformation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/spacing_medium"
+        progress:errorViewLayout="@layout/error"
+        progress:progressViewLayout="@layout/loading">
+
+        <ScrollView
+            android:id="@+id/scrollView_kentKartInformationActivity_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageView_kentKartInformationActivity_sectionTitle_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_extraSmall"
+                        android:layout_toLeftOf="@id/textView_kentKartInformationActivity_sectionTitle_balance"
+                        android:src="@drawable/balance"/>
+
+                    <TextView
+                        android:id="@+id/textView_kentKartInformationActivity_sectionTitle_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_alignBottom="@id/imageView_kentKartInformationActivity_sectionTitle_balance"
+                        android:layout_alignTop="@id/imageView_kentKartInformationActivity_sectionTitle_balance"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_vertical"
+                        android:text="@string/kentKartInformationActivity_section_balance"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/textSize_large"/>
+
+                    <TextView
+                        android:id="@+id/textView_kentKartInformationActivity_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imageView_kentKartInformationActivity_sectionTitle_balance"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="@dimen/textSize_huge"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout_kentKartInformationActivity_section_lastUse"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/spacing_small">
+
+                        <ImageView
+                            android:id="@+id/imageView_kentKartInformationActivity_sectionTitle_lastUse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_extraSmall"
+                            android:src="@drawable/last_use"/>
+
+                        <TextView
+                            android:id="@+id/textView_kentKartInformationActivity_sectionTitle_lastUse"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_alignBottom="@id/imageView_kentKartInformationActivity_sectionTitle_lastUse"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignTop="@id/imageView_kentKartInformationActivity_sectionTitle_lastUse"
+                            android:layout_toRightOf="@id/imageView_kentKartInformationActivity_sectionTitle_lastUse"
+                            android:gravity="center_vertical"
+                            android:text="@string/kentKartInformationActivity_section_lastUse"
+                            android:textAllCaps="true"
+                            android:textSize="@dimen/textSize_large"/>
+
+                        <TextView
+                            android:id="@+id/textView_kentKartInformationActivity_lastUseTime"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@id/imageView_kentKartInformationActivity_sectionTitle_lastUse"
+                            android:layout_marginTop="@dimen/spacing_extraSmall"
+                            android:layout_toRightOf="@id/imageView_kentKartInformationActivity_sectionTitle_lastUse"
+                            android:textSize="@dimen/textSize_biggerMedium"/>
+
+                        <TextView
+                            android:id="@+id/textView_kentKartInformationActivity_lastUseAmount"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@id/textView_kentKartInformationActivity_lastUseTime"
+                            android:layout_marginTop="@dimen/spacing_extraSmall"
+                            android:layout_toRightOf="@id/imageView_kentKartInformationActivity_sectionTitle_lastUse"
+                            android:textSize="@dimen/textSize_biggerMedium"/>
+
+                        <TextView
+                            android:id="@+id/textView_kentKartInformationActivity_connectedTransport"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@id/textView_kentKartInformationActivity_lastUseAmount"
+                            android:layout_marginTop="@dimen/spacing_extraSmall"
+                            android:layout_toRightOf="@id/imageView_kentKartInformationActivity_sectionTitle_lastUse"
+                            android:textSize="@dimen/textSize_biggerMedium"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout_kentKartInformationActivity_section_lastLoad"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/spacing_small">
+
+                        <ImageView
+                            android:id="@+id/imageView_kentKartInformationActivity_sectionTitle_lastLoad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_margin="@dimen/spacing_extraSmall"
+                            android:src="@drawable/last_load"/>
+
+                        <TextView
+                            android:id="@+id/textView_kentKartInformationActivity_sectionTitle_lastLoad"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_alignBottom="@id/imageView_kentKartInformationActivity_sectionTitle_lastLoad"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignTop="@id/imageView_kentKartInformationActivity_sectionTitle_lastLoad"
+                            android:layout_toLeftOf="@id/imageView_kentKartInformationActivity_sectionTitle_lastLoad"
+                            android:gravity="center_vertical|right"
+                            android:text="@string/kentKartInformationActivity_section_lastLoad"
+                            android:textAllCaps="true"
+                            android:textSize="@dimen/textSize_large"/>
+
+                        <TextView
+                            android:id="@+id/textView_kentKartInformationActivity_lastLoadTime"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@id/imageView_kentKartInformationActivity_sectionTitle_lastLoad"
+                            android:layout_marginTop="@dimen/spacing_extraSmall"
+                            android:layout_toLeftOf="@id/imageView_kentKartInformationActivity_sectionTitle_lastLoad"
+                            android:gravity="center_vertical|right"
+                            android:textSize="@dimen/textSize_biggerMedium"/>
+
+                        <TextView
+                            android:id="@+id/textView_kentKartInformationActivity_lastLoadAmount"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@id/textView_kentKartInformationActivity_lastLoadTime"
+                            android:layout_marginTop="@dimen/spacing_extraSmall"
+                            android:layout_toLeftOf="@id/imageView_kentKartInformationActivity_sectionTitle_lastLoad"
+                            android:gravity="center_vertical|right"
+                            android:textSize="@dimen/textSize_biggerMedium"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </ru.vang.progressswitcher.ProgressWidget>
+
+</LinearLayout>

@@ -39,16 +39,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/spacing_extraSmall"
+                        android:layout_toLeftOf="@+id/textView_kentKartInformationActivity_sectionTitle_balance"
                         android:src="@drawable/balance"/>
 
                     <TextView
                         android:id="@+id/textView_kentKartInformationActivity_sectionTitle_balance"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_alignBottom="@id/imageView_kentKartInformationActivity_sectionTitle_balance"
-                        android:layout_alignParentRight="true"
                         android:layout_alignTop="@id/imageView_kentKartInformationActivity_sectionTitle_balance"
-                        android:layout_toRightOf="@id/imageView_kentKartInformationActivity_sectionTitle_balance"
+                        android:layout_centerHorizontal="true"
                         android:gravity="center_vertical"
                         android:text="@string/kentKartInformationActivity_section_balance"
                         android:textAllCaps="true"

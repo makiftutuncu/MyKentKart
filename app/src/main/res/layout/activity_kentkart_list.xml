@@ -29,7 +29,10 @@
                 android:id="@+id/recyclerView_kentKartList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/spacing_small"
+                android:paddingLeft="@dimen/recyclerView_horizontal_padding"
+                android:paddingRight="@dimen/recyclerView_horizontal_padding"
+                android:paddingTop="@dimen/recyclerView_vertical_padding"
+                android:paddingBottom="@dimen/recyclerView_vertical_padding"
                 android:scrollbars="vertical"/>
 
             <com.melnykov.fab.FloatingActionButton

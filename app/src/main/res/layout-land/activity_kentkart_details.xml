@@ -19,45 +19,52 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <com.andreabaccega.widget.FormEditText
-                validator:testType="nocheck"
-                validator:emptyErrorString="@string/kentKartDetailsActivity_name_empty"
-                android:id="@+id/formEditText_kentKartDetailsActivity_name"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/kentKartDetailsActivity_name_hint"
-                android:inputType="textPersonName"
-                android:textSize="@dimen/textSize_large"/>
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <com.andreabaccega.widget.FormEditText
-                validator:testType="regexp"
-                validator:customRegexp="^[0-9]{5}-[0-9]{5}-[0-9]{1}$"
-                validator:emptyErrorString="@string/kentKartDetailsActivity_number_empty"
-                validator:testErrorString="@string/kentKartDetailsActivity_number_error"
-                android:id="@+id/formEditText_kentKartDetailsActivity_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:ems="10"
-                android:hint="@string/kentKartDetailsActivity_number_hint"
-                android:inputType="phone"
-                android:textSize="@dimen/textSize_large"/>
+                <com.andreabaccega.widget.FormEditText
+                    validator:testType="nocheck"
+                    validator:emptyErrorString="@string/kentKartDetailsActivity_name_empty"
+                    android:id="@+id/formEditText_kentKartDetailsActivity_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/kentKartDetailsActivity_name_hint"
+                    android:inputType="textPersonName"
+                    android:textSize="@dimen/textSize_large"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_small"
-                android:gravity="center"
-                android:text="@string/kentKartDetailsActivity_number_info"/>
+                <com.andreabaccega.widget.FormEditText
+                    validator:testType="regexp"
+                    validator:customRegexp="^[0-9]{5}-[0-9]{5}-[0-9]{1}$"
+                    validator:emptyErrorString="@string/kentKartDetailsActivity_number_empty"
+                    validator:testErrorString="@string/kentKartDetailsActivity_number_error"
+                    android:id="@+id/formEditText_kentKartDetailsActivity_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:ems="10"
+                    android:hint="@string/kentKartDetailsActivity_number_hint"
+                    android:inputType="phone"
+                    android:textSize="@dimen/textSize_large"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/kentKartDetailsActivity_number_info"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayout_kentKartDetailsActivity_nfc"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
