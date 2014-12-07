@@ -177,7 +177,7 @@ public class KentKartDetailsActivity extends ActionBarActivity {
     }
 
     private void goToKentKartInformation(KentKart kentKart) {
-        Intent intent = new Intent(this, KentKartInformationActivity.class);
+        Intent intent = new Intent(getApplicationContext(), KentKartInformationActivity.class);
         intent.putExtra(Constants.KENT_KART_NAME, kentKart.name);
         intent.putExtra(Constants.KENT_KART_NUMBER, kentKart.number);
         intent.putExtra(Constants.HAS_NFC, isStartedWithNfc);
@@ -193,7 +193,7 @@ public class KentKartDetailsActivity extends ActionBarActivity {
             setResult(Activity.RESULT_CANCELED);
         }
         if (isStartedWithNfc) {
-            Intent intent = new Intent(this, KentKartListActivity.class);
+            Intent intent = new Intent(getApplicationContext(), KentKartListActivity.class);
             startActivity(intent);
         }
         finish();

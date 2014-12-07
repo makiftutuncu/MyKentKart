@@ -3,10 +3,16 @@
 
     <string name="notSet">(belirlenmemiş)</string>
     <string name="loading">Yükleniyor, lütfen bekleyin.</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
 
     <string name="kentKartList_empty">Kayıtlı KentKart\'ınız yok.</string>
 
     <string name="rate_app">Uygulamaya oy vermek/yorum yapmak için birkaç saniyeniz var mı?</string>
+
+    <string name="enableNFCDialog_title">NFC\'yi Etkinleştirin?</string>
+    <string name="enableNFCDialog_message">Cihazınızda NFC desteği var şu anda etkin değil.\n\nNFC\'yi kullanarak KentKart bilgilerinizi sadece KentKart\'ınızı cihazınıza dokundurarak öğrenebilirsiniz.\n\nNFC\'yi etkinleştirmek için ayarlara gitmek ister misiniz?</string>
+    <string name="enableNFCDialog_hint">NFC\'yi etkinleştirdikten sonra KentKart\'ıma geri dönmek için geri tuşuna basmayı unutmayın.</string>
 
     <string name="kentKartDetailsActivity_title_add">KentKart Ekle</string>
     <string name="kentKartDetailsActivity_title_edit">KentKart Düzenle</string>

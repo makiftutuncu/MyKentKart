@@ -31,7 +31,7 @@ public class MoreActivity extends PreferenceActivity {
            adds a Toolbar manually and sets its content (title, navigation etc.). */
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
         View content = root.getChildAt(0);
-        LinearLayout toolbarContainer = (LinearLayout) View.inflate(this, R.layout.activity_more, null);
+        LinearLayout toolbarContainer = (LinearLayout) View.inflate(getApplicationContext(), R.layout.activity_more, null);
 
         root.removeAllViews();
         toolbarContainer.addView(content);
@@ -51,7 +51,7 @@ public class MoreActivity extends PreferenceActivity {
     }
 
     private void initializeData() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         ListPreference listPreference = (ListPreference) findPreference(Constants.PREFERENCE_CONNECTED_TRANSPORT_DURATION);
         listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {

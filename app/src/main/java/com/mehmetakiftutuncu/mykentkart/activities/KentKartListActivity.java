@@ -1,8 +1,12 @@
 package com.mehmetakiftutuncu.mykentkart.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,12 +15,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.adapters.KentKartAdapter;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
 import com.mehmetakiftutuncu.mykentkart.tasks.LoadKentKartsTask;
 import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
+import com.mehmetakiftutuncu.mykentkart.utilities.NFCUtils;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -33,6 +39,9 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
     private ProgressWidget progressWidget;
     private FloatingActionButton floatingActionButton;
 
+    private AlertDialog enableNFCDialog;
+    private boolean isNFCDialogAnswered;
+
     private KentKartAdapter adapter;
 
     @Override
@@ -48,7 +57,7 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView_kentKartList);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         progressWidget = (ProgressWidget) findViewById(R.id.progressWidget_kentKartList);
 
@@ -57,7 +66,7 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(KentKartListActivity.this, KentKartDetailsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), KentKartDetailsActivity.class);
                 startActivityForResult(intent, KentKartDetailsActivity.REQUEST_CODE);
             }
         });
@@ -75,6 +84,10 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
 
         if (savedInstanceState != null) {
             restoreInstanceState(savedInstanceState);
+        }
+
+        if (!isNFCDialogAnswered) {
+            checkAndShowNFCDialog();
         }
 
         AppRate
@@ -107,7 +120,7 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_more:
-                Intent intent = new Intent(this, MoreActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MoreActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -124,19 +137,6 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        // Save current state
-        outState.putString(Constants.STATE, state.toString());
-
-        // Save KentKart list
-        if (adapter != null) {
-            outState.putParcelableArrayList(Constants.KENT_KART_LIST, adapter.getKentKarts());
-        }
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -146,10 +146,34 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Dismiss enable NFC dialog if it is showing
+        if (enableNFCDialog != null && enableNFCDialog.isShowing()) {
+            enableNFCDialog.dismiss();
+        }
+
+        // Save current state
+        outState.putString(Constants.STATE, state.toString());
+
+        // Save NFC dialog answered state
+        outState.putBoolean(Constants.IS_NFC_DIALOG_ANSWERED, isNFCDialogAnswered);
+
+        // Save KentKart list
+        if (adapter != null) {
+            outState.putParcelableArrayList(Constants.KENT_KART_LIST, adapter.getKentKarts());
+        }
+    }
+
     private void restoreInstanceState(Bundle savedState) {
         if (savedState != null) {
             // Restore current state
             changeState(States.valueOf(savedState.getString(Constants.STATE)));
+
+            // Restore NFC dialog answered state
+            isNFCDialogAnswered = savedState.getBoolean(Constants.IS_NFC_DIALOG_ANSWERED);
 
             // Restore KentKart list
             ArrayList<KentKart> kentKarts = savedState.getParcelableArrayList(Constants.KENT_KART_LIST);
@@ -228,6 +252,39 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
                     showFloatingActionButton();
                     break;
             }
+        }
+    }
+
+    private void checkAndShowNFCDialog() {
+        isNFCDialogAnswered = false;
+        NFCUtils nfcUtils = NFCUtils.get(getApplicationContext());
+        if (nfcUtils.hasNfc() && !nfcUtils.isNfcOn()) {
+            enableNFCDialog = new AlertDialog.Builder(this)
+                .setIcon(R.drawable.launcher_icon)
+                .setTitle(getString(R.string.enableNFCDialog_title))
+                .setMessage(getString(R.string.enableNFCDialog_message))
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        isNFCDialogAnswered = true;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            Intent intent = new Intent(Settings.ACTION_NFC_SETTINGS);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                            startActivity(intent);
+                        }
+                        Toast.makeText(getApplicationContext(), getString(R.string.enableNFCDialog_hint), Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        isNFCDialogAnswered = true;
+                    }
+                }).create();
+
+            enableNFCDialog.show();
         }
     }
 }

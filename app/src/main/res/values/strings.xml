@@ -5,10 +5,16 @@
 
     <string name="notSet">(not set)</string>
     <string name="loading">Loading, please wait.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <string name="kentKartList_empty">You do not have any KentKart saved.</string>
 
     <string name="rate_app">Do you have a few seconds to rate/comment on the app?</string>
+
+    <string name="enableNFCDialog_title">Enable NFC?</string>
+    <string name="enableNFCDialog_message">Your device has NFC support but it is currently disabled.\n\nYou can use NFC to see your KentKart details just by touching your KentKart to your device.\n\nDo you want to go to settings to enable NFC?</string>
+    <string name="enableNFCDialog_hint">Don\'t forget to press back key after enabling NFC to come back to My KentKart.</string>
 
     <string name="kentKartDetailsActivity_title_add">Add KentKart</string>
     <string name="kentKartDetailsActivity_title_edit">Edit KentKart</string>

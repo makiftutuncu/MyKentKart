@@ -23,6 +23,7 @@ import com.mehmetakiftutuncu.mykentkart.tasks.GetKentKartInformationTask;
 import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 import com.mehmetakiftutuncu.mykentkart.utilities.Data;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
+import com.mehmetakiftutuncu.mykentkart.utilities.NFCUtils;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
 import java.text.SimpleDateFormat;
@@ -90,7 +91,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         lastLoadAmountTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_lastLoadAmount);
         lastLoadTimeTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_lastLoadTime);
 
-        initializeNFCAdapter();
+        nfcAdapter = NFCUtils.get(getApplicationContext()).getAdapter();
 
         if (savedInstanceState != null) {
             restoreInstanceState(savedInstanceState);
@@ -104,7 +105,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         super.onResume();
 
         if (nfcAdapter != null) {
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, KentKartInformationActivity.class).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, new Intent(getApplicationContext(), KentKartInformationActivity.class).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
             IntentFilter intentFilter = new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED);
 
             nfcAdapter.enableForegroundDispatch(this, pendingIntent, new IntentFilter[]{intentFilter}, new String[][]{new String[]{NfcA.class.getName()}});
@@ -211,7 +212,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
                 if (isLastUseTimeFound) {
                     lastUseTimeTextView.setText(new SimpleDateFormat(Constants.DATE_TIME_FORMAT).format(new Date(kentKartInformation.lastUseTime)));
 
-                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     if (preferences.getBoolean(Constants.PREFERENCE_CONNECTED_TRANSPORT_ENABLED, false)) {
                         String durationPreference = preferences.getString(Constants.PREFERENCE_CONNECTED_TRANSPORT_DURATION, "");
                         long connectedTransportDuration = !durationPreference.isEmpty() ? Long.parseLong(durationPreference) * 60 * 1000 : -1;
@@ -251,29 +252,10 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
     private void goToKentKartList() {
         if (isStartedWithNfc) {
-            Intent intent = new Intent(this, KentKartListActivity.class);
+            Intent intent = new Intent(getApplicationContext(), KentKartListActivity.class);
             startActivity(intent);
         }
         finish();
-    }
-
-    private void initializeNFCAdapter() {
-        if (nfcAdapter == null) {
-            NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
-
-            if (adapter == null) {
-                String message = "Sorry, your device doesn't support NFC!";
-                Log.error(this, message);
-            } else {
-                nfcAdapter = adapter;
-                boolean isNfcOn = nfcAdapter.isEnabled();
-
-                if (!isNfcOn) {
-                    String message = "NFC is disabled! Enable it and try again.";
-                    Log.error(this, message);
-                }
-            }
-        }
     }
 
     private void handleIntent(Intent intent) {
@@ -304,7 +286,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
                     // This is a new KentKart
                     Log.info(this, "New KentKart with id: " + id);
 
-                    Intent i = new Intent(this, KentKartDetailsActivity.class);
+                    Intent i = new Intent(getApplicationContext(), KentKartDetailsActivity.class);
                     i.putExtra(Constants.KENT_KART_NFC_ID, id);
                     i.putExtra(Constants.HAS_NFC, true);
                     startActivity(i);
