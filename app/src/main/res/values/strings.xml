@@ -8,6 +8,8 @@
 
     <string name="kentKartList_empty">You do not have any KentKart saved.</string>
 
+    <string name="rate_app">If you like this app, touch here to rate.</string>
+
     <string name="drawer_rate">Rate &amp; Comment</string>
     <string name="drawer_feedback">Send Feedback</string>
     <string name="drawer_about">About</string>

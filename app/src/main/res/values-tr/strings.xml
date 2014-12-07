@@ -6,6 +6,8 @@
 
     <string name="kentKartList_empty">Kayıtlı KentKart\'ınız yok.</string>
 
+    <string name="rate_app">Uygulamayı beğendiyseniz oy vermek için buraya dokunun.</string>
+
     <string name="drawer_rate">Oy Verin &amp; Yourm Yapın</string>
     <string name="drawer_feedback">Geribildirim Gönderin</string>
     <string name="drawer_about">Hakkında</string>

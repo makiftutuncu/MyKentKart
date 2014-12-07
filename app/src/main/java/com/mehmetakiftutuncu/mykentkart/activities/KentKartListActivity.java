@@ -23,6 +23,9 @@ import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 
+import fr.nicolaspomepuy.discreetapprate.AppRate;
+import fr.nicolaspomepuy.discreetapprate.AppRateTheme;
+import fr.nicolaspomepuy.discreetapprate.RetryPolicy;
 import ru.vang.progressswitcher.ProgressWidget;
 
 public class KentKartListActivity extends ActionBarActivity implements LoadKentKartsTask.OnKentKartsLoadedListener {
@@ -83,6 +86,13 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         if (savedInstanceState != null) {
             restoreInstanceState(savedInstanceState);
         }
+
+        AppRate
+            .with(this)
+            .initialLaunchCount(3)
+            .text(R.string.rate_app)
+            .retryPolicy(RetryPolicy.INCREMENTAL)
+            .checkAndShow();
     }
 
     @Override
