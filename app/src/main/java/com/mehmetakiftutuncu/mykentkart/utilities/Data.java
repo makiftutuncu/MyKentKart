@@ -98,14 +98,10 @@ public final class Data {
     }
 
     private static String getKentKartFileName(KentKart kentKart) {
-        if (kentKart == null) {
+        if (kentKart == null || StringUtils.isEmpty(kentKart.number)) {
             return null;
-        } else if (StringUtils.isEmpty(kentKart.number)) {
-            return null;
-        } else if (StringUtils.isEmpty(kentKart.nfcId)) {
-            return String.format("%s.kentkart", kentKart.number);
         } else {
-            return String.format("%s.%s.kentkart", kentKart.number, kentKart.nfcId);
+            return String.format("%s.kentkart", StringUtils.isEmpty(kentKart.nfcId) ? kentKart.number : kentKart.nfcId);
         }
     }
 }

@@ -11,9 +11,11 @@
 
     <com.pnikosis.materialishprogress.ProgressWheel
         android:layout_margin="@dimen/spacing_medium"
-        android:layout_width="@dimen/progressWheel_size"
-        android:layout_height="@dimen/progressWheel_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         wheel:barColor="@color/primary"
+        wheel:circleRadius="@dimen/progressWheel_size"
+        wheel:fillRadius="@dimen/progressWheel_thickness"
         wheel:progressIndeterminate="true"/>
 
     <TextView
