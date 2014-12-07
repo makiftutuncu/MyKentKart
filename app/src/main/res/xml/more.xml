@@ -15,8 +15,8 @@
             android:title="@string/moreActivity_connectedTransport_duration_title"
             android:summary="@string/moreActivity_connectedTransport_duration_summary"
             android:defaultValue="@string/moreActivity_connectedTransport_duration_default"
-            android:entries="@array/moreActivity_connectedTransport_durations"
-            android:entryValues="@array/moreActivity_connectedTransport_durationValues"
+            android:entries="@array/connectedTransportDurations"
+            android:entryValues="@array/connectedTransportDurationValues"
             android:dependency="preference_connectedTransport_enabled"/>
 
     </PreferenceCategory>

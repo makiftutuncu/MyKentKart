@@ -53,6 +53,15 @@
                 android:gravity="center"
                 android:text="@string/kentKartDetailsActivity_number_info"/>
 
+            <Spinner
+                android:id="@+id/spinner_kentKartDetailsActivity_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/kentKartCities"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:spinnerMode="dropdown"
+                android:prompt="@string/kentKartDetailsActivity_city_prompt"/>
+
             <LinearLayout
                 android:id="@+id/linearLayout_kentKartDetailsActivity_nfc"
                 android:layout_width="match_parent"

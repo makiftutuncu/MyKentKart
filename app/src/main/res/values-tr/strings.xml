@@ -25,6 +25,7 @@
     <string name="kentKartDetailsActivity_number_empty">KentKart numarası boş olamaz!</string>
     <string name="kentKartDetailsActivity_number_error">KentKart numarası geçersiz!</string>
     <string name="kentKartDetailsActivity_nfc_info">NFC\'yi kullanarak tek bir dokunuşla KentKart bilgilerinizi görebilirsiniz. Eşleştirmek için, KentKart\'ınızı cihazınızın arka yüzüne dokundurun.</string>
+    <string name="kentKartDetailsActivity_city_prompt">Bir Şehir Seçin</string>
 
     <string name="kentKartInformationActivity_section_balance">Şu Anki Bakiye</string>
     <string name="kentKartInformationActivity_section_lastUse">Son Kullanım</string>
@@ -39,13 +40,6 @@
     <string name="moreActivity_connectedTransport_summary">Aktarma süresinin bitimine kalan süreyi görmek için etkinleştirin.</string>
     <string name="moreActivity_connectedTransport_duration_title">Aktarmalı Ulaşım Süresi</string>
     <string name="moreActivity_connectedTransport_duration_summary">Aktarmalı ulaşım %1$s dakika geçerli.</string>
-    <string-array name="moreActivity_connectedTransport_durations">
-        <item>30 dakika</item>
-        <item>45 dakika</item>
-        <item>60 dakika</item>
-        <item>90 dakika</item>
-    </string-array>
-
     <string name="moreActivity_about_categoryTitle">KentKart\'ım Hakkında</string>
     <string name="moreActivity_about_rate">Oy Verin &amp; Yorum Yapın</string>
     <string name="moreActivity_about_help">Yardım</string>

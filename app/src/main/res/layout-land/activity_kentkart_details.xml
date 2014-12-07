@@ -58,6 +58,15 @@
                     android:layout_marginTop="@dimen/spacing_small"
                     android:gravity="center_vertical|left"
                     android:text="@string/kentKartDetailsActivity_number_info"/>
+
+                <Spinner
+                    android:id="@+id/spinner_kentKartDetailsActivity_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/kentKartCities"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:spinnerMode="dropdown"
+                    android:prompt="@string/kentKartDetailsActivity_city_prompt"/>
             </LinearLayout>
 
             <LinearLayout
