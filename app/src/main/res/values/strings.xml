@@ -33,6 +33,8 @@
     <string name="kentKartInformationActivity_section_lastLoad">Last Load</string>
     <string name="kentKartInformationActivity_connectedTransport_duration">Remaining connected transport duration: %1$s minutes</string>
     <string name="kentKartInformationActivity_error">An error occurred while loading KentKart information. Please try again later.</string>
+    <string name="kentKartInformationActivity_offline">You are not connected to the internet! My KentKart cannot work without an internet connection.</string>
+    <string name="kentKartInformationActivity_blocked">KentKart servers returned an error! You may have been blocked due to too many requests. Please try again later.</string>
 
     <string name="moreActivity_connectedTransport_categoryTitle">Connected Transport</string>
     <string name="moreActivity_connectedTransport_title">Available</string>

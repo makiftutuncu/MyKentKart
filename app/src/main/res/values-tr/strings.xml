@@ -31,6 +31,8 @@
     <string name="kentKartInformationActivity_section_lastLoad">Son Yükleme</string>
     <string name="kentKartInformationActivity_connectedTransport_duration">Kalan aktarmalı ulaşım süresi: %1$s dakika</string>
     <string name="kentKartInformationActivity_error">KentKart bilgilerini yüklerken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</string>
+    <string name="kentKartInformationActivity_offline">Cihazınız internete bağlı değil! KentKart\'ım internet bağlantısı olmadan çalışamaz.</string>
+    <string name="kentKartInformationActivity_blocked">KentKart sunucuları hatalı cevap verdi! Çok fazla sorgulama yüzünden engellenmiş olabilirsiniz. Lütfen daha sonra tekrar deneyin.</string>
 
     <string name="moreActivity_connectedTransport_categoryTitle">Aktarmalı Ulaşım</string>
     <string name="moreActivity_connectedTransport_title">Kullanılabilir</string>

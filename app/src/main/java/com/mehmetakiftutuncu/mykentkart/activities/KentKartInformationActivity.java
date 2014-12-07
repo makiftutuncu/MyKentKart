@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
@@ -24,6 +25,7 @@ import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 import com.mehmetakiftutuncu.mykentkart.utilities.Data;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 import com.mehmetakiftutuncu.mykentkart.utilities.NFCUtils;
+import com.mehmetakiftutuncu.mykentkart.utilities.NetworkUtils;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
 import java.text.SimpleDateFormat;
@@ -189,6 +191,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
             changeState(States.ERROR);
         } else if (kentKartInformation == null) {
             Log.error(this, "Failed to get KentKart information, kentKartInformation is empty!");
+            Toast.makeText(getApplicationContext(), getString(R.string.kentKartInformationActivity_blocked), Toast.LENGTH_LONG).show();
             changeState(States.ERROR);
         } else {
             this.kentKartInformation = kentKartInformation;
@@ -339,7 +342,12 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
                 case PROGRESS:
                     showProgressLayout();
                     updateTitle(getSupportActionBar());
-                    new GetKentKartInformationTask(kentKartNumber, this).execute();
+                    if (!NetworkUtils.isConnectedToInternet(getApplicationContext())) {
+                        Toast.makeText(getApplicationContext(), getString(R.string.kentKartInformationActivity_offline), Toast.LENGTH_LONG).show();
+                        changeState(States.ERROR);
+                    } else {
+                        new GetKentKartInformationTask(kentKartNumber, this).execute();
+                    }
                     break;
                 case ERROR:
                     showErrorLayout();
