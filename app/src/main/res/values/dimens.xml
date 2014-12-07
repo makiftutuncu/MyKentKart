@@ -20,9 +20,7 @@
     <dimen name="recyclerView_horizontal_padding">8dp</dimen>
     <dimen name="recyclerView_vertical_padding">8dp</dimen>
 
-    <dimen name="navigationDrawer_width">240dp</dimen>
-
-    <dimen name="progressWheel_size">96dp</dimen>
+    <dimen name="progressWheel_size">128dp</dimen>
 
     <dimen name="cardView_kentKart_height">128dp</dimen>
     <dimen name="cardView_kentKart_cornerRadius">2dp</dimen>

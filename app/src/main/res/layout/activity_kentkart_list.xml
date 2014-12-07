@@ -11,50 +11,36 @@
         android:layout_height="wrap_content"
         android:background="@color/primary"/>
 
-    <android.support.v4.widget.DrawerLayout
-        android:id="@+id/drawer"
+    <ru.vang.progressswitcher.ProgressWidget
+        xmlns:progress="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/progressWidget_kentKartList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        progress:emptyViewLayout="@layout/empty"
+        progress:progressViewLayout="@layout/loading">
 
-        <!-- Main layout -->
-        <ru.vang.progressswitcher.ProgressWidget
-            xmlns:progress="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/progressWidget_kentKartList"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_kentKartList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            progress:emptyViewLayout="@layout/empty"
-            progress:progressViewLayout="@layout/loading">
+            android:paddingLeft="@dimen/recyclerView_horizontal_padding"
+            android:paddingRight="@dimen/recyclerView_horizontal_padding"
+            android:paddingTop="@dimen/recyclerView_vertical_padding"
+            android:paddingBottom="@dimen/recyclerView_vertical_padding"
+            android:scrollbars="vertical"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView_kentKartList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="@dimen/recyclerView_horizontal_padding"
-                android:paddingRight="@dimen/recyclerView_horizontal_padding"
-                android:paddingTop="@dimen/recyclerView_vertical_padding"
-                android:paddingBottom="@dimen/recyclerView_vertical_padding"
-                android:scrollbars="vertical"/>
+        <com.melnykov.fab.FloatingActionButton
+            xmlns:fab="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/floatingActionButton_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="@dimen/spacing_medium"
+            android:src="@drawable/floatingaction_add"
+            fab:fab_colorNormal="@color/accent"
+            fab:fab_colorPressed="@color/primary"
+            fab:fab_colorRipple="@color/primaryDark"/>
 
-            <com.melnykov.fab.FloatingActionButton
-                xmlns:fab="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/floatingActionButton_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_margin="@dimen/spacing_medium"
-                android:src="@drawable/floatingaction_add"
-                fab:fab_colorNormal="@color/accent"
-                fab:fab_colorPressed="@color/primary"
-                fab:fab_colorRipple="@color/primaryDark"/>
-
-        </ru.vang.progressswitcher.ProgressWidget>
-
-        <!-- Nav drawer -->
-        <fragment
-            android:name="com.mehmetakiftutuncu.mykentkart.fragments.DrawerFragment"
-            android:layout_width="@dimen/navigationDrawer_width"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"/>
-    </android.support.v4.widget.DrawerLayout>
+    </ru.vang.progressswitcher.ProgressWidget>
 
 </LinearLayout>

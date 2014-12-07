@@ -6,13 +6,7 @@
 
     <string name="kentKartList_empty">Kayıtlı KentKart\'ınız yok.</string>
 
-    <string name="rate_app">Uygulamayı beğendiyseniz oy vermek için buraya dokunun.</string>
-
-    <string name="drawer_rate">Oy Verin &amp; Yourm Yapın</string>
-    <string name="drawer_feedback">Geribildirim Gönderin</string>
-    <string name="drawer_about">Hakkında</string>
-    <string name="drawer_preferences">Seçenekler</string>
-    <string name="drawer_help">Yardım</string>
+    <string name="rate_app">Uygulamaya oy vermek/yorum yapmak için birkaç saniyeniz var mı?</string>
 
     <string name="kentKartDetailsActivity_title_add">KentKart Ekle</string>
     <string name="kentKartDetailsActivity_title_edit">KentKart Düzenle</string>
@@ -32,17 +26,22 @@
     <string name="kentKartInformationActivity_connectedTransport_duration">Kalan aktarmalı ulaşım süresi: %1$s dakika</string>
     <string name="kentKartInformationActivity_error">KentKart bilgilerini yüklerken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</string>
 
-    <string name="preferences_title">KentKart\'ım Seçenekleri</string>
-    <string name="preferences_connectedTransport_categoryTitle">Aktarmalı Ulaşım</string>
-    <string name="preferences_connectedTransport_title">Kullanılabilir</string>
-    <string name="preferences_connectedTransport_summary">Aktarma süresinin bitimine kalan süreyi görmek için etkinleştirin.</string>
-    <string name="preferences_connectedTransport_duration_title">Aktarmalı Ulaşım Süresi</string>
-    <string name="preferences_connectedTransport_duration_summary">Aktarmalı ulaşım %1$s dakika geçerli.</string>
-    <string name="preferences_connectedTransport_duration_default">90</string>
-    <string-array name="preferences_connectedTransport_durations">
+    <string name="moreActivity_connectedTransport_categoryTitle">Aktarmalı Ulaşım</string>
+    <string name="moreActivity_connectedTransport_title">Kullanılabilir</string>
+    <string name="moreActivity_connectedTransport_summary">Aktarma süresinin bitimine kalan süreyi görmek için etkinleştirin.</string>
+    <string name="moreActivity_connectedTransport_duration_title">Aktarmalı Ulaşım Süresi</string>
+    <string name="moreActivity_connectedTransport_duration_summary">Aktarmalı ulaşım %1$s dakika geçerli.</string>
+    <string-array name="moreActivity_connectedTransport_durations">
         <item>30 dakika</item>
         <item>45 dakika</item>
         <item>60 dakika</item>
         <item>90 dakika</item>
     </string-array>
+
+    <string name="moreActivity_about_categoryTitle">KentKart\'ım Hakkında</string>
+    <string name="moreActivity_about_rate">Oy Verin &amp; Yorum Yapın</string>
+    <string name="moreActivity_about_help">Yardım</string>
+    <string name="moreActivity_about_feedback">Geribildirim Gönderin</string>
+    <string name="moreActivity_about_version">Sürüm</string>
+    <string name="moreActivity_about_openSource">Açık Kaynak Lisanslar</string>
 </resources>

@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -24,7 +26,6 @@ import com.melnykov.fab.FloatingActionButton;
 import java.util.ArrayList;
 
 import fr.nicolaspomepuy.discreetapprate.AppRate;
-import fr.nicolaspomepuy.discreetapprate.AppRateTheme;
 import fr.nicolaspomepuy.discreetapprate.RetryPolicy;
 import ru.vang.progressswitcher.ProgressWidget;
 
@@ -34,8 +35,6 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
     private States state;
 
     private ProgressWidget progressWidget;
-    private DrawerLayout drawer;
-    private ActionBarDrawerToggle drawerToggle;
     private FloatingActionButton floatingActionButton;
 
     private KentKartAdapter adapter;
@@ -67,11 +66,6 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
             }
         });
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer);
-        drawerToggle = new ActionBarDrawerToggle(this, drawer, mToolbar, R.string.app_name, R.string.app_name);
-        drawer.setDrawerListener(drawerToggle);
-        drawer.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-
         adapter = new KentKartAdapter();
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -91,17 +85,8 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
             .with(this)
             .initialLaunchCount(3)
             .text(R.string.rate_app)
-            .retryPolicy(RetryPolicy.INCREMENTAL)
+            .retryPolicy(RetryPolicy.EXPONENTIAL)
             .checkAndShow();
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        if (drawerToggle != null) {
-            drawerToggle.syncState();
-        }
     }
 
     @Override
@@ -115,26 +100,22 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_more, menu);
+
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return drawerToggle != null || super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-
-        if (drawerToggle != null) {
-            drawerToggle.onConfigurationChanged(newConfig);
+        switch (item.getItemId()) {
+            case R.id.menu_more:
+                Intent intent = new Intent(this, MoreActivity.class);
+                startActivity(intent);
+                break;
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawers();
-            return;
-        }
-        super.onBackPressed();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.mehmetakiftutuncu.mykentkart.activities;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -15,7 +14,7 @@ import android.widget.LinearLayout;
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 
-public class PreferencesActivity extends PreferenceActivity {
+public class MoreActivity extends PreferenceActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +31,7 @@ public class PreferencesActivity extends PreferenceActivity {
            adds a Toolbar manually and sets its content (title, navigation etc.). */
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
         View content = root.getChildAt(0);
-        LinearLayout toolbarContainer = (LinearLayout) View.inflate(this, R.layout.activity_preferences, null);
+        LinearLayout toolbarContainer = (LinearLayout) View.inflate(this, R.layout.activity_more, null);
 
         root.removeAllViews();
         toolbarContainer.addView(content);
@@ -48,7 +47,7 @@ public class PreferencesActivity extends PreferenceActivity {
             }
         });
 
-        addPreferencesFromResource(R.xml.preferences);
+        addPreferencesFromResource(R.xml.more);
     }
 
     private void initializeData() {
@@ -62,17 +61,15 @@ public class PreferencesActivity extends PreferenceActivity {
                 return false;
             }
         });
-        String duration = preferences.getString(Constants.PREFERENCE_CONNECTED_TRANSPORT_DURATION, getString(R.string.preferences_connectedTransport_duration_default));
+        String duration = preferences.getString(Constants.PREFERENCE_CONNECTED_TRANSPORT_DURATION, getString(R.string.moreActivity_connectedTransport_duration_default));
         updateConnectedTransportDurationSummary(listPreference, duration);
     }
 
     private void updateConnectedTransportDurationSummary(Preference preference, String newValue) {
-        preference.setSummary(getString(R.string.preferences_connectedTransport_duration_summary, newValue));
+        preference.setSummary(getString(R.string.moreActivity_connectedTransport_duration_summary, newValue));
     }
 
     private void goToKentKartList() {
-        Intent intent = new Intent(this, KentKartListActivity.class);
-        startActivity(intent);
         finish();
     }
 }

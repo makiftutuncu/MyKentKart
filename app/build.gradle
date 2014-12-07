@@ -35,5 +35,5 @@ dependencies {
     compile 'com.github.drnkn:progress-switcher:1.1.3@aar'
     compile 'com.melnykov:floatingactionbutton:1.0.7'
     compile 'com.pnikosis:materialish-progress:1.1'
-    compile 'fr.nicolaspomepuy:discreetapprate:2.0.+@aar'
+    compile 'fr.nicolaspomepuy:discreetapprate:2.0.2@aar'
 }
