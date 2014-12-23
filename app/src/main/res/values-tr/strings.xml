@@ -10,6 +10,8 @@
 
     <string name="rate_app">Uygulamaya oy vermek/yorum yapmak için birkaç saniyeniz var mı?</string>
 
+    <string name="feedback_subject">KentKart\'ım Hakkında</string>
+
     <string name="enableNFCDialog_title">NFC\'yi Etkinleştirin?</string>
     <string name="enableNFCDialog_message">Cihazınızda NFC desteği var şu anda etkin değil.\n\nNFC\'yi kullanarak KentKart bilgilerinizi sadece KentKart\'ınızı cihazınıza dokundurarak öğrenebilirsiniz.\n\nNFC\'yi etkinleştirmek için ayarlara gitmek ister misiniz?</string>
     <string name="enableNFCDialog_hint">NFC\'yi etkinleştirdikten sonra KentKart\'ıma geri dönmek için geri tuşuna basmayı unutmayın.</string>

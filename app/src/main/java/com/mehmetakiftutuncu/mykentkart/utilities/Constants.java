@@ -20,4 +20,13 @@ public class Constants {
 
     public static final String PREFERENCE_CONNECTED_TRANSPORT_ENABLED  = "preference_connectedTransport_enabled";
     public static final String PREFERENCE_CONNECTED_TRANSPORT_DURATION = "preference_connectedTransport_duration";
+    public static final String PREFERENCE_ABOUT_RATE     = "preference_about_rate";
+    public static final String PREFERENCE_ABOUT_HELP     = "preference_about_help";
+    public static final String PREFERENCE_ABOUT_FEEDBACK = "preference_about_feedback";
+    public static final String PREFERENCE_ABOUT_VERSION  = "preference_about_version";
+    public static final String PREFERENCE_ABOUT_LICENSES = "preference_about_licenses";
+
+    public static final String RATE_URI = "market://details?id=" + PACKAGE_NAME;
+
+    public static final String FEEDBACK_CONTACT = "m.akif.tutuncu@gmail.com";
 }

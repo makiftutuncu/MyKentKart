@@ -11,4 +11,9 @@
         android:layout_height="wrap_content"
         android:background="@color/primary"/>
 
+    <FrameLayout
+        android:id="@+id/frameLayout_moreActivity_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

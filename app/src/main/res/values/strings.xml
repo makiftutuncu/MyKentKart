@@ -12,6 +12,8 @@
 
     <string name="rate_app">Do you have a few seconds to rate/comment on the app?</string>
 
+    <string name="feedback_subject">About My KentKart</string>
+
     <string name="enableNFCDialog_title">Enable NFC?</string>
     <string name="enableNFCDialog_message">Your device has NFC support but it is currently disabled.\n\nYou can use NFC to see your KentKart details just by touching your KentKart to your device.\n\nDo you want to go to settings to enable NFC?</string>
     <string name="enableNFCDialog_hint">Don\'t forget to press back key after enabling NFC to come back to My KentKart.</string>

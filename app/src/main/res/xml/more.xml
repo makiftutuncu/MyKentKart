@@ -15,6 +15,8 @@
             android:title="@string/moreActivity_connectedTransport_duration_title"
             android:summary="@string/moreActivity_connectedTransport_duration_summary"
             android:defaultValue="@string/moreActivity_connectedTransport_duration_default"
+            android:positiveButtonText=""
+            android:negativeButtonText=""
             android:entries="@array/connectedTransportDurations"
             android:entryValues="@array/connectedTransportDurationValues"
             android:dependency="preference_connectedTransport_enabled"/>
@@ -24,11 +26,21 @@
     <PreferenceCategory
         android:title="@string/moreActivity_about_categoryTitle" >
 
-        <Preference android:title="@string/moreActivity_about_rate" />
-        <Preference android:title="@string/moreActivity_about_help" />
-        <Preference android:title="@string/moreActivity_about_feedback" />
-        <Preference android:title="@string/moreActivity_about_version" />
-        <Preference android:title="@string/moreActivity_about_openSource" />
+        <Preference
+            android:key="preference_about_rate"
+            android:title="@string/moreActivity_about_rate"/>
+        <Preference
+            android:key="preference_about_help"
+            android:title="@string/moreActivity_about_help"/>
+        <Preference
+            android:key="preference_about_feedback"
+            android:title="@string/moreActivity_about_feedback"/>
+        <Preference
+            android:key="preference_about_version"
+            android:title="@string/moreActivity_about_version"/>
+        <Preference
+            android:key="preference_about_licenses"
+            android:title="@string/moreActivity_about_openSource"/>
 
     </PreferenceCategory>
 
