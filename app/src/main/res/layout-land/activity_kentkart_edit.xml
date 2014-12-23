@@ -29,26 +29,26 @@
 
                 <com.andreabaccega.widget.FormEditText
                     validator:testType="nocheck"
-                    validator:emptyErrorString="@string/kentKartDetailsActivity_name_empty"
-                    android:id="@+id/formEditText_kentKartDetailsActivity_name"
+                    validator:emptyErrorString="@string/kentKartEditActivity_name_empty"
+                    android:id="@+id/formEditText_kentKartEditActivity_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="@string/kentKartDetailsActivity_name_hint"
+                    android:hint="@string/kentKartEditActivity_name_hint"
                     android:inputType="textPersonName"
                     android:textSize="@dimen/textSize_large"/>
 
                 <com.andreabaccega.widget.FormEditText
                     validator:testType="regexp"
                     validator:customRegexp="^[0-9]{5}-[0-9]{5}-[0-9]{1}$"
-                    validator:emptyErrorString="@string/kentKartDetailsActivity_number_empty"
-                    validator:testErrorString="@string/kentKartDetailsActivity_number_error"
-                    android:id="@+id/formEditText_kentKartDetailsActivity_number"
+                    validator:emptyErrorString="@string/kentKartEditActivity_number_empty"
+                    validator:testErrorString="@string/kentKartEditActivity_number_error"
+                    android:id="@+id/formEditText_kentKartEditActivity_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_medium"
                     android:ems="10"
-                    android:hint="@string/kentKartDetailsActivity_number_hint"
+                    android:hint="@string/kentKartEditActivity_number_hint"
                     android:inputType="phone"
                     android:textSize="@dimen/textSize_large"/>
 
@@ -57,20 +57,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_small"
                     android:gravity="center_vertical|left"
-                    android:text="@string/kentKartDetailsActivity_number_info"/>
+                    android:text="@string/kentKartEditActivity_number_info"/>
 
                 <Spinner
-                    android:id="@+id/spinner_kentKartDetailsActivity_city"
+                    android:id="@+id/spinner_kentKartEditActivity_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/kentKartCities"
                     android:layout_marginTop="@dimen/spacing_medium"
                     android:spinnerMode="dropdown"
-                    android:prompt="@string/kentKartDetailsActivity_city_prompt"/>
+                    android:prompt="@string/kentKartEditActivity_city_prompt"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout_kentKartDetailsActivity_nfc"
+                android:id="@+id/linearLayout_kentKartEditActivity_nfc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/kentKartDetailsActivity_nfc_info"/>
+                    android:text="@string/kentKartEditActivity_nfc_info"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
                     android:src="@drawable/nfc_big"/>
 
                 <TextView
-                    android:id="@+id/textView_kentKartDetailsActivity_nfc_id"
+                    android:id="@+id/textView_kentKartEditActivity_nfc_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/textSize_extraSmall"

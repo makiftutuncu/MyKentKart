@@ -289,7 +289,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
                     // This is a new KentKart
                     Log.info(this, "New KentKart with id: " + id);
 
-                    Intent i = new Intent(getApplicationContext(), KentKartDetailsActivity.class);
+                    Intent i = new Intent(getApplicationContext(), KentKartEditActivity.class);
                     i.putExtra(Constants.KENT_KART_NFC_ID, id);
                     i.putExtra(Constants.HAS_NFC, true);
                     startActivity(i);

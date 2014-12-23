@@ -3,14 +3,14 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_kentKartDetailsActivity_delete"
+        android:id="@+id/menu_kentKartEditActivity_delete"
         android:icon="@drawable/action_delete"
-        android:title="@string/kentKartDetailsActivity_menu_delete"
+        android:title="@string/kentKartEditActivity_menu_delete"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/menu_kentKartDetailsActivity_save"
+        android:id="@+id/menu_kentKartEditActivity_save"
         android:icon="@drawable/action_save"
-        android:title="@string/kentKartDetailsActivity_menu_save"
+        android:title="@string/kentKartEditActivity_menu_save"
         app:showAsAction="ifRoom"/>
 </menu>

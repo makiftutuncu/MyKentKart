@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mehmetakiftutuncu.mykentkart.R;
-import com.mehmetakiftutuncu.mykentkart.activities.KentKartDetailsActivity;
+import com.mehmetakiftutuncu.mykentkart.activities.KentKartEditActivity;
 import com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
 import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
@@ -32,7 +32,7 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
                 Intent intent = new Intent(v.getContext(), KentKartInformationActivity.class);
                 intent.putExtra(Constants.KENT_KART_NAME, viewHolder.name);
                 intent.putExtra(Constants.KENT_KART_NUMBER, viewHolder.number);
-                ((Activity) v.getContext()).startActivityForResult(intent, KentKartDetailsActivity.REQUEST_CODE);
+                ((Activity) v.getContext()).startActivityForResult(intent, KentKartEditActivity.REQUEST_CODE);
             }
         });
         return viewHolder;
@@ -53,13 +53,13 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
             viewHolder.editImageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), KentKartDetailsActivity.class);
+                    Intent intent = new Intent(v.getContext(), KentKartEditActivity.class);
                     intent.putExtra(Constants.EDIT_MODE, true);
                     intent.putExtra(Constants.KENT_KART_NAME, kentKart.name);
                     intent.putExtra(Constants.KENT_KART_NUMBER, kentKart.number);
                     intent.putExtra(Constants.KENT_KART_NFC_ID, kentKart.nfcId);
 
-                    ((Activity) v.getContext()).startActivityForResult(intent, KentKartDetailsActivity.REQUEST_CODE);
+                    ((Activity) v.getContext()).startActivityForResult(intent, KentKartEditActivity.REQUEST_CODE);
                 }
             });
         }

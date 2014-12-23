@@ -16,18 +16,18 @@
     <string name="enableNFCDialog_message">Your device has NFC support but it is currently disabled.\n\nYou can use NFC to see your KentKart details just by touching your KentKart to your device.\n\nDo you want to go to settings to enable NFC?</string>
     <string name="enableNFCDialog_hint">Don\'t forget to press back key after enabling NFC to come back to My KentKart.</string>
 
-    <string name="kentKartDetailsActivity_title_add">Add KentKart</string>
-    <string name="kentKartDetailsActivity_title_edit">Edit KentKart</string>
-    <string name="kentKartDetailsActivity_menu_save">Save</string>
-    <string name="kentKartDetailsActivity_menu_delete">Delete</string>
-    <string name="kentKartDetailsActivity_name_hint">Name of the KentKart</string>
-    <string name="kentKartDetailsActivity_name_empty">KentKart name cannot be empty!</string>
-    <string name="kentKartDetailsActivity_number_hint">Number of the KentKart</string>
-    <string name="kentKartDetailsActivity_number_info">KentKart number is the 11 digit number, usually found on the back side of your card.</string>
-    <string name="kentKartDetailsActivity_number_empty">KentKart number cannot be empty!</string>
-    <string name="kentKartDetailsActivity_number_error">KentKart number is invalid!</string>
-    <string name="kentKartDetailsActivity_nfc_info">You can use NFC to see your KentKart information with just one touch. To match, touch your KentKart to back side of your device.</string>
-    <string name="kentKartDetailsActivity_city_prompt">Select a City</string>
+    <string name="kentKartEditActivity_title_add">Add KentKart</string>
+    <string name="kentKartEditActivity_title_edit">Edit KentKart</string>
+    <string name="kentKartEditActivity_menu_save">Save</string>
+    <string name="kentKartEditActivity_menu_delete">Delete</string>
+    <string name="kentKartEditActivity_name_hint">Name of the KentKart</string>
+    <string name="kentKartEditActivity_name_empty">KentKart name cannot be empty!</string>
+    <string name="kentKartEditActivity_number_hint">Number of the KentKart</string>
+    <string name="kentKartEditActivity_number_info">KentKart number is the 11 digit number, usually found on the back side of your card.</string>
+    <string name="kentKartEditActivity_number_empty">KentKart number cannot be empty!</string>
+    <string name="kentKartEditActivity_number_error">KentKart number is invalid!</string>
+    <string name="kentKartEditActivity_nfc_info">You can use NFC to see your KentKart information with just one touch. To match, touch your KentKart to back side of your device.</string>
+    <string name="kentKartEditActivity_city_prompt">Select a City</string>
 
     <string name="kentKartInformationActivity_section_balance">Current Balance</string>
     <string name="kentKartInformationActivity_section_lastUse">Last Use</string>

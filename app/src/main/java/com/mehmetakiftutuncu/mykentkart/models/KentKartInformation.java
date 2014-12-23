@@ -37,7 +37,8 @@ public class KentKartInformation implements Parcelable {
 
     public static KentKartInformation fromJson(String json) {
         try {
-            return new KentKartInformation();
+            Gson gson = new Gson();
+            return gson.fromJson(json, KentKartInformation.class);
         } catch (Exception e) {
             Log.error(KentKart.class, "Failed to generate KentKartInformation from json! json: " + json, e);
             return null;

@@ -14,18 +14,18 @@
     <string name="enableNFCDialog_message">Cihazınızda NFC desteği var şu anda etkin değil.\n\nNFC\'yi kullanarak KentKart bilgilerinizi sadece KentKart\'ınızı cihazınıza dokundurarak öğrenebilirsiniz.\n\nNFC\'yi etkinleştirmek için ayarlara gitmek ister misiniz?</string>
     <string name="enableNFCDialog_hint">NFC\'yi etkinleştirdikten sonra KentKart\'ıma geri dönmek için geri tuşuna basmayı unutmayın.</string>
 
-    <string name="kentKartDetailsActivity_title_add">KentKart Ekle</string>
-    <string name="kentKartDetailsActivity_title_edit">KentKart Düzenle</string>
-    <string name="kentKartDetailsActivity_menu_save">Kaydet</string>
-    <string name="kentKartDetailsActivity_menu_delete">Sil</string>
-    <string name="kentKartDetailsActivity_name_hint">KentKart\'ın Adı</string>
-    <string name="kentKartDetailsActivity_name_empty">KentKart adı boş olamaz!</string>
-    <string name="kentKartDetailsActivity_number_hint">KentKart\'ın Numarası</string>
-    <string name="kentKartDetailsActivity_number_info">KentKart numarası genellikle kartın arka yüzünde bulunan 11 haneli numaradır.</string>
-    <string name="kentKartDetailsActivity_number_empty">KentKart numarası boş olamaz!</string>
-    <string name="kentKartDetailsActivity_number_error">KentKart numarası geçersiz!</string>
-    <string name="kentKartDetailsActivity_nfc_info">NFC\'yi kullanarak tek bir dokunuşla KentKart bilgilerinizi görebilirsiniz. Eşleştirmek için, KentKart\'ınızı cihazınızın arka yüzüne dokundurun.</string>
-    <string name="kentKartDetailsActivity_city_prompt">Bir Şehir Seçin</string>
+    <string name="kentKartEditActivity_title_add">KentKart Ekle</string>
+    <string name="kentKartEditActivity_title_edit">KentKart Düzenle</string>
+    <string name="kentKartEditActivity_menu_save">Kaydet</string>
+    <string name="kentKartEditActivity_menu_delete">Sil</string>
+    <string name="kentKartEditActivity_name_hint">KentKart\'ın Adı</string>
+    <string name="kentKartEditActivity_name_empty">KentKart adı boş olamaz!</string>
+    <string name="kentKartEditActivity_number_hint">KentKart\'ın Numarası</string>
+    <string name="kentKartEditActivity_number_info">KentKart numarası genellikle kartın arka yüzünde bulunan 11 haneli numaradır.</string>
+    <string name="kentKartEditActivity_number_empty">KentKart numarası boş olamaz!</string>
+    <string name="kentKartEditActivity_number_error">KentKart numarası geçersiz!</string>
+    <string name="kentKartEditActivity_nfc_info">NFC\'yi kullanarak tek bir dokunuşla KentKart bilgilerinizi görebilirsiniz. Eşleştirmek için, KentKart\'ınızı cihazınızın arka yüzüne dokundurun.</string>
+    <string name="kentKartEditActivity_city_prompt">Bir Şehir Seçin</string>
 
     <string name="kentKartInformationActivity_section_balance">Şu Anki Bakiye</string>
     <string name="kentKartInformationActivity_section_lastUse">Son Kullanım</string>

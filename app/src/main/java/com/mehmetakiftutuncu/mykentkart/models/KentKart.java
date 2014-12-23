@@ -23,7 +23,7 @@ public class KentKart implements Parcelable {
     }
 
     public static String getFormattedNumber(String number) {
-        if (number == null) {
+        if (StringUtils.isEmpty(number)) {
             return "";
         } else {
             String newNumberText = number;

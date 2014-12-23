@@ -23,7 +23,7 @@ import com.mehmetakiftutuncu.mykentkart.utilities.Data;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
-public class KentKartDetailsActivity extends ActionBarActivity {
+public class KentKartEditActivity extends ActionBarActivity {
     public static int REQUEST_CODE = 1;
 
     private FormEditText nameEditText;
@@ -52,7 +52,7 @@ public class KentKartDetailsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_kentkart_details);
+        setContentView(R.layout.activity_kentkart_edit);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
@@ -73,21 +73,21 @@ public class KentKartDetailsActivity extends ActionBarActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         if (isEditMode) {
-            actionBar.setTitle(R.string.kentKartDetailsActivity_title_edit);
+            actionBar.setTitle(R.string.kentKartEditActivity_title_edit);
         } else {
-            actionBar.setTitle(R.string.kentKartDetailsActivity_title_add);
+            actionBar.setTitle(R.string.kentKartEditActivity_title_add);
         }
 
-        nameEditText = (FormEditText) findViewById(R.id.formEditText_kentKartDetailsActivity_name);
-        numberEditText = (FormEditText) findViewById(R.id.formEditText_kentKartDetailsActivity_number);
+        nameEditText = (FormEditText) findViewById(R.id.formEditText_kentKartEditActivity_name);
+        numberEditText = (FormEditText) findViewById(R.id.formEditText_kentKartEditActivity_number);
 
         nameEditText.setText(kentKart.name);
         numberEditText.addTextChangedListener(numberTextWatcher);
         numberEditText.setText(kentKart.number);
         numberEditText.setEnabled(!isEditMode);
 
-        LinearLayout nfcLayout = (LinearLayout) findViewById(R.id.linearLayout_kentKartDetailsActivity_nfc);
-        TextView nfcIdTextView = (TextView) findViewById(R.id.textView_kentKartDetailsActivity_nfc_id);
+        LinearLayout nfcLayout = (LinearLayout) findViewById(R.id.linearLayout_kentKartEditActivity_nfc);
+        TextView nfcIdTextView = (TextView) findViewById(R.id.textView_kentKartEditActivity_nfc_id);
 
         if (isStartedWithNfc && !isEditMode) {
             // Read a new card
@@ -107,9 +107,9 @@ public class KentKartDetailsActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_kentkart_details, menu);
+        inflater.inflate(R.menu.menu_kentkart_edit, menu);
 
-        MenuItem item = menu.findItem(R.id.menu_kentKartDetailsActivity_delete);
+        MenuItem item = menu.findItem(R.id.menu_kentKartEditActivity_delete);
         if (item != null && !isEditMode) {
             item.setVisible(false);
         }
@@ -124,7 +124,7 @@ public class KentKartDetailsActivity extends ActionBarActivity {
                 goToKentKartList(false);
                 break;
 
-            case R.id.menu_kentKartDetailsActivity_save:
+            case R.id.menu_kentKartEditActivity_save:
                 kentKart.name = nameEditText.getText().toString();
                 boolean isValid = true;
 
@@ -150,7 +150,7 @@ public class KentKartDetailsActivity extends ActionBarActivity {
                 }
                 break;
 
-            case R.id.menu_kentKartDetailsActivity_delete:
+            case R.id.menu_kentKartEditActivity_delete:
                 deleteKentKart(kentKart);
 
                 goToKentKartList(true);

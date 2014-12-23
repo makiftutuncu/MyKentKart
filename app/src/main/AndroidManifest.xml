@@ -23,10 +23,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.mehmetakiftutuncu.mykentkart.activities.KentKartDetailsActivity"/>
+        <activity android:name=".activities.KentKartEditActivity"/>
 
         <activity
-            android:name="com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity">
+            android:name=".activities.KentKartInformationActivity">
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED"/>
             </intent-filter>
@@ -36,7 +36,7 @@
                 android:resource="@xml/nfc_filter"/>
         </activity>
 
-        <activity android:name="com.mehmetakiftutuncu.mykentkart.activities.MoreActivity" />
+        <activity android:name=".activities.MoreActivity" />
     </application>
 
 </manifest>

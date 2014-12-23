@@ -66,8 +66,8 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), KentKartDetailsActivity.class);
-                startActivityForResult(intent, KentKartDetailsActivity.REQUEST_CODE);
+                Intent intent = new Intent(getApplicationContext(), KentKartEditActivity.class);
+                startActivityForResult(intent, KentKartEditActivity.REQUEST_CODE);
             }
         });
 
@@ -140,7 +140,7 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == KentKartDetailsActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == KentKartEditActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             // Coming back after a change to KentKart list
             changeState(States.PROGRESS);
         }
