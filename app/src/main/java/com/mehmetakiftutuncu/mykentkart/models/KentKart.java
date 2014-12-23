@@ -11,11 +11,13 @@ public class KentKart implements Parcelable {
     public String name;
     public String number;
     public String nfcId;
+    public String regionCode;
 
-    public KentKart(String name, String number, String nfcId) {
+    public KentKart(String name, String number, String nfcId, String regionCode) {
         this.name = name;
         this.number = number;
         this.nfcId = nfcId;
+        this.regionCode = regionCode;
     }
 
     public String getFormattedNumber() {
@@ -53,7 +55,7 @@ public class KentKart implements Parcelable {
             Gson gson = new Gson();
             return gson.toJson(this, KentKart.class);
         } catch (Exception e) {
-            Log.error(this, "Failed to convert KentKart to json! name: " + name + ", number: " + number + ", nfcId: " + nfcId, e);
+            Log.error(this, "Failed to convert KentKart to json! name: " + name + ", number: " + number + ", nfcId: " + nfcId + ", regionCode: " + regionCode, e);
             return null;
         }
     }
@@ -83,5 +85,6 @@ public class KentKart implements Parcelable {
         dest.writeString(name);
         dest.writeString(number);
         dest.writeString(nfcId);
+        dest.writeString(regionCode);
     }
 }

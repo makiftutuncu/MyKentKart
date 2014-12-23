@@ -55,18 +55,21 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_small"
                     android:gravity="center_vertical|left"
                     android:text="@string/kentKartEditActivity_number_info"/>
 
                 <Spinner
-                    android:id="@+id/spinner_kentKartEditActivity_city"
+                    android:id="@+id/spinner_kentKartEditActivity_region"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:entries="@array/kentKartCities"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:spinnerMode="dropdown"
-                    android:prompt="@string/kentKartEditActivity_city_prompt"/>
+                    android:spinnerMode="dropdown"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/kentKartEditActivity_region_info"/>
             </LinearLayout>
 
             <LinearLayout

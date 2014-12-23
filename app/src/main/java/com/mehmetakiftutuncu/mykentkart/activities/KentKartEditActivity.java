@@ -12,12 +12,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.andreabaccega.widget.FormEditText;
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.models.KentKart;
+import com.mehmetakiftutuncu.mykentkart.models.Regions;
 import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 import com.mehmetakiftutuncu.mykentkart.utilities.Data;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
@@ -59,14 +63,15 @@ public class KentKartEditActivity extends ActionBarActivity {
             setSupportActionBar(toolbar);
         }
 
-        kentKart = new KentKart(null, null, null);
+        kentKart = new KentKart(null, null, null, null);
         Bundle args = getIntent().getExtras();
         if (args != null) {
-            kentKart.name    = args.getString(Constants.KENT_KART_NAME);
-            kentKart.number  = args.getString(Constants.KENT_KART_NUMBER);
-            kentKart.nfcId   = args.getString(Constants.KENT_KART_NFC_ID);
-            isEditMode       = args.getBoolean(Constants.EDIT_MODE, false);
-            isStartedWithNfc = args.getBoolean(Constants.HAS_NFC, false);
+            kentKart.name       = args.getString(Constants.KENT_KART_NAME);
+            kentKart.number     = args.getString(Constants.KENT_KART_NUMBER);
+            kentKart.nfcId      = args.getString(Constants.KENT_KART_NFC_ID);
+            kentKart.regionCode = args.getString(Constants.KENT_KART_REGION_CODE);
+            isEditMode          = args.getBoolean(Constants.EDIT_MODE, false);
+            isStartedWithNfc    = args.getBoolean(Constants.HAS_NFC, false);
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -79,12 +84,27 @@ public class KentKartEditActivity extends ActionBarActivity {
         }
 
         nameEditText = (FormEditText) findViewById(R.id.formEditText_kentKartEditActivity_name);
-        numberEditText = (FormEditText) findViewById(R.id.formEditText_kentKartEditActivity_number);
-
         nameEditText.setText(kentKart.name);
+
+        numberEditText = (FormEditText) findViewById(R.id.formEditText_kentKartEditActivity_number);
         numberEditText.addTextChangedListener(numberTextWatcher);
         numberEditText.setText(kentKart.number);
         numberEditText.setEnabled(!isEditMode);
+
+        Spinner regionSpinner = (Spinner) findViewById(R.id.spinner_kentKartEditActivity_region);
+        regionSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Regions.getNames(this)));
+        regionSpinner.setSelection(kentKart.regionCode != null ? Regions.withCode(kentKart.regionCode).ordinal() : Spinner.INVALID_POSITION);
+        regionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                kentKart.regionCode = Regions.values()[position].code;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                kentKart.regionCode = "";
+            }
+        });
 
         LinearLayout nfcLayout = (LinearLayout) findViewById(R.id.linearLayout_kentKartEditActivity_nfc);
         TextView nfcIdTextView = (TextView) findViewById(R.id.textView_kentKartEditActivity_nfc_id);
@@ -181,6 +201,7 @@ public class KentKartEditActivity extends ActionBarActivity {
         intent.putExtra(Constants.KENT_KART_NAME, kentKart.name);
         intent.putExtra(Constants.KENT_KART_NUMBER, kentKart.number);
         intent.putExtra(Constants.HAS_NFC, isStartedWithNfc);
+        intent.putExtra(Constants.KENT_KART_REGION_CODE, kentKart.regionCode);
         startActivity(intent);
         setResult(Activity.RESULT_OK);
         finish();

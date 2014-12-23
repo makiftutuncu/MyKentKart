@@ -29,7 +29,7 @@
     <string name="kentKartEditActivity_number_empty">KentKart numarası boş olamaz!</string>
     <string name="kentKartEditActivity_number_error">KentKart numarası geçersiz!</string>
     <string name="kentKartEditActivity_nfc_info">NFC\'yi kullanarak tek bir dokunuşla KentKart bilgilerinizi görebilirsiniz. Eşleştirmek için, KentKart\'ınızı cihazınızın arka yüzüne dokundurun.</string>
-    <string name="kentKartEditActivity_city_prompt">Bir Şehir Seçin</string>
+    <string name="kentKartEditActivity_region_info">KentKart\'ın etkin olduğu şehri seçin.</string>
 
     <string name="kentKartInformationActivity_section_balance">Şu Anki Bakiye</string>
     <string name="kentKartInformationActivity_section_lastUse">Son Kullanım</string>

@@ -29,6 +29,7 @@ import com.mehmetakiftutuncu.mykentkart.utilities.NetworkUtils;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import ru.vang.progressswitcher.ProgressWidget;
@@ -52,6 +53,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
     private String kentKartName;
     private String kentKartNumber;
+    private String kentKartRegionCode;
     private boolean isStartedWithNfc = false;
 
     private NfcAdapter nfcAdapter;
@@ -71,9 +73,10 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
         Bundle args = getIntent().getExtras();
         if (args != null) {
-            kentKartName = args.getString(Constants.KENT_KART_NAME);
-            kentKartNumber = args.getString(Constants.KENT_KART_NUMBER);
-            isStartedWithNfc = args.getBoolean(Constants.HAS_NFC, false);
+            kentKartName       = args.getString(Constants.KENT_KART_NAME);
+            kentKartNumber     = args.getString(Constants.KENT_KART_NUMBER);
+            kentKartRegionCode = args.getString(Constants.KENT_KART_REGION_CODE);
+            isStartedWithNfc   = args.getBoolean(Constants.HAS_NFC, false);
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -138,6 +141,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         // Save KentKart name and number
         outState.putString(Constants.KENT_KART_NAME, kentKartName);
         outState.putString(Constants.KENT_KART_NUMBER, kentKartNumber);
+        outState.putString(Constants.KENT_KART_REGION_CODE, kentKartRegionCode);
 
         // Save KentKart information
         if (kentKartInformation != null) {
@@ -151,8 +155,9 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
             changeState(States.valueOf(savedState.getString(Constants.STATE)));
 
             // Restore KentKart name and number
-            kentKartName = savedState.getString(Constants.KENT_KART_NAME);
-            kentKartNumber = savedState.getString(Constants.KENT_KART_NUMBER);
+            kentKartName       = savedState.getString(Constants.KENT_KART_NAME);
+            kentKartNumber     = savedState.getString(Constants.KENT_KART_NUMBER);
+            kentKartRegionCode = savedState.getString(Constants.KENT_KART_REGION_CODE);
 
             // Restore KentKart information
             kentKartInformation = savedState.getParcelable(Constants.KENT_KART_INFORMATION);
@@ -271,7 +276,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
                 String id = StringUtils.generateNfcId(tagId);
 
-                Log.info(this, "KentKart NFC id: " + id);
+                Log.info(this, "Read tag id: " + Arrays.toString(tagId) + ", generated KentKart NFC id: " + id);
 
                 KentKart loadedKentKart = Data.loadKentKart(id);
 
@@ -282,6 +287,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
                     kentKartName = loadedKentKart.name;
                     kentKartNumber = loadedKentKart.number;
+                    kentKartRegionCode = loadedKentKart.regionCode;
                     isStartedWithNfc = true;
 
                     changeState(States.PROGRESS);
@@ -346,7 +352,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
                         Toast.makeText(getApplicationContext(), getString(R.string.kentKartInformationActivity_offline), Toast.LENGTH_LONG).show();
                         changeState(States.ERROR);
                     } else {
-                        new GetKentKartInformationTask(kentKartNumber, this).execute();
+                        new GetKentKartInformationTask(kentKartNumber, kentKartRegionCode, this).execute();
                     }
                     break;
                 case ERROR:

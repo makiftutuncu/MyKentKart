@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="kentKartCities" translatable="false">
+    <string-array name="kentKartRegions" translatable="false">
         <item>Adana</item>
         <item>Alanya</item>
         <item>Antakya</item>
+        <item>Bandırma</item>
         <item>Burdur</item>
         <item>Çanakkale</item>
         <item>Edirne</item>
@@ -19,10 +20,11 @@
         <item>Sivas</item>
     </string-array>
 
-    <string-array name="kentKartCityValues" translatable="false">
+    <string-array name="kentKartRegionCodes" translatable="false">
         <item>003</item>
         <item>019</item>
         <item>018</item>
+        <item>008</item>
         <item>017</item>
         <item>007</item>
         <item>013</item>

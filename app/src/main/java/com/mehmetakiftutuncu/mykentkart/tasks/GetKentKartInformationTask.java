@@ -28,6 +28,7 @@ public class GetKentKartInformationTask extends AsyncTask<Void, Void, KentKartIn
 
     private OnKentKartInformationReadyListener listener;
     private String kentKartNumber;
+    private String kentKartRegionCode;
 
     private String getUrl(String region, String kentKartNumber) {
         return String.format(
@@ -37,8 +38,9 @@ public class GetKentKartInformationTask extends AsyncTask<Void, Void, KentKartIn
         );
     }
 
-    public GetKentKartInformationTask(String kentKartNumber, OnKentKartInformationReadyListener listener) {
+    public GetKentKartInformationTask(String kentKartNumber, String kentKartRegionCode, OnKentKartInformationReadyListener listener) {
         this.kentKartNumber = kentKartNumber;
+        this.kentKartRegionCode = kentKartRegionCode;
         this.listener = listener;
     }
 
@@ -50,10 +52,13 @@ public class GetKentKartInformationTask extends AsyncTask<Void, Void, KentKartIn
         } else if (kentKartNumber.length() != 11) {
             Log.error(this, "Failed to get KentKart information, kentKartNumber is invalid! kentKartNumber: " + kentKartNumber);
             return null;
+        } else if (StringUtils.isEmpty(kentKartRegionCode)) {
+            Log.error(this, "Failed to get KentKart information, kentKartRegionCode is empty!");
+            return null;
         } else {
             try {
                 DefaultHttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost(getUrl("006", kentKartNumber));
+                HttpPost httpPost = new HttpPost(getUrl(kentKartRegionCode, kentKartNumber));
 
                 HttpResponse httpResponse = httpClient.execute(httpPost);
 

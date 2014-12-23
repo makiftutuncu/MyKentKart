@@ -32,6 +32,7 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
                 Intent intent = new Intent(v.getContext(), KentKartInformationActivity.class);
                 intent.putExtra(Constants.KENT_KART_NAME, viewHolder.name);
                 intent.putExtra(Constants.KENT_KART_NUMBER, viewHolder.number);
+                intent.putExtra(Constants.KENT_KART_REGION_CODE, viewHolder.regionCode);
                 ((Activity) v.getContext()).startActivityForResult(intent, KentKartEditActivity.REQUEST_CODE);
             }
         });
@@ -45,6 +46,7 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
         if (kentKart != null) {
             viewHolder.name = kentKart.name;
             viewHolder.number = kentKart.number;
+            viewHolder.regionCode = kentKart.regionCode;
 
             viewHolder.nameTextView.setText(kentKart.name);
             viewHolder.numberTextView.setText(kentKart.getFormattedNumber());
@@ -57,6 +59,7 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
                     intent.putExtra(Constants.EDIT_MODE, true);
                     intent.putExtra(Constants.KENT_KART_NAME, kentKart.name);
                     intent.putExtra(Constants.KENT_KART_NUMBER, kentKart.number);
+                    intent.putExtra(Constants.KENT_KART_REGION_CODE, kentKart.regionCode);
                     intent.putExtra(Constants.KENT_KART_NFC_ID, kentKart.nfcId);
 
                     ((Activity) v.getContext()).startActivityForResult(intent, KentKartEditActivity.REQUEST_CODE);
@@ -82,6 +85,7 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public String name;
         public String number;
+        public String regionCode;
         public TextView nameTextView;
         public TextView numberTextView;
         public ImageView nfcImageView;

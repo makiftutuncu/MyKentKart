@@ -6,6 +6,7 @@ public class Constants {
     public static final String KENT_KART_NAME         = PACKAGE_NAME + ".kentkart.name";
     public static final String KENT_KART_NUMBER       = PACKAGE_NAME + ".kentkart.number";
     public static final String KENT_KART_NFC_ID       = PACKAGE_NAME + ".kentkart.nfcid";
+    public static final String KENT_KART_REGION_CODE  = PACKAGE_NAME + ".kentkart.regioncode";
     public static final String EDIT_MODE              = PACKAGE_NAME + ".editmode";
     public static final String HAS_NFC                = PACKAGE_NAME + ".hasnfc";
     public static final String STATE                  = PACKAGE_NAME + ".state";
