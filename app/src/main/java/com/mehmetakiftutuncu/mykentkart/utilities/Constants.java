@@ -14,7 +14,7 @@ public class Constants {
     public static final String KENT_KART_INFORMATION  = PACKAGE_NAME + ".kentkartinformation";
 
     public static final String DATE_TIME_FORMAT                    = "dd MMMM yyyy, HH:mm";
-    public static final String KENT_KART_RESPONSE_DATE_TIME_FORMAT = "yyyyMMddHHmmss";
+    public static final String KENT_KART_RESPONSE_DATE_TIME_FORMAT = "dd.MM.yyyy HH:mm:ss";
 
     public static final String DATA_PATH = "/Android/data/" + PACKAGE_NAME;
 
