@@ -4,6 +4,7 @@
 
     <item
         android:id="@+id/menu_more"
-        android:title="More"
+        android:title="@string/kentKartListActivity_menu_more"
+        android:icon="@drawable/action_more"
         app:showAsAction="ifRoom"/>
 </menu>

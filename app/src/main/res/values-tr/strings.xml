@@ -16,6 +16,8 @@
     <string name="enableNFCDialog_message">Cihazınızda NFC desteği var şu anda etkin değil.\n\nNFC\'yi kullanarak KentKart bilgilerinizi sadece KentKart\'ınızı cihazınıza dokundurarak öğrenebilirsiniz.\n\nNFC\'yi etkinleştirmek için ayarlara gitmek ister misiniz?</string>
     <string name="enableNFCDialog_hint">NFC\'yi etkinleştirdikten sonra KentKart\'ıma geri dönmek için geri tuşuna basmayı unutmayın.</string>
 
+    <string name="kentKartListActivity_menu_more">Daha Falzası</string>
+
     <string name="kentKartEditActivity_title_add">KentKart Ekle</string>
     <string name="kentKartEditActivity_title_edit">KentKart Düzenle</string>
     <string name="kentKartEditActivity_menu_save">Kaydet</string>

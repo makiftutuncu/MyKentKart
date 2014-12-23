@@ -18,6 +18,8 @@
     <string name="enableNFCDialog_message">Your device has NFC support but it is currently disabled.\n\nYou can use NFC to see your KentKart details just by touching your KentKart to your device.\n\nDo you want to go to settings to enable NFC?</string>
     <string name="enableNFCDialog_hint">Don\'t forget to press back key after enabling NFC to come back to My KentKart.</string>
 
+    <string name="kentKartListActivity_menu_more">More</string>
+
     <string name="kentKartEditActivity_title_add">Add KentKart</string>
     <string name="kentKartEditActivity_title_edit">Edit KentKart</string>
     <string name="kentKartEditActivity_menu_save">Save</string>
