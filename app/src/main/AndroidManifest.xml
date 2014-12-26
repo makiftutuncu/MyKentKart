@@ -37,6 +37,8 @@
         </activity>
 
         <activity android:name=".activities.MoreActivity" />
+
+        <activity android:name=".activities.HelpActivity" />
     </application>
 
 </manifest>

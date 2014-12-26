@@ -71,4 +71,7 @@
     <string name="kentKart_region_nigde" translatable="false">Niğde</string>
     <string name="kentKart_region_sivas" translatable="false">Sivas</string>
 
+    <string name="help_page1_title">Welcome to\nMy KentKart!</string>
+    <string name="help_page1_message">My KentKart is the best way to get information about your KentKart.</string>
+
 </resources>

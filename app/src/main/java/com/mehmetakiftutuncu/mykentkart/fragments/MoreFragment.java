@@ -11,6 +11,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 import com.mehmetakiftutuncu.mykentkart.R;
+import com.mehmetakiftutuncu.mykentkart.activities.HelpActivity;
 import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 
@@ -56,6 +57,8 @@ public class MoreFragment extends PreferenceFragment {
         help.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), HelpActivity.class);
+                startActivity(intent);
                 return true;
             }
         });
