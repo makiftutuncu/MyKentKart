@@ -14,6 +14,12 @@ import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 
+import de.psdev.licensesdialog.LicensesDialog;
+import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
+import de.psdev.licensesdialog.licenses.MITLicense;
+import de.psdev.licensesdialog.model.Notice;
+import de.psdev.licensesdialog.model.Notices;
+
 public class MoreFragment extends PreferenceFragment {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -73,6 +79,19 @@ public class MoreFragment extends PreferenceFragment {
         licenses.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                Notices notices = new Notices();
+                notices.addNotice(new Notice("Android Form EditText", "https://github.com/vekexasia/android-edittext-validator", "", new MITLicense()));
+                notices.addNotice(new Notice("Google Gson", "https://code.google.com/p/google-gson", "", new ApacheSoftwareLicense20()));
+                notices.addNotice(new Notice("Android-ProgressSwitcher", "https://github.com/Drnkn/Android-ProgressSwitcher", "", new ApacheSoftwareLicense20()));
+                notices.addNotice(new Notice("FloatingActionButton", "https://github.com/makovkastar/FloatingActionButton", "", new MITLicense()));
+                notices.addNotice(new Notice("Material-ish Progress", "https://github.com/pnikosis/materialish-progress", "", new ApacheSoftwareLicense20()));
+                notices.addNotice(new Notice("Discreet App Rate", "https://github.com/PomepuyN/discreet-app-rate", "", new ApacheSoftwareLicense20()));
+
+                new LicensesDialog.Builder(getActivity())
+                    .setNotices(notices)
+                    .setIncludeOwnLicense(true)
+                    .build()
+                    .show();
                 return true;
             }
         });
