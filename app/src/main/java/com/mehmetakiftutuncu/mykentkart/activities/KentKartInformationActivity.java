@@ -32,6 +32,8 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
+import fr.nicolaspomepuy.discreetapprate.AppRate;
+import fr.nicolaspomepuy.discreetapprate.RetryPolicy;
 import ru.vang.progressswitcher.ProgressWidget;
 
 public class KentKartInformationActivity extends ActionBarActivity implements GetKentKartInformationTask.OnKentKartInformationReadyListener {
@@ -103,6 +105,13 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         }
 
         handleIntent(getIntent());
+
+        AppRate
+            .with(this)
+            .initialLaunchCount(3)
+            .text(R.string.rate_app)
+            .retryPolicy(RetryPolicy.INCREMENTAL)
+            .checkAndShow();
     }
 
     @Override

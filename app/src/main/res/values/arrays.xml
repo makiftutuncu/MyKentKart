@@ -1,44 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="kentKartRegions" translatable="false">
-        <item>Adana</item>
-        <item>Alanya</item>
-        <item>Antakya</item>
-        <item>Bandırma</item>
-        <item>Burdur</item>
-        <item>Çanakkale</item>
-        <item>Edirne</item>
-        <item>Ereğli</item>
-        <item>İnegöl</item>
-        <item>İzmir</item>
-        <item>Kocaeli</item>
-        <item>Manisa</item>
-        <item>Mersin</item>
-        <item>Muğla</item>
-        <item>Niğde</item>
-        <item>Sivas</item>
-    </string-array>
-
-    <string-array name="kentKartRegionCodes" translatable="false">
-        <item>003</item>
-        <item>019</item>
-        <item>018</item>
-        <item>008</item>
-        <item>017</item>
-        <item>007</item>
-        <item>013</item>
-        <item>020</item>
-        <item>015</item>
-        <item>006</item>
-        <item>004</item>
-        <item>001</item>
-        <item>016</item>
-        <item>010</item>
-        <item>023</item>
-        <item>005</item>
-    </string-array>
-
     <string-array name="connectedTransportDurations">
         <item>30 minutes</item>
         <item>45 minutes</item>

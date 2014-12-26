@@ -94,7 +94,7 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
             .with(this)
             .initialLaunchCount(3)
             .text(R.string.rate_app)
-            .retryPolicy(RetryPolicy.EXPONENTIAL)
+            .retryPolicy(RetryPolicy.INCREMENTAL)
             .checkAndShow();
     }
 
@@ -282,7 +282,14 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
                     public void onClick(DialogInterface dialog, int which) {
                         isNFCDialogAnswered = true;
                     }
-                }).create();
+                })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        isNFCDialogAnswered = true;
+                    }
+                })
+                .create();
 
             enableNFCDialog.show();
         }
