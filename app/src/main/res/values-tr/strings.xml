@@ -1,7 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">KentKart\'ım</string>
 
-    <string name="notSet">(belirlenmemiş)</string>
     <string name="loading">Yükleniyor, lütfen bekleyin.</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
@@ -28,7 +28,6 @@
     <string name="kentKartEditActivity_number_info">KentKart numarası genellikle kartın arka yüzünde bulunan 11 haneli numaradır.</string>
     <string name="kentKartEditActivity_number_empty">KentKart numarası boş olamaz!</string>
     <string name="kentKartEditActivity_number_error">KentKart numarası geçersiz!</string>
-    <string name="kentKartEditActivity_nfc_info">NFC\'yi kullanarak tek bir dokunuşla KentKart bilgilerinizi görebilirsiniz. Eşleştirmek için, KentKart\'ınızı cihazınızın arka yüzüne dokundurun.</string>
     <string name="kentKartEditActivity_region_info">KentKart\'ın etkin olduğu şehri seçin.</string>
 
     <string name="kentKartInformationActivity_section_balance">Şu Anki Bakiye</string>
@@ -40,7 +39,7 @@
     <string name="kentKartInformationActivity_blocked">KentKart sunucuları hatalı cevap verdi! Çok fazla sorgulama yüzünden engellenmiş olabilirsiniz. Lütfen daha sonra tekrar deneyin.</string>
 
     <string name="moreActivity_connectedTransport_categoryTitle">Aktarmalı Ulaşım</string>
-    <string name="moreActivity_connectedTransport_title">Kullanılabilir</string>
+    <string name="moreActivity_connectedTransport_title">Etkin</string>
     <string name="moreActivity_connectedTransport_summary">Aktarma süresinin bitimine kalan süreyi görmek için etkinleştirin.</string>
     <string name="moreActivity_connectedTransport_duration_title">Aktarmalı Ulaşım Süresi</string>
     <string name="moreActivity_connectedTransport_duration_summary">Aktarmalı ulaşım %1$s dakika geçerli.</string>
@@ -50,4 +49,21 @@
     <string name="moreActivity_about_feedback">Geribildirim Gönderin</string>
     <string name="moreActivity_about_version">Sürüm</string>
     <string name="moreActivity_about_openSource">Açık Kaynak Lisanslar</string>
+
+    <string name="help_page1_title">KentKart\'ım\'a\nHoş Geldiniz!</string>
+    <string name="help_page2_title">Kolay Kullanım</string>
+    <string name="help_page3_title">Bir Dokunuş Kadar Kolay</string>
+    <string name="help_page4_title">KentKart Eklemek</string>
+    <string name="help_page5_title">KentKart Bilgisi</string>
+    <string name="help_page6_title">Aktarmalı Ulaşım</string>
+    <string name="help_page7_title">KentKart\'ı Düzenlemek ve Silmek</string>
+    <string name="help_page8_title">Daha Fazlası</string>
+    <string name="help_page1_message">KentKart\'ım, KentKart\'ınızın bilgilerini görüntülemenin en iyi yoludur.\n\n\n\nDevam Etmek İçin Sola Kaydırın</string>
+    <string name="help_page2_message">KentKart\'ınızın bilgilerini görmek için tek ihtiyacınız 11 haneli KentKart numarasını ve bölgenizi girmek.</string>
+    <string name="help_page3_message">Cihazınız NFC\'yi destekliyor.\n\nEtkinleştirdiğinizde KentKart bilgilerinizi sadece kartınızı cihazınıza dokundurarak görebilirsiniz. Kartı dokundurduğunuzda uygulamanın açık olmasına bile gerek yok.\n\nKentKart\'ınız ilk kez dokundurduğunuzda bir kereliğine bilgilerini girip kaydetmeniz yeterli.</string>
+    <string name="help_page4_message">KentKart eklemek için büyük, mavi, yuvarlak + düğmesine dokunun. Dilediğiniz sayıda KentKart ekleyebilirsiniz.</string>
+    <string name="help_page5_message">Göreceğiniz bilgiler kartın şu anki bakiyesi, son kullanım zamanı, son kullanım miktarı, son yükleme zamanı ve son yükleme miktarını içerir.</string>
+    <string name="help_page6_message">Bazı şehirlerde KentKart\'ınızı bir kere kullanıp ödeme yaptıktan sonra belirli bir süre içinde yapacağınız diğer kullanımlar ücretsizdir.\n\nAyarlardan aktarmalı ulaşımı etkinleştirerek kartınızı bir kere kullandıktan sonra aktarma süresinin ne zaman biteceğini görebilirsiniz.\n\nBu sürenin sadece bir tahmin olduğunu unutmayın.</string>
+    <string name="help_page7_message">Var olan bir KentKart\'ı düzenlemek veya silmek için listede KentKart\'ın sağ üst köşesindeki düzenleme düğmesine dokunun.</string>
+    <string name="help_page8_message">KentKart\'ım hakkında daha fazla bilgiye ve ayarlara ulaşmak için araç çubuğunun sağ üst köşesindeki 3 nokta düğmesine dokunun.</string>
 </resources>

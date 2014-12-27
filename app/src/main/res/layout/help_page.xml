@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView_helpPage_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/spacing_medium"
+        android:gravity="center"
+        android:textSize="@dimen/textSize_extraLarge"/>
 
-        <TextView
-            android:id="@+id/textView_helpPage_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_medium"
-            android:gravity="center_horizontal"
-            android:textSize="@dimen/textSize_extraLarge"/>
+    <TextView
+        android:id="@+id/textView_helpPage_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:layout_margin="@dimen/spacing_medium"
+        android:textSize="@dimen/textSize_medium"/>
 
-        <ImageView
-            android:id="@+id/imageView_helpPage_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_medium"
-            android:layout_gravity="center_horizontal"/>
-
-        <TextView
-            android:id="@+id/textView_helpPage_message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_margin="@dimen/spacing_medium"
-            android:textSize="@dimen/textSize_medium"/>
-    </LinearLayout>
-</ScrollView>
+    <ImageView
+        android:id="@+id/imageView_helpPage_image"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_below="@id/textView_helpPage_title"
+        android:layout_above="@id/textView_helpPage_message"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/spacing_small"
+        android:layout_marginRight="@dimen/spacing_small"
+        android:scaleType="fitCenter"/>
+</RelativeLayout>

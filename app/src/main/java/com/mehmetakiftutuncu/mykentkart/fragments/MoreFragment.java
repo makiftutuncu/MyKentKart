@@ -48,7 +48,7 @@ public class MoreFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.RATE_URI));
-                startActivity(intent);
+                startActivity(Intent.createChooser(intent, getString(R.string.moreActivity_about_rate)));
                 return true;
             }
         });
@@ -71,7 +71,7 @@ public class MoreFragment extends PreferenceFragment {
                 intent.setType("message/rfc822");
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{Constants.FEEDBACK_CONTACT});
                 intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_subject));
-                startActivity(intent);
+                startActivity(Intent.createChooser(intent, getString(R.string.moreActivity_about_feedback)));
                 return true;
             }
         });

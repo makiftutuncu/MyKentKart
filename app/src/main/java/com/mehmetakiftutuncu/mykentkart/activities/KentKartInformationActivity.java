@@ -237,22 +237,24 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
                 if (isLastUseTimeFound) {
                     lastUseTimeTextView.setText(new SimpleDateFormat(Constants.DATE_TIME_FORMAT).format(new Date(kentKartInformation.lastUseTime)));
-
-                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    if (preferences.getBoolean(Constants.PREFERENCE_CONNECTED_TRANSPORT_ENABLED, false)) {
-                        String durationPreference = preferences.getString(Constants.PREFERENCE_CONNECTED_TRANSPORT_DURATION, "90");
-                        long connectedTransportDuration = !durationPreference.isEmpty() ? Long.parseLong(durationPreference) * 60 * 1000 : -1;
-                        long difference = System.currentTimeMillis() - kentKartInformation.lastUseTime;
-
-                        if (difference >= 0 && difference < connectedTransportDuration && kentKartInformation.lastLoadAmount > 0) {
-                            String differenceMinutes = String.valueOf(difference / (60 * 1000));
-                            connectedTransportTextView.setText(getString(R.string.kentKartInformationActivity_connectedTransport_duration, differenceMinutes));
-                        } else {
-                            connectedTransportTextView.setVisibility(View.GONE);
-                        }
-                    }
                 } else {
                     lastUseTimeTextView.setVisibility(View.GONE);
+                }
+
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                if (preferences.getBoolean(Constants.PREFERENCE_CONNECTED_TRANSPORT_ENABLED, false)) {
+                    String durationPreference = preferences.getString(Constants.PREFERENCE_CONNECTED_TRANSPORT_DURATION, "90");
+                    long connectedTransportDuration = !durationPreference.isEmpty() ? Long.parseLong(durationPreference) * 60 * 1000 : -1;
+                    long difference = System.currentTimeMillis() - kentKartInformation.lastUseTime;
+
+                    if (difference >= 0 && difference < connectedTransportDuration && kentKartInformation.lastLoadAmount > 0) {
+                        String differenceMinutes = String.valueOf(difference / (60 * 1000));
+                        connectedTransportTextView.setText(getString(R.string.kentKartInformationActivity_connectedTransport_duration, differenceMinutes));
+                    } else {
+                        connectedTransportTextView.setVisibility(View.GONE);
+                    }
+                } else {
+                    connectedTransportTextView.setVisibility(View.GONE);
                 }
             }
 
