@@ -15,7 +15,7 @@
     <string name="feedback_subject">About My KentKart</string>
 
     <string name="enableNFCDialog_title">Enable NFC?</string>
-    <string name="enableNFCDialog_message">Your device has NFC support but it is currently disabled.\n\nYou can use NFC to see your KentKart details just by touching your KentKart to your device.\n\nDo you want to go to settings to enable NFC?</string>
+    <string name="enableNFCDialog_message">Your device has NFC support but it is currently disabled.\n\nYou can use NFC to see your KentKart information just by touching your KentKart to your device.\n\nDo you want to go to settings to enable NFC?</string>
     <string name="enableNFCDialog_hint">Don\'t forget to press back key after enabling NFC to come back to My KentKart.</string>
 
     <string name="kentKartListActivity_menu_more">More</string>
@@ -54,6 +54,25 @@
     <string name="moreActivity_about_version">Version</string>
     <string name="moreActivity_about_openSource">Open Source Licenses</string>
 
+    <string name="helpActivity_hint">Swipe left to continue.</string>
+
+    <string name="help_page1_title">Welcome to\nMy KentKart!</string>
+    <string name="help_page2_title">Easy to Use</string>
+    <string name="help_page3_title">As Simple As One Touch</string>
+    <string name="help_page4_title">Adding a KentKart</string>
+    <string name="help_page5_title">Information of a KentKart</string>
+    <string name="help_page6_title">Connected Transport</string>
+    <string name="help_page7_title">Editing and Deleting a KentKart</string>
+    <string name="help_page8_title">More</string>
+    <string name="help_page1_message">My KentKart is the best way to get information about your KentKart.</string>
+    <string name="help_page2_message">To see information of a KentKart, all you need is 11 digit KentKart number and choosing your region.</string>
+    <string name="help_page3_message">Your device supports NFC. When it is enabled, you can see your KentKart information just by touching your KentKart to your device. You don\'t even need to open the application before touching your KentKart. The first time you touch, you will need to save your KentKart one time only.</string>
+    <string name="help_page4_message">To add a new KentKart, touch the big, round, blue + button. You can add as many KentKarts as you want.</string>
+    <string name="help_page5_message">You can see the current balance, time of last use, amount last used, time of last load and amount last loaded for a KentKart.</string>
+    <string name="help_page6_message">In some regions, it is free to use your KentKart for another form of transport in a certain time after paying once. You can enable connected transport from settings and see estimated remaining time to the end of connected transport duration. Please note that this is only an estimation.</string>
+    <string name="help_page7_message">To edit or delete an existing KentKart, touch edit icon on top right corner of the KentKart in the list.</string>
+    <string name="help_page8_message">To see some settings and more information about My KentKart, touch 3 dots icon on top right corner of the toolbar.</string>
+
     <string name="kentKart_region_adana" translatable="false">Adana</string>
     <string name="kentKart_region_alanya" translatable="false">Alanya</string>
     <string name="kentKart_region_antakya" translatable="false">Antakya</string>
@@ -71,7 +90,6 @@
     <string name="kentKart_region_nigde" translatable="false">Niğde</string>
     <string name="kentKart_region_sivas" translatable="false">Sivas</string>
 
-    <string name="help_page1_title">Welcome to\nMy KentKart!</string>
-    <string name="help_page1_message">My KentKart is the best way to get information about your KentKart.</string>
+    <string name="TL" translatable="false">¨&#160;</string>
 
 </resources>

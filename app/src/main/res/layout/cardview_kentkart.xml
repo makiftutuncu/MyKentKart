@@ -24,7 +24,7 @@
             android:layout_marginTop="@dimen/spacing_extraSmall"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/action_edit"/>
+            android:src="@drawable/edit_kentkart"/>
 
         <TextView
             android:id="@+id/textView_kentKart_name"

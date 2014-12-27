@@ -61,6 +61,25 @@
                         android:layout_below="@id/imageView_kentKartInformationActivity_sectionTitle_balance"
                         android:layout_centerHorizontal="true"
                         android:textSize="@dimen/textSize_huge"/>
+
+                    <TextView
+                        android:id="@+id/textView_kentKartInformationActivity_balanceTL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/textView_kentKartInformationActivity_balance"
+                        android:layout_alignBottom="@id/textView_kentKartInformationActivity_balance"
+                        android:gravity="bottom"
+                        android:textSize="@dimen/textSize_huge"
+                        android:text="@string/TL"/>
+
+                    <TextView
+                        android:id="@+id/textView_kentKartInformationActivity_connectedTransport"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView_kentKartInformationActivity_balance"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:gravity="center"
+                        android:textSize="@dimen/textSize_biggerMedium"/>
                 </RelativeLayout>
 
                 <LinearLayout
@@ -116,14 +135,14 @@
                             android:textSize="@dimen/textSize_biggerMedium"/>
 
                         <TextView
-                            android:id="@+id/textView_kentKartInformationActivity_connectedTransport"
-                            android:layout_width="0dp"
+                            android:id="@+id/textView_kentKartInformationActivity_lastUseAmountTL"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_below="@id/textView_kentKartInformationActivity_lastUseAmount"
-                            android:layout_marginTop="@dimen/spacing_extraSmall"
-                            android:layout_toRightOf="@id/imageView_kentKartInformationActivity_sectionTitle_lastUse"
-                            android:textSize="@dimen/textSize_biggerMedium"/>
+                            android:layout_toLeftOf="@id/textView_kentKartInformationActivity_lastUseAmount"
+                            android:layout_alignBottom="@id/textView_kentKartInformationActivity_lastUseAmount"
+                            android:gravity="bottom"
+                            android:textSize="@dimen/textSize_biggerMedium"
+                            android:text="@string/TL"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -167,14 +186,23 @@
 
                         <TextView
                             android:id="@+id/textView_kentKartInformationActivity_lastLoadAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@id/imageView_kentKartInformationActivity_sectionTitle_lastLoad"
+                            android:layout_below="@id/textView_kentKartInformationActivity_lastLoadTime"
+                            android:layout_marginTop="@dimen/spacing_extraSmall"
+                            android:textSize="@dimen/textSize_biggerMedium"/>
+
+                        <TextView
+                            android:id="@+id/textView_kentKartInformationActivity_lastLoadAmountTL"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
-                            android:layout_below="@id/textView_kentKartInformationActivity_lastLoadTime"
-                            android:layout_marginTop="@dimen/spacing_extraSmall"
-                            android:layout_toLeftOf="@id/imageView_kentKartInformationActivity_sectionTitle_lastLoad"
-                            android:gravity="center_vertical|right"
-                            android:textSize="@dimen/textSize_biggerMedium"/>
+                            android:layout_toLeftOf="@id/textView_kentKartInformationActivity_lastLoadAmount"
+                            android:layout_alignBottom="@id/textView_kentKartInformationActivity_lastLoadAmount"
+                            android:textSize="@dimen/textSize_biggerMedium"
+                            android:gravity="bottom|right"
+                            android:text="@string/TL"/>
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>

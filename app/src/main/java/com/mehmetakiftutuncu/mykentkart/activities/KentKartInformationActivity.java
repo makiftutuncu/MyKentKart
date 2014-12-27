@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.nfc.NfcAdapter;
 import android.nfc.tech.NfcA;
 import android.os.Bundle;
@@ -97,6 +98,14 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         connectedTransportTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_connectedTransport);
         lastLoadAmountTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_lastLoadAmount);
         lastLoadTimeTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_lastLoadTime);
+
+        TextView balanceTLTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_balanceTL);
+        TextView lastUseTLTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_lastUseAmountTL);
+        TextView lastLoadTLTextView = (TextView) findViewById(R.id.textView_kentKartInformationActivity_lastLoadAmountTL);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "TL.ttf");
+        balanceTLTextView.setTypeface(typeface);
+        lastUseTLTextView.setTypeface(typeface);
+        lastLoadTLTextView.setTypeface(typeface);
 
         nfcAdapter = NFCUtils.get(getApplicationContext()).getAdapter();
 
@@ -210,7 +219,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         } else {
             this.kentKartInformation = kentKartInformation;
 
-            balanceTextView.setText(kentKartInformation.balance + " TL");
+            balanceTextView.setText(String.valueOf(kentKartInformation.balance));
 
             boolean isLastUseAmountFound = kentKartInformation.lastUseAmount != -1;
             boolean isLastUseTimeFound = kentKartInformation.lastUseTime != -1;
@@ -221,7 +230,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
                 lastUseSectionLayout.setVisibility(View.GONE);
             } else {
                 if (isLastUseAmountFound) {
-                    lastUseAmountTextView.setText(kentKartInformation.lastUseAmount + " TL");
+                    lastUseAmountTextView.setText(String.valueOf(kentKartInformation.lastUseAmount));
                 } else {
                     lastUseAmountTextView.setVisibility(View.GONE);
                 }
@@ -236,7 +245,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
                         long difference = System.currentTimeMillis() - kentKartInformation.lastUseTime;
 
                         if (difference >= 0 && difference < connectedTransportDuration && kentKartInformation.lastLoadAmount > 0) {
-                            String differenceMinutes = "" + (difference / (60 * 1000));
+                            String differenceMinutes = String.valueOf(difference / (60 * 1000));
                             connectedTransportTextView.setText(getString(R.string.kentKartInformationActivity_connectedTransport_duration, differenceMinutes));
                         } else {
                             connectedTransportTextView.setVisibility(View.GONE);
@@ -251,7 +260,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
                 lastLoadSectionLayout.setVisibility(View.GONE);
             } else {
                 if (isLastLoadAmountFound) {
-                    lastLoadAmountTextView.setText(kentKartInformation.lastLoadAmount + " TL");
+                    lastLoadAmountTextView.setText(String.valueOf(kentKartInformation.lastLoadAmount));
                 } else {
                     lastLoadAmountTextView.setVisibility(View.GONE);
                 }

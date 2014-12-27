@@ -8,7 +8,7 @@
             android:key="preference_connectedTransport_enabled"
             android:title="@string/moreActivity_connectedTransport_title"
             android:summary="@string/moreActivity_connectedTransport_summary"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
         <ListPreference
             android:key="preference_connectedTransport_duration"
