@@ -1,12 +1,16 @@
 package com.mehmetakiftutuncu.mykentkart.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.adapters.HelpPageAdapter;
 import com.mehmetakiftutuncu.mykentkart.models.HelpPage;
+import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 import com.mehmetakiftutuncu.mykentkart.utilities.DepthPageTransformer;
 import com.mehmetakiftutuncu.mykentkart.utilities.NFCUtils;
 
@@ -49,6 +53,10 @@ public class HelpActivity extends ActionBarActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if (position == pages.length - 1) {
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(HelpActivity.this);
+                    preferences.edit().putBoolean(Constants.PREFERENCE_IS_HELP_COMPLETED, true).apply();
+                    Intent intent = new Intent(HelpActivity.this, KentKartListActivity.class);
+                    startActivity(intent);
                     finish();
                 }
             }

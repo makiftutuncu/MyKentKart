@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,54 +50,61 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_kentkart_list);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!preferences.getBoolean(Constants.PREFERENCE_IS_HELP_COMPLETED, false)) {
+            Intent intent = new Intent(this, HelpActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            setContentView(R.layout.activity_kentkart_list);
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (mToolbar != null) {
-            setSupportActionBar(mToolbar);
-        }
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView_kentKartList);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
-        progressWidget = (ProgressWidget) findViewById(R.id.progressWidget_kentKartList);
-
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton_add);
-        floatingActionButton.attachToRecyclerView(recyclerView);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), KentKartEditActivity.class);
-                startActivityForResult(intent, KentKartEditActivity.REQUEST_CODE);
+            Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+            if (mToolbar != null) {
+                setSupportActionBar(mToolbar);
             }
-        });
 
-        adapter = new KentKartAdapter();
-        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onChanged() {
-                super.onChanged();
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView_kentKartList);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-                showKentKartListResult();
+            progressWidget = (ProgressWidget) findViewById(R.id.progressWidget_kentKartList);
+
+            floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton_add);
+            floatingActionButton.attachToRecyclerView(recyclerView);
+            floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), KentKartEditActivity.class);
+                    startActivityForResult(intent, KentKartEditActivity.REQUEST_CODE);
+                }
+            });
+
+            adapter = new KentKartAdapter();
+            adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                @Override
+                public void onChanged() {
+                    super.onChanged();
+
+                    showKentKartListResult();
+                }
+            });
+            recyclerView.setAdapter(adapter);
+
+            if (savedInstanceState != null) {
+                restoreInstanceState(savedInstanceState);
             }
-        });
-        recyclerView.setAdapter(adapter);
 
-        if (savedInstanceState != null) {
-            restoreInstanceState(savedInstanceState);
+            if (!isNFCDialogAnswered) {
+                checkAndShowNFCDialog();
+            }
+
+            AppRate
+                    .with(this)
+                    .initialLaunchCount(Constants.RATE_LAUNCH_COUNT)
+                    .text(R.string.rate_app)
+                    .retryPolicy(RetryPolicy.INCREMENTAL)
+                    .checkAndShow();
         }
-
-        if (!isNFCDialogAnswered) {
-            checkAndShowNFCDialog();
-        }
-
-        AppRate
-            .with(this)
-            .initialLaunchCount(3)
-            .text(R.string.rate_app)
-            .retryPolicy(RetryPolicy.INCREMENTAL)
-            .checkAndShow();
     }
 
     @Override

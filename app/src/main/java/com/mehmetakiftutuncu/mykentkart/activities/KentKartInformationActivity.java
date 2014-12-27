@@ -117,7 +117,7 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
 
         AppRate
             .with(this)
-            .initialLaunchCount(3)
+            .initialLaunchCount(Constants.RATE_LAUNCH_COUNT)
             .text(R.string.rate_app)
             .retryPolicy(RetryPolicy.INCREMENTAL)
             .checkAndShow();
