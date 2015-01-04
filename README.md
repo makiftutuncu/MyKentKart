@@ -43,7 +43,7 @@ If your device has NFC, things get even cooler. After enabling NFC in device set
 After saving your KentKart using NFC, you can just touch your KentKart and you will directly see KentKart information. You don't even have to open My KentKart application for this to work.
 
 Here's a demonstration video:
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=GN_uFy-u7r4" target="_blank"><img src="http://img.youtube.com/vi/GN_uFy-u7r4/0.jpg" alt="Demonstration video" height="480" border="10" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=GN_uFy-u7r4" target="_blank"><img src="http://img.youtube.com/vi/GN_uFy-u7r4/0.jpg" alt="Demonstration video" width="640" height="480" border="10" /></a>
 
 Information My KentKart Provides
 --------------
@@ -82,10 +82,10 @@ My KentKart requires following permissions:
 
 Permission | Details
 ---------- | -------
-[android.permission.INTERNET](http://developer.android.com/reference/android/Manifest.permission.html#INTERNET) | This permission is needed to connect to the internet. My KentKart gets the information by sending a request to KentKart website.)
-[android.permission.ACCESS_NETWORK_STATE](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_NETWORK_STATE) | This permission is required to check if the device is connected to the internet.)
-[android.permission.NFC](http://developer.android.com/reference/android/Manifest.permission.html#NFC) | This permission is required to use NFC on devices that support it.)
-[android.permission.WRITE_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE) | This permission is required to save your KentKarts to device's storage.)
+[android.permission.INTERNET](http://developer.android.com/reference/android/Manifest.permission.html#INTERNET) | This permission is needed to connect to the internet. My KentKart gets the information by sending a request to KentKart website.
+[android.permission.ACCESS_NETWORK_STATE](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_NETWORK_STATE) | This permission is required to check if the device is connected to the internet.
+[android.permission.NFC](http://developer.android.com/reference/android/Manifest.permission.html#NFC) | This permission is required to use NFC on devices that support it.
+[android.permission.WRITE_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE) | This permission is required to save your KentKarts to device's storage.
 
 License
 --------------
