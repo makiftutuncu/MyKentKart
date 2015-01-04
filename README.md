@@ -3,7 +3,15 @@ My KentKart
 
 Welcome to My KentKart!
 
-My KentKart is an Android application for KentKart. It is independent, it has no relation to KentKart company and it's purpose is to see information of a KentKart easily. My KentKart requires a device with Android 4.0.3 and newer to work.
+My KentKart is an Android application for KentKart. It's purpose is to see information of a KentKart easily. My KentKart requires a device with Android 4.0.3 and newer to work.
+
+Disclaimer
+--------------
+KentKart is a company developing an automatic fare collection system for public transportation. They operate in Turkey and many other countries.
+
+Website: http://www.kentkart.com
+
+My KentKart, however, is in no way related to the company and is for **personal use only**! Please **DO NOT** use it for any other purpose. I **DO NOT** take any responsibility in this case.
 
 Download
 --------------
@@ -33,6 +41,9 @@ If your device has NFC, things get even cooler. After enabling NFC in device set
 2. It will be recognized and you will need to go through steps above for once.
 
 After saving your KentKart using NFC, you can just touch your KentKart and you will directly see KentKart information. You don't even have to open My KentKart application for this to work.
+
+Here's a demonstration video:
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=GN_uFy-u7r4" target="_blank"><img src="http://img.youtube.com/vi/GN_uFy-u7r4/0.jpg" alt="Demonstration video" height="480" border="10" /></a>
 
 Information My KentKart Provides
 --------------
@@ -64,12 +75,17 @@ My KentKart is for Turkey and it works in regions that KentKart is used which ar
 * Muğla
 * Niğde
 * Sivas
-
-About KentKart
+ 
+Permissions
 --------------
-KentKart is a company developing an automatic fare collection system for public transportation. They operate in Turkey and many other countries.
+My KentKart requires following permissions:
 
-Website: http://www.kentkart.com
+Permission | Details
+---------- | -------
+[android.permission.INTERNET](http://developer.android.com/reference/android/Manifest.permission.html#INTERNET) | This permission is needed to connect to the internet. My KentKart gets the information by sending a request to KentKart website.)
+[android.permission.ACCESS_NETWORK_STATE](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_NETWORK_STATE) | This permission is required to check if the device is connected to the internet.)
+[android.permission.NFC](http://developer.android.com/reference/android/Manifest.permission.html#NFC) | This permission is required to use NFC on devices that support it.)
+[android.permission.WRITE_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE) | This permission is required to save your KentKarts to device's storage.)
 
 License
 --------------
