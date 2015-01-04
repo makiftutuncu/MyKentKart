@@ -3,7 +3,7 @@ My KentKart
 
 Welcome to My KentKart!
 
-My KentKart is an Android application for KentKart. It's purpose is to see information of a KentKart easily. My KentKart requires a device with Android 4.0.3 and newer to work.
+My KentKart is an Android application for KentKart. It's purpose is to see information of a KentKart easily. My KentKart requires a device with Android 4.0.3 and newer to work. It supports Turkish and English languages.
 
 Disclaimer
 --------------
