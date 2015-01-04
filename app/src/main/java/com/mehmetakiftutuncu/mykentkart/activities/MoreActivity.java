@@ -24,6 +24,11 @@ import android.view.MenuItem;
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.fragments.MoreFragment;
 
+/**
+ * More screen of the application containing preferences and extra information about the application
+ *
+ * @author mehmetakiftutuncu
+ */
 public class MoreActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,9 @@ public class MoreActivity extends ActionBarActivity {
         }
     }
 
+    /**
+     * A utility method to run {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartListActivity}
+     */
     private void goToKentKartList() {
         finish();
     }

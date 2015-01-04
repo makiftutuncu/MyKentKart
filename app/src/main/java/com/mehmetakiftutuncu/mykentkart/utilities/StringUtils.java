@@ -18,11 +18,31 @@ package com.mehmetakiftutuncu.mykentkart.utilities;
 import java.security.MessageDigest;
 import java.util.Arrays;
 
+/**
+ * A utility class for basic String operations
+ *
+ * @author mehmetakiftutuncu
+ */
 public class StringUtils {
+    /**
+     * Checks whether or not given String is empty
+     *
+     * @param s String to check
+     *
+     * @return true if given String is not null and not empty or false otherwise
+     */
     public static boolean isEmpty(String s) {
         return s == null || s.isEmpty();
     }
 
+    /**
+     * Generates an NFC id represented as String from identifying bytes of KentKart read via NFC,
+     * basically takes a SHA-1 hash of the bytes and converts it to a String
+     *
+     * @param input Identifying bytes of KentKart read via NFC
+     *
+     * @return Generated NFC id of KentKart represented as a String or null if any error occurs
+     */
     public static String generateNfcId(byte[] input) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");

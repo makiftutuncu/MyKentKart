@@ -21,17 +21,33 @@ import android.os.Parcelable;
 import com.google.gson.Gson;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 
+/**
+ * A model of information to show about a {@link com.mehmetakiftutuncu.mykentkart.models.KentKart},
+ * it implements {@link android.os.Parcelable} so it can be moved around in a {@link android.os.Bundle}
+ *
+ * @author mehmetakiftutuncu
+ */
 public class KentKartInformation implements Parcelable {
+    /** Balance amount of the KentKart */
     public double balance;
+    /** Amount used when the KentKart is last used */
     public double lastUseAmount;
+    /** Timestamp value of the time when the KentKart is last used */
     public long lastUseTime;
+    /** Amount used when the KentKart is last loaded */
     public double lastLoadAmount;
+    /** Timestamp value of the time when the KentKart is last loaded */
     public long lastLoadTime;
 
-    public KentKartInformation() {
-        this(-1, -1, -1, -1, -1);
-    }
-
+    /**
+     * Constructor initializing all values
+     *
+     * @param balance        Value to set as {@link com.mehmetakiftutuncu.mykentkart.models.KentKartInformation#balance}
+     * @param lastUseAmount  Value to set as {@link com.mehmetakiftutuncu.mykentkart.models.KentKartInformation#lastUseAmount}
+     * @param lastUseTime    Value to set as {@link com.mehmetakiftutuncu.mykentkart.models.KentKartInformation#lastUseTime}
+     * @param lastLoadAmount Value to set as {@link com.mehmetakiftutuncu.mykentkart.models.KentKartInformation#lastLoadAmount}
+     * @param lastLoadTime   Value to set as {@link com.mehmetakiftutuncu.mykentkart.models.KentKartInformation#lastLoadTime}
+     */
     public KentKartInformation(double balance, double lastUseAmount, long lastUseTime, double lastLoadAmount, long lastLoadTime) {
         this.balance = balance;
         this.lastUseAmount = lastUseAmount;
@@ -40,6 +56,11 @@ public class KentKartInformation implements Parcelable {
         this.lastLoadTime = lastLoadTime;
     }
 
+    /**
+     * Converts this KentKartInformation to a String representation as JSON using {@link com.google.gson.Gson}
+     *
+     * @return A String representation of this KentKartInformation as JSON
+     */
     public String toJson() {
         try {
             Gson gson = new Gson();
@@ -50,26 +71,22 @@ public class KentKartInformation implements Parcelable {
         }
     }
 
-    public static KentKartInformation fromJson(String json) {
-        try {
-            Gson gson = new Gson();
-            return gson.fromJson(json, KentKartInformation.class);
-        } catch (Exception e) {
-            Log.error(KentKart.class, "Failed to generate KentKartInformation from json! json: " + json, e);
-            return null;
-        }
-    }
-
+    /* Represents this KentKart as a String, internally calls toJson() */
     @Override
     public String toString() {
         return toJson();
     }
 
+    /* Needed for making KentKartInformation a {@link android.os.Parcelable} */
     @Override
     public int describeContents() {
         return 0;
     }
 
+    /* Needed for making KentKartInformation a {@link android.os.Parcelable}
+     *
+     * Writes each field of this KentKartInformation to a {@link android.os.Parcel}
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeDouble(balance);

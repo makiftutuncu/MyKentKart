@@ -15,11 +15,26 @@
  */
 package com.mehmetakiftutuncu.mykentkart.models;
 
+/**
+ * A model of a single page in Help screen
+ *
+ * @author mehmetakiftutuncu
+ */
 public class HelpPage {
+    /** Resource id of title text of the help page */
     public int titleResourceId;
+    /** Resource id of image of the help page */
     public int imageResourceId;
+    /** Resource id of message text of the help page */
     public int messageResourceId;
 
+    /**
+     * Constructor initializing all values
+     *
+     * @param titleResourceId   Value to set as {@link com.mehmetakiftutuncu.mykentkart.models.HelpPage#titleResourceId}
+     * @param imageResourceId   Value to set as {@link com.mehmetakiftutuncu.mykentkart.models.HelpPage#imageResourceId}
+     * @param messageResourceId Value to set as {@link com.mehmetakiftutuncu.mykentkart.models.HelpPage#messageResourceId}
+     */
     public HelpPage(int titleResourceId, int imageResourceId, int messageResourceId) {
         this.titleResourceId = titleResourceId;
         this.imageResourceId = imageResourceId;

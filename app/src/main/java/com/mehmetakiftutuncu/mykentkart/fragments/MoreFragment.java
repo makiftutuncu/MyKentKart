@@ -36,6 +36,12 @@ import de.psdev.licensesdialog.licenses.MITLicense;
 import de.psdev.licensesdialog.model.Notice;
 import de.psdev.licensesdialog.model.Notices;
 
+/**
+ * A {@link android.preference.PreferenceFragment} to show contents of
+ * {@link com.mehmetakiftutuncu.mykentkart.activities.MoreActivity}
+ *
+ * @author mehmetakiftutuncu
+ */
 public class MoreFragment extends PreferenceFragment {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -46,6 +52,9 @@ public class MoreFragment extends PreferenceFragment {
         initializeData();
     }
 
+    /**
+     * A utility method to initialize preferences and about data
+     */
     private void initializeData() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 
@@ -73,6 +82,7 @@ public class MoreFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(getActivity(), HelpActivity.class);
+                intent.putExtra(Constants.HELP_STARTED_MANUALLY, true);
                 startActivity(intent);
                 return true;
             }
@@ -125,6 +135,12 @@ public class MoreFragment extends PreferenceFragment {
         }
     }
 
+    /**
+     * A utility method update summary text of connected transport preference to show current value
+     *
+     * @param preference A reference to {@link android.preference.ListPreference} whose summary will be updated
+     * @param newValue   New value of connected transport duration to set
+     */
     private void updateConnectedTransportDurationSummary(Preference preference, String newValue) {
         preference.setSummary(getString(R.string.moreActivity_connectedTransport_duration_summary, newValue));
     }

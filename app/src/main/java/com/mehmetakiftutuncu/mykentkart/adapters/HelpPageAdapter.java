@@ -22,9 +22,28 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.mehmetakiftutuncu.mykentkart.fragments.HelpPageFragment;
 import com.mehmetakiftutuncu.mykentkart.models.HelpPage;
 
+/**
+ * A {@link android.support.v4.app.FragmentStatePagerAdapter} that maps each
+ * {@link com.mehmetakiftutuncu.mykentkart.models.HelpPage} to a
+ * {@link com.mehmetakiftutuncu.mykentkart.fragments.HelpPageFragment}
+ *
+ * @author mehmetakiftutuncu
+ */
 public class HelpPageAdapter extends FragmentStatePagerAdapter {
+    /**
+     * Array of {@link com.mehmetakiftutuncu.mykentkart.fragments.HelpPageFragment}s that are
+     * pages in {@link com.mehmetakiftutuncu.mykentkart.activities.HelpActivity}
+     */
     private HelpPageFragment[] helpPageFragments;
 
+    /**
+     * Constructor initializing all values
+     *
+     * @param fragmentManager Instance of {@link android.support.v4.app.FragmentManager} needed
+     *                        for {@link android.support.v4.app.FragmentStatePagerAdapter} constructor
+     * @param helpPages       Array of {@link com.mehmetakiftutuncu.mykentkart.models.HelpPage} objects
+     *                        containing data of pages in {@link com.mehmetakiftutuncu.mykentkart.activities.HelpActivity}
+     */
     public HelpPageAdapter(FragmentManager fragmentManager, HelpPage[] helpPages) {
         super(fragmentManager);
 

@@ -48,17 +48,32 @@ import fr.nicolaspomepuy.discreetapprate.AppRate;
 import fr.nicolaspomepuy.discreetapprate.RetryPolicy;
 import ru.vang.progressswitcher.ProgressWidget;
 
+/**
+ * Main screen of the application, list of KentKarts
+ *
+ * @author mehmetakiftutuncu
+ */
 public class KentKartListActivity extends ActionBarActivity implements LoadKentKartsTask.OnKentKartsLoadedListener {
+    /** A simple enumeration of states of content in the activity */
     private enum States {PROGRESS, EMPTY, SUCCESS}
 
+    /** Current state of the content in the activity */
     private States state;
 
+    /** Reference to the {@link ru.vang.progressswitcher.ProgressWidget} that hosts the content of the activity  */
     private ProgressWidget progressWidget;
+    /** Reference to the {@link com.melnykov.fab.FloatingActionButton} that is add KentKart button */
     private FloatingActionButton floatingActionButton;
 
+    /** Reference to the {@link android.app.AlertDialog} that shows when device supports NFC but it is disabled */
     private AlertDialog enableNFCDialog;
+    /** State of completion of NFC dialog, it is set to true when user answers or dismisses the dialog */
     private boolean isNFCDialogAnswered;
 
+    /**
+     * {@link com.mehmetakiftutuncu.mykentkart.adapters.KentKartAdapter} that maps each KentKart
+     * to a {@link android.support.v7.widget.CardView} in the list
+     */
     private KentKartAdapter adapter;
 
     @Override
@@ -191,6 +206,11 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         }
     }
 
+    /**
+     * A utility method to restore saved instance state of the activity
+     *
+     * @param savedState Saved instance state to restore
+     */
     private void restoreInstanceState(Bundle savedState) {
         if (savedState != null) {
             // Restore current state
@@ -208,6 +228,9 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         }
     }
 
+    /**
+     * A utility method to show the KentKart list, called after loading KentKart list is completed
+     */
     private void showKentKartListResult() {
         if (adapter != null) {
             boolean isEmpty = adapter.getItemCount() == 0;
@@ -220,36 +243,59 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         }
     }
 
+    /**
+     * A utility method to show loading animation in {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartListActivity#progressWidget},
+     * called when content state is {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartListActivity.States#PROGRESS}
+     */
     private void showProgressLayout() {
         if (progressWidget != null) {
             progressWidget.showProgress(true);
         }
     }
 
+    /**
+     * A utility method to show content in {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartListActivity#progressWidget},
+     * called when content state is {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartListActivity.States#SUCCESS}
+     */
     private void showContentLayout() {
         if (progressWidget != null) {
             progressWidget.showContent(true);
         }
     }
 
+    /**
+     * A utility method to show empty content in {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartListActivity#progressWidget},
+     * called when content state is {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartListActivity.States#EMPTY}
+     */
     private void showEmptyLayout() {
         if (progressWidget != null) {
             progressWidget.showEmpty(true);
         }
     }
 
+    /**
+     * A utility method to show {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartListActivity#floatingActionButton}
+     */
     private void showFloatingActionButton() {
         if (floatingActionButton != null) {
             floatingActionButton.setVisibility(View.VISIBLE);
         }
     }
 
+    /**
+     * A utility method to hide {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartListActivity#floatingActionButton}
+     */
     private void hideFloatingActionButton() {
         if (floatingActionButton != null) {
             floatingActionButton.setVisibility(View.GONE);
         }
     }
 
+    /**
+     * Changes current content state to given state
+     *
+     * @param state New state to set
+     */
     private void changeState(States state) {
         /* Either
          *   state is null and new state is not, meaning that this is the first time activity is running and a state is being set
@@ -279,6 +325,9 @@ public class KentKartListActivity extends ActionBarActivity implements LoadKentK
         }
     }
 
+    /**
+     * Checks NFC status of device and shows NFC dialog if necessary
+     */
     private void checkAndShowNFCDialog() {
         isNFCDialogAnswered = false;
         NFCUtils nfcUtils = NFCUtils.get(getApplicationContext());

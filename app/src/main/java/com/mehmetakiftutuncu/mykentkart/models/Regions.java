@@ -21,6 +21,11 @@ import com.mehmetakiftutuncu.mykentkart.R;
 
 import java.util.ArrayList;
 
+/**
+ * An enumeration of regions in which KentKart works
+ *
+ * @author mehmetakiftutuncu
+ */
 public enum Regions {
     ADANA    ("003", R.string.kentKart_region_adana),
     ALANYA   ("019", R.string.kentKart_region_alanya),
@@ -39,14 +44,29 @@ public enum Regions {
     NIGDE    ("023", R.string.kentKart_region_nigde),
     SIVAS    ("005", R.string.kentKart_region_sivas);
 
+    /** Code of the Region */
     public String code;
+    /** Resource id of the name of Region */
     public int nameStringId;
 
+    /**
+     * Private constructor initializing all values
+     *
+     * @param code         Value to set as {@link com.mehmetakiftutuncu.mykentkart.models.Regions#code}
+     * @param nameStringId Value to set as {@link com.mehmetakiftutuncu.mykentkart.models.Regions#nameStringId}
+     */
     Regions(String code, int nameStringId) {
         this.code = code;
         this.nameStringId = nameStringId;
     }
 
+    /**
+     * Gets a Region with given region code
+     *
+     * @param code Region code of the sought Region
+     *
+     * @return Region whose code is given region code or null if it is not found
+     */
     public static Regions withCode(String code) {
         for (Regions r : Regions.values()) {
             if (r.code.equals(code)) {
@@ -57,8 +77,15 @@ public enum Regions {
         return null;
     }
 
+    /**
+     * Gets an {@link java.util.ArrayList} of names of regions
+     *
+     * @param context {@link android.content.Context} to access resources to get region name texts
+     *
+     * @return An {@link java.util.ArrayList} of names of regions
+     */
     public static ArrayList<String> getNames(Context context) {
-        ArrayList<String> regions = new ArrayList<String>();
+        ArrayList<String> regions = new ArrayList<>();
 
         for (Regions r : Regions.values()) {
             regions.add(context.getString(r.nameStringId));

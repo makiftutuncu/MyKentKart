@@ -26,13 +26,38 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 
+/**
+ * An {@link android.os.AsyncTask} to load the list of saved {@link com.mehmetakiftutuncu.mykentkart.models.KentKart}s
+ *
+ * @author mehmetakiftutuncu
+ */
 public class LoadKentKartsTask extends AsyncTask<Void, Void, ArrayList<KentKart>> {
+    /**
+     * An interface to indicate when loading the list of
+     * {@link com.mehmetakiftutuncu.mykentkart.models.KentKart}s is finished and data is ready
+     */
     public interface OnKentKartsLoadedListener {
+        /**
+         * Indicates that loading the list of
+         * {@link com.mehmetakiftutuncu.mykentkart.models.KentKart}s is finished and data is ready
+         *
+         * @param kentKarts An {@link java.util.ArrayList} of {@link com.mehmetakiftutuncu.mykentkart.models.KentKart}s loaded
+         */
         public void onKentKartsLoaded(ArrayList<KentKart> kentKarts);
     }
 
+    /**
+     * A reference to the object implementing
+     * {@link com.mehmetakiftutuncu.mykentkart.tasks.LoadKentKartsTask.OnKentKartsLoadedListener}
+     * to notify when task is finished
+     */
     private OnKentKartsLoadedListener listener;
 
+    /**
+     * Constructor initializing all values
+     *
+     * @param listener Value to set as {@link com.mehmetakiftutuncu.mykentkart.tasks.LoadKentKartsTask#listener}
+     */
     public LoadKentKartsTask(OnKentKartsLoadedListener listener) {
         this.listener = listener;
     }
@@ -50,7 +75,7 @@ public class LoadKentKartsTask extends AsyncTask<Void, Void, ArrayList<KentKart>
                     Log.error(this, "Failed to load all KentKarts, data path is null!");
                     return null;
                 } else {
-                    ArrayList<KentKart> kentKarts = new ArrayList<KentKart>();
+                    ArrayList<KentKart> kentKarts = new ArrayList<>();
 
                     String[] fileNames = dataPath.list(new FilenameFilter() {
                         @Override

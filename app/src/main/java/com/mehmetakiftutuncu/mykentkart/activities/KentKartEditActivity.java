@@ -42,17 +42,30 @@ import com.mehmetakiftutuncu.mykentkart.utilities.Data;
 import com.mehmetakiftutuncu.mykentkart.utilities.Log;
 import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
+/**
+ * Adding/editing screen for a KentKart, mode is defined by
+ * {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartEditActivity#isEditMode}
+ *
+ * @author mehmetakiftutuncu
+ */
 public class KentKartEditActivity extends ActionBarActivity {
+    /** Request code used to check the result of this activity, used for edit mode */
     public static int REQUEST_CODE = 1;
 
+    /** Reference to the {@link android.widget.EditText} for name of the KentKart */
     private FormEditText nameEditText;
+    /** Reference to the {@link android.widget.EditText} for number of the KentKart */
     private FormEditText numberEditText;
 
+    /** Indicates whether or not this activity is in edit mode */
     private boolean isEditMode;
+    /** Indicates whether or not this activity is started with an NFC id */
     private boolean isStartedWithNfc;
 
+    /** {@link com.mehmetakiftutuncu.mykentkart.models.KentKart} object created or being edited */
     private KentKart kentKart;
 
+    /** A {@link android.text.TextWatcher} to provide formatted representation of KentKart number upon user input */
     private TextWatcher numberTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -199,18 +212,33 @@ public class KentKartEditActivity extends ActionBarActivity {
         goToKentKartList(false);
     }
 
+    /**
+     * A utility method to save given KentKart
+     *
+     * @param kentKart KentKart object to save
+     */
     private void saveKentKart(KentKart kentKart) {
         String message = "Saving KentKart: " + kentKart;
         Log.info(this, message);
         Data.saveKentKart(kentKart);
     }
 
+    /**
+     * A utility method to delete given KentKart
+     *
+     * @param kentKart KentKart object to delete
+     */
     private void deleteKentKart(KentKart kentKart) {
         String message = "Deleting KentKart: " + kentKart;
         Log.info(this, message);
         Data.deleteKentKart(kentKart);
     }
 
+    /**
+     * A utility method to run {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity} for given KentKart
+     *
+     * @param kentKart KentKart object for which to get information
+     */
     private void goToKentKartInformation(KentKart kentKart) {
         Intent intent = new Intent(getApplicationContext(), KentKartInformationActivity.class);
         intent.putExtra(Constants.KENT_KART_NAME, kentKart.name);
@@ -222,6 +250,13 @@ public class KentKartEditActivity extends ActionBarActivity {
         finish();
     }
 
+    /**
+     * A utility method to run {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartListActivity}
+     *
+     * @param shouldReloadKentKartList Flag to set activity result; if set to true,
+     *                                 activity will have {@link android.app.Activity#RESULT_OK} or
+     *                                 {@link android.app.Activity#RESULT_CANCELED} otherwise
+     */
     private void goToKentKartList(boolean shouldReloadKentKartList) {
         if (shouldReloadKentKartList) {
             setResult(Activity.RESULT_OK);
@@ -235,6 +270,10 @@ public class KentKartEditActivity extends ActionBarActivity {
         finish();
     }
 
+    /**
+     * A utility method to update text on {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartEditActivity#numberEditText}
+     * to formatted value of KentKart number
+     */
     private void updateNumberText() {
         numberEditText.removeTextChangedListener(numberTextWatcher);
 

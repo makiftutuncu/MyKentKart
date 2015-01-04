@@ -24,27 +24,55 @@ import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Random;
 
+/**
+ * An {@link android.os.AsyncTask} to get information of a {@link com.mehmetakiftutuncu.mykentkart.models.KentKart}
+ *
+ * @author mehmetakiftutuncu
+ */
 public class GetKentKartInformationTask extends AsyncTask<Void, Void, KentKartInformation> {
+    /**
+     * An interface to indicate when getting information of
+     * {@link com.mehmetakiftutuncu.mykentkart.models.KentKart} is finished and data is ready
+     */
     public interface OnKentKartInformationReadyListener {
+        /**
+         * Indicates that getting information of
+         * {@link com.mehmetakiftutuncu.mykentkart.models.KentKart} is finished and data is ready
+         *
+         * @param kentKartNumber      Number of KentKart whose information is got
+         * @param kentKartInformation {@link com.mehmetakiftutuncu.mykentkart.models.KentKartInformation}
+         *                            containing the data got
+         */
         public void onKentKartInformationReady(String kentKartNumber, KentKartInformation kentKartInformation);
     }
 
+    /**
+     * A reference to the object implementing
+     * {@link com.mehmetakiftutuncu.mykentkart.tasks.GetKentKartInformationTask.OnKentKartInformationReadyListener}
+     * to notify when task is finished
+     */
     private OnKentKartInformationReadyListener listener;
+    /** Number of the KentKart whose information will be got */
     private String kentKartNumber;
+    /** Region code of the KentKart whose information will be got */
     private String kentKartRegionCode;
 
+    /**
+     * Generates the unique URL to get information of KentKart with given region and number
+     *
+     * @param region         Region code of the KentKart whose information will be got
+     * @param kentKartNumber Number of the KentKart whose information will be got
+     *
+     * @return A unique URL to get information of KentKart with given region and number
+     */
     private String getUrl(String region, String kentKartNumber) {
         return String.format(
             "http://m.kentkart.com/new/services/?cmd=getBalance&region=%s&alias=%s",
@@ -53,6 +81,13 @@ public class GetKentKartInformationTask extends AsyncTask<Void, Void, KentKartIn
         );
     }
 
+    /**
+     * Constructor initializing all values
+     *
+     * @param kentKartNumber     Value to set as {@link com.mehmetakiftutuncu.mykentkart.tasks.GetKentKartInformationTask#kentKartNumber}
+     * @param kentKartRegionCode Value to set as {@link com.mehmetakiftutuncu.mykentkart.tasks.GetKentKartInformationTask#kentKartRegionCode}
+     * @param listener           Value to set as {@link com.mehmetakiftutuncu.mykentkart.tasks.GetKentKartInformationTask#listener}
+     */
     public GetKentKartInformationTask(String kentKartNumber, String kentKartRegionCode, OnKentKartInformationReadyListener listener) {
         this.kentKartNumber = kentKartNumber;
         this.kentKartRegionCode = kentKartRegionCode;

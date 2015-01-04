@@ -19,11 +19,25 @@ import android.os.Environment;
 
 import java.io.*;
 
+/**
+ * A utility class for basic file operations
+ *
+ * @author mehmetakiftutuncu
+ */
 public class FileUtils {
+    /** Full path of data folder to store KentKart data in external storage of device */
     private static final String DATA_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + Constants.DATA_PATH;
 
+    /** A File object pointing to {@link com.mehmetakiftutuncu.mykentkart.utilities.FileUtils#DATA_PATH} */
     public static File dataPath = getDataPath();
 
+    /**
+     * Reads a file with given name from data folder into a String
+     *
+     * @param fileName Name of the file in data folder to read
+     *
+     * @return A String with contents of the file with given name or null if any error occurs
+     */
     public static String readFile(String fileName) {
         if (StringUtils.isEmpty(fileName)) {
             Log.error(FileUtils.class, "Failed to read file, file name is empty!");
@@ -59,6 +73,14 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Writes given String to a file with given name in data folder
+     *
+     * @param data     Data to write
+     * @param fileName Name of the file to which data will be written
+     *
+     * @return true if successfully written or false if any error occurs
+     */
     public static boolean writeFile(String data, String fileName) {
         if (StringUtils.isEmpty(data)) {
             Log.error(FileUtils.class, "Failed to write file, data is empty! fileName: " + fileName);
@@ -90,6 +112,12 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Gets a File object pointing to {@link com.mehmetakiftutuncu.mykentkart.utilities.FileUtils#DATA_PATH}
+     * making sure that all folders in the path exist
+     *
+     * @return A File object pointing to data folder or null if any error occurs
+     */
     public static File getDataPath() {
         File path = new File(DATA_PATH);
 

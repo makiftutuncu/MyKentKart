@@ -34,7 +34,52 @@ import com.mehmetakiftutuncu.mykentkart.utilities.StringUtils;
 
 import java.util.ArrayList;
 
+/**
+ * A {@link android.support.v7.widget.RecyclerView.Adapter} that maps each
+ * {@link com.mehmetakiftutuncu.mykentkart.models.KentKart} to a
+ * {@link android.support.v7.widget.CardView} in KentKart list
+ *
+ * @author mehmetakiftutuncu
+ */
 public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHolder> {
+    /**
+     * A utility class containing data of a {@link com.mehmetakiftutuncu.mykentkart.models.KentKart}
+     * and references to it's components in {@link android.support.v7.widget.CardView} representing it
+     *
+     * @author mehmetakiftutuncu
+     */
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        /** Name of the KentKart */
+        public String name;
+        /** Number of the KentKart */
+        public String number;
+        /** Region code of the KentKart */
+        public String regionCode;
+        /** Reference to {@link android.widget.TextView} that shows name of the KentKart */
+        public TextView nameTextView;
+        /** Reference to {@link android.widget.TextView} that shows number of the KentKart */
+        public TextView numberTextView;
+        /** Reference to {@link android.widget.ImageView} that indicates when the KentKart is saved using NFC */
+        public ImageView nfcImageView;
+        /** Reference to {@link android.widget.ImageButton} that is used to edit the KentKart */
+        public ImageButton editImageButton;
+
+        /**
+         * Constructor initializing all values
+         *
+         * @param view A reference to {@link android.support.v7.widget.CardView}
+         */
+        public ViewHolder(View view) {
+            super(view);
+
+            this.nameTextView = (TextView) view.findViewById(R.id.textView_kentKart_name);
+            this.numberTextView = (TextView) view.findViewById(R.id.textView_kentKart_number);
+            this.nfcImageView = (ImageView) view.findViewById(R.id.imageView_kentKart_nfcState);
+            this.editImageButton = (ImageButton) view.findViewById(R.id.imageButton_kentKart_edit);
+        }
+    }
+
+    /** An {@link java.util.ArrayList} of {@link com.mehmetakiftutuncu.mykentkart.models.KentKart}s as data source */
     private ArrayList<KentKart> kentKarts;
 
     @Override
@@ -88,31 +133,22 @@ public class KentKartAdapter extends RecyclerView.Adapter<KentKartAdapter.ViewHo
         return kentKarts != null ? kentKarts.size() : 0;
     }
 
+    /**
+     * Gets current data source
+     *
+     * @return {@link com.mehmetakiftutuncu.mykentkart.adapters.KentKartAdapter#kentKarts}
+     */
     public ArrayList<KentKart> getKentKarts() {
         return kentKarts;
     }
 
+    /**
+     * Sets current data source
+     *
+     * @param kentKarts Value to set as {@link com.mehmetakiftutuncu.mykentkart.adapters.KentKartAdapter#kentKarts}
+     */
     public void setKentKarts(ArrayList<KentKart> kentKarts) {
         this.kentKarts = kentKarts;
         notifyDataSetChanged();
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public String name;
-        public String number;
-        public String regionCode;
-        public TextView nameTextView;
-        public TextView numberTextView;
-        public ImageView nfcImageView;
-        public ImageButton editImageButton;
-
-        public ViewHolder(View view) {
-            super(view);
-
-            this.nameTextView = (TextView) view.findViewById(R.id.textView_kentKart_name);
-            this.numberTextView = (TextView) view.findViewById(R.id.textView_kentKart_number);
-            this.nfcImageView = (ImageView) view.findViewById(R.id.imageView_kentKart_nfcState);
-            this.editImageButton = (ImageButton) view.findViewById(R.id.imageButton_kentKart_edit);
-        }
     }
 }

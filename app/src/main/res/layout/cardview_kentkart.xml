@@ -20,6 +20,7 @@
     android:id="@+id/cardView_kentKart"
     android:layout_width="match_parent"
     android:layout_height="@dimen/cardView_kentKart_height"
+    android:layout_marginBottom="@dimen/spacing_small"
     card_view:cardCornerRadius="@dimen/cardView_kentKart_cornerRadius"
     card_view:cardElevation="@dimen/cardView_kentKart_elevation">
 

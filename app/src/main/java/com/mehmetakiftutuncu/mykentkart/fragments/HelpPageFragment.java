@@ -25,20 +25,34 @@ import android.widget.TextView;
 
 import com.mehmetakiftutuncu.mykentkart.R;
 import com.mehmetakiftutuncu.mykentkart.models.HelpPage;
+import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 
+/**
+ * A {@link android.support.v4.app.Fragment} representing a single page in
+ * {@link com.mehmetakiftutuncu.mykentkart.activities.HelpActivity}
+ *
+ * @author mehmetakiftutuncu
+ */
 public class HelpPageFragment extends Fragment {
-    public static final String EXTRA_TITLE = "title";
-    public static final String EXTRA_IMAGE = "image";
-    public static final String EXTRA_MESSAGE = "message";
-
+    /** {@link com.mehmetakiftutuncu.mykentkart.models.HelpPage} from which to take the data */
     private HelpPage helpPage;
 
+    /**
+     * A builder method initializing all values
+     *
+     * @param titleResourceId   Resource id of title text
+     * @param imageResourceId   Resource id of the image
+     * @param messageResourceId Resource id of the message text
+     *
+     * @return A {@link com.mehmetakiftutuncu.mykentkart.fragments.HelpPageFragment} object with
+     *         arguments set from given values
+     */
     public static HelpPageFragment with(int titleResourceId, int imageResourceId, int messageResourceId) {
         HelpPageFragment fragment = new HelpPageFragment();
         Bundle arguments = new Bundle();
-        arguments.putInt(EXTRA_TITLE, titleResourceId);
-        arguments.putInt(EXTRA_IMAGE, imageResourceId);
-        arguments.putInt(EXTRA_MESSAGE, messageResourceId);
+        arguments.putInt(Constants.HELP_TITLE, titleResourceId);
+        arguments.putInt(Constants.HELP_IMAGE, imageResourceId);
+        arguments.putInt(Constants.HELP_MESSAGE, messageResourceId);
         fragment.setArguments(arguments);
         return fragment;
     }
@@ -49,9 +63,9 @@ public class HelpPageFragment extends Fragment {
 
         Bundle arguments = getArguments();
         if (arguments != null) {
-            int titleResourceId = arguments.getInt(EXTRA_TITLE, -1);
-            int imageResourceId = arguments.getInt(EXTRA_IMAGE, -1);
-            int messageResourceId = arguments.getInt(EXTRA_MESSAGE, -1);
+            int titleResourceId = arguments.getInt(Constants.HELP_TITLE, -1);
+            int imageResourceId = arguments.getInt(Constants.HELP_IMAGE, -1);
+            int messageResourceId = arguments.getInt(Constants.HELP_MESSAGE, -1);
 
             helpPage = new HelpPage(titleResourceId, imageResourceId, messageResourceId);
         }

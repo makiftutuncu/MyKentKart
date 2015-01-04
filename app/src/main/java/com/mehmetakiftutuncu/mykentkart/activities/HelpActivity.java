@@ -29,7 +29,13 @@ import com.mehmetakiftutuncu.mykentkart.utilities.Constants;
 import com.mehmetakiftutuncu.mykentkart.utilities.DepthPageTransformer;
 import com.mehmetakiftutuncu.mykentkart.utilities.NFCUtils;
 
+/**
+ * Help screen of the application, explains how the application can be used to the user
+ *
+ * @author mehmetakiftutuncu
+ */
 public class HelpActivity extends ActionBarActivity {
+    /** Pages in help screen as {@link com.mehmetakiftutuncu.mykentkart.models.HelpPage} objects */
     private HelpPage[] helpPages = new HelpPage[] {
         new HelpPage(R.string.help_page1_title, R.drawable.help_logo, R.string.help_page1_message),
         new HelpPage(R.string.help_page2_title, R.drawable.help_kentkart, R.string.help_page2_message),
@@ -42,6 +48,10 @@ public class HelpActivity extends ActionBarActivity {
         new HelpPage(-1, -1, -1)
     };
 
+    /**
+     * Pages in help screen as {@link com.mehmetakiftutuncu.mykentkart.models.HelpPage} objects
+     * for devices without NFC support
+     */
     private HelpPage[] helpPagesWithoutNfc = new HelpPage[] {
         new HelpPage(R.string.help_page1_title, R.drawable.help_logo, R.string.help_page1_message),
         new HelpPage(R.string.help_page2_title, R.drawable.help_kentkart, R.string.help_page2_message),
@@ -53,11 +63,19 @@ public class HelpActivity extends ActionBarActivity {
         new HelpPage(-1, -1, -1)
     };
 
+    /** Flag indicating that help is started manually */
+    private boolean isStartedManually = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_help);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            isStartedManually = extras.getBoolean(Constants.HELP_STARTED_MANUALLY, false);
+        }
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager_help);
         final HelpPage[] pages = NFCUtils.get(this).hasNfc() ? helpPages : helpPagesWithoutNfc;
@@ -70,8 +88,10 @@ public class HelpActivity extends ActionBarActivity {
                 if (position == pages.length - 1) {
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(HelpActivity.this);
                     preferences.edit().putBoolean(Constants.PREFERENCE_IS_HELP_COMPLETED, true).apply();
-                    Intent intent = new Intent(HelpActivity.this, KentKartListActivity.class);
-                    startActivity(intent);
+                    if (!isStartedManually) {
+                        Intent intent = new Intent(HelpActivity.this, KentKartListActivity.class);
+                        startActivity(intent);
+                    }
                     finish();
                 }
             }
@@ -82,5 +102,12 @@ public class HelpActivity extends ActionBarActivity {
             @Override
             public void onPageScrollStateChanged(int state) {}
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isStartedManually) {
+            super.onBackPressed();
+        }
     }
 }

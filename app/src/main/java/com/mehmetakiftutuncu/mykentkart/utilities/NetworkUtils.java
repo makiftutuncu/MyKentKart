@@ -19,7 +19,19 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+/**
+ * A utility class for basic network operations
+ *
+ * @author mehmetakiftutuncu
+ */
 public class NetworkUtils {
+    /**
+     * Checks whether or not the device is connected to internet
+     *
+     * @param context {@link android.content.Context} to access {@link android.content.Context#CONNECTIVITY_SERVICE}
+     *
+     * @return true if the device is connected to internet or false otherwise
+     */
     public static boolean isConnectedToInternet(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();

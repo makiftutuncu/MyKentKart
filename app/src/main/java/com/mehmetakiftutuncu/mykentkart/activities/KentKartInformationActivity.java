@@ -52,30 +52,52 @@ import fr.nicolaspomepuy.discreetapprate.AppRate;
 import fr.nicolaspomepuy.discreetapprate.RetryPolicy;
 import ru.vang.progressswitcher.ProgressWidget;
 
+/**
+ * Information screen of a KentKart
+ *
+ * @author mehmetakiftutuncu
+ */
 public class KentKartInformationActivity extends ActionBarActivity implements GetKentKartInformationTask.OnKentKartInformationReadyListener {
+    /** A simple enumeration of states of content in the activity */
     private enum States {PROGRESS, ERROR, SUCCESS}
 
+    /** Current state of the content in the activity */
     private States state;
 
+    /** Reference to the {@link ru.vang.progressswitcher.ProgressWidget} that hosts the content of the activity  */
     private ProgressWidget progressWidget;
 
+    /** Reference to the {@link android.widget.RelativeLayout} that hosts information of last use of KentKart */
     private RelativeLayout lastUseSectionLayout;
+    /** Reference to the {@link android.widget.RelativeLayout} that hosts information of last load of KentKart */
     private RelativeLayout lastLoadSectionLayout;
 
+    /** Reference to the {@link android.widget.TextView} that shows balance of KentKart */
     private TextView balanceTextView;
+    /** Reference to the {@link android.widget.TextView} that shows last use amount of KentKart */
     private TextView lastUseAmountTextView;
+    /** Reference to the {@link android.widget.TextView} that shows last use time of KentKart */
     private TextView lastUseTimeTextView;
+    /** Reference to the {@link android.widget.TextView} that shows remaining connected transport time of KentKart */
     private TextView connectedTransportTextView;
+    /** Reference to the {@link android.widget.TextView} that shows last load amount of KentKart */
     private TextView lastLoadAmountTextView;
+    /** Reference to the {@link android.widget.TextView} that shows last load time of KentKart */
     private TextView lastLoadTimeTextView;
 
+    /** Name of the KentKart whose information is being shown */
     private String kentKartName;
+    /** Number of the KentKart whose information is being shown */
     private String kentKartNumber;
+    /** Region code of the KentKart whose information is being shown */
     private String kentKartRegionCode;
+    /** Indicates whether or not this activity is started with an NFC id */
     private boolean isStartedWithNfc = false;
 
+    /** Instance of {@link android.nfc.NfcAdapter} to handle NFC operations */
     private NfcAdapter nfcAdapter;
 
+    /** {@link com.mehmetakiftutuncu.mykentkart.models.KentKartInformation} object of the KentKart whose information is being shown */
     private KentKartInformation kentKartInformation;
 
     @Override
@@ -182,6 +204,11 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         }
     }
 
+    /**
+     * A utility method to restore saved instance state of the activity
+     *
+     * @param savedState Saved instance state to restore
+     */
     private void restoreInstanceState(Bundle savedState) {
         if (savedState != null) {
             // Restore current state
@@ -220,6 +247,13 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         showKentKartInformationResult(kentKartNumber, kentKartInformation);
     }
 
+    /**
+     * Updates content of the activity to show information of the KentKart or error when there is something wrong
+     *
+     * @param kentKartNumber      Number of the KentKart whose information is being shown
+     * @param kentKartInformation {@link com.mehmetakiftutuncu.mykentkart.models.KentKartInformation}
+     *                            object of the KentKart whose information is being shown
+     */
     private void showKentKartInformationResult(String kentKartNumber, KentKartInformation kentKartInformation) {
         if (StringUtils.isEmpty(kentKartNumber)) {
             Log.error(this, "Failed to get KentKart information, kentKartNumber is empty!");
@@ -293,6 +327,9 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         }
     }
 
+    /**
+     * A utility method to run {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartListActivity}
+     */
     private void goToKentKartList() {
         if (isStartedWithNfc) {
             Intent intent = new Intent(getApplicationContext(), KentKartListActivity.class);
@@ -301,6 +338,11 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         finish();
     }
 
+    /**
+     * A utility method to handle a received {@link android.content.Intent}
+     *
+     * @param intent Received {@link android.content.Intent} to handle
+     */
     private void handleIntent(Intent intent) {
         if (intent != null && state == null) {
             String action = intent.getAction();
@@ -343,6 +385,12 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         }
     }
 
+    /**
+     * Updates {@link android.support.v7.widget.Toolbar} of the activity to show KentKart name and number
+     *
+     * @param actionBar Instance of {@link android.support.v7.app.ActionBar}, in this case
+     *                  {@link android.support.v7.widget.Toolbar}, on which to show KentKart name and number
+     */
     private void updateTitle(ActionBar actionBar) {
         if (!StringUtils.isEmpty(kentKartName) && !StringUtils.isEmpty(kentKartNumber)) {
             actionBar.setTitle(kentKartName);
@@ -350,24 +398,41 @@ public class KentKartInformationActivity extends ActionBarActivity implements Ge
         }
     }
 
+    /**
+     * A utility method to show loading animation in {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity#progressWidget},
+     * called when content state is {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity.States#PROGRESS}
+     */
     private void showProgressLayout() {
         if (progressWidget != null) {
             progressWidget.showProgress(true);
         }
     }
 
+    /**
+     * A utility method to show content in {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity#progressWidget},
+     * called when content state is {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity.States#SUCCESS}
+     */
     private void showContentLayout() {
         if (progressWidget != null) {
             progressWidget.showContent(true);
         }
     }
 
+    /**
+     * A utility method to show error in {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity#progressWidget},
+     * called when content state is {@link com.mehmetakiftutuncu.mykentkart.activities.KentKartInformationActivity.States#ERROR}
+     */
     private void showErrorLayout() {
         if (progressWidget != null) {
             progressWidget.showError(true);
         }
     }
 
+    /**
+     * Changes current content state to given state
+     *
+     * @param state New state to set
+     */
     private void changeState(States state) {
         /* Either
          *   state is null and new state is not, meaning that this is the first time activity is running and a state is being set
