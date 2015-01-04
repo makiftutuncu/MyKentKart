@@ -43,7 +43,20 @@ If your device has NFC, things get even cooler. After enabling NFC in device set
 After saving your KentKart using NFC, you can just touch your KentKart and you will directly see KentKart information. You don't even have to open My KentKart application for this to work.
 
 Here's a demonstration video:
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=GN_uFy-u7r4" target="_blank"><img src="http://img.youtube.com/vi/GN_uFy-u7r4/0.jpg" alt="Demonstration video" width="640" height="480" border="10" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=GN_uFy-u7r4" target="_blank"><img src="http://img.youtube.com/vi/GN_uFy-u7r4/0.jpg" alt="Demonstration video" width="640" height="480" /></a>
+
+Screenshots
+--------------
+<a href="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/1.png" target="_blank"><img src="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/1.png" alt="Welcome" width="360" height="640" /></a>
+<a href="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/2.png" target="_blank"><img src="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/2.png" alt="Empty KentKart list" width="360" height="640" /></a>
+<a href="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/3.png" target="_blank"><img src="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/3.png" alt="Add KentKart" width="360" height="640" /></a>
+<a href="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/4.png" target="_blank"><img src="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/4.png" alt="Loading KentKart" width="360" height="640" /></a>
+<a href="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/5.png" target="_blank"><img src="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/5.png" alt="KentKart information" width="360" height="640" /></a>
+<a href="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/6.png" target="_blank"><img src="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/6.png" alt="KentKart list" width="360" height="640" /></a>
+<a href="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/7.png" target="_blank"><img src="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/7.png" alt="Long KentKart list" width="360" height="640" /></a>
+<a href="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/8.png" target="_blank"><img src="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/8.png" alt="More screen" width="360" height="640" /></a>
+<a href="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/9.png" target="_blank"><img src="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/9.png" alt="Licences screen" width="360" height="640" /></a>
+<a href="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/10.png" target="_blank"><img src="https://raw.githubusercontent.com/mehmetakiftutuncu/MyKentKart/master/app/assets/screenshots/10.png" alt="Error screen" width="360" height="640" /></a>
 
 Information My KentKart Provides
 --------------
