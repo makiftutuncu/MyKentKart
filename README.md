@@ -102,7 +102,7 @@ Permission | Details
 
 License
 --------------
-My KentKart is licenses under Apache License Version 2.0.
+My KentKart is licensed under Apache License Version 2.0.
 
 ```
 Copyright (C) 2015 Mehmet Akif Tütüncü
