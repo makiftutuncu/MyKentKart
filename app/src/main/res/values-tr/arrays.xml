@@ -16,7 +16,7 @@
 -->
 <resources>
 
-    <string-array name="moreActivity_connectedTransport_durations">
+    <string-array name="connectedTransportDurations">
         <item>30 dakika</item>
         <item>45 dakika</item>
         <item>60 dakika</item>
