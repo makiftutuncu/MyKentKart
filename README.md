@@ -7,7 +7,14 @@ My KentKart is an Android application for KentKart. It is independent, it has no
 
 Download
 --------------
-[To be added]
+You can download My KentKart from [**Releases**](https://github.com/mehmetakiftutuncu/MyKentKart/releases) section.
+
+Install
+--------------
+1. Transfer **.apk** file to your device's storage.
+2. Enable **Unknown Sources** in device settings so that you can install applications that are not from Google Play Store.
+3. Locate the **.apk** file with a file manager and open it.
+4. Go through the installation process.
 
 How to Use
 --------------
